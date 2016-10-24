@@ -19,7 +19,7 @@ CREATE TABLE `users` (
   `email` CHAR NULL DEFAULT NULL,
   `role` SMALLINT NULL DEFAULT NULL,
   `phone_number` VARCHAR NULL DEFAULT NULL,
-  `invite_status` INTEGER NULL DEFAULT NULL,
+  `invite_status` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -37,8 +37,8 @@ CREATE TABLE `equips` (
   `description` CHAR NULL DEFAULT NULL,
   `sizing` CHAR NULL DEFAULT NULL,
   `quantity` INTEGER NULL DEFAULT NULL,
-  `borrow_slot` INTEGER NULL DEFAULT NULL,
-  `status` INTEGER NULL DEFAULT NULL,
+  `borrow_slot` SMALLINT NULL DEFAULT NULL,
+  `status` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE `food` (
   `quantity` INTEGER NULL DEFAULT NULL,
   `amount` INTEGER NULL DEFAULT NULL,
   `amount_units` CHAR NULL DEFAULT NULL,
-  `share_status` INTEGER NULL DEFAULT NULL,
+  `share_status` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
