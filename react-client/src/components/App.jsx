@@ -1,5 +1,6 @@
 import React from 'react';
 import TripDetails from './tripDetails/tripDetails.jsx';
+import Terms from './terms/termsMaker.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class App extends React.Component {
       <div>    
         <div>Hello World!</div>
         <TripDetails />
+        <Terms />
       </div>
     );
   }
