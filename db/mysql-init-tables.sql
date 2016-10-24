@@ -77,6 +77,7 @@ CREATE TABLE `food` (
   `amount` INTEGER NULL DEFAULT NULL,
   `amount_units` CHAR NULL DEFAULT NULL,
   `share_status` SMALLINT NULL DEFAULT NULL,
+  `tags` CHAR NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -147,6 +148,7 @@ CREATE TABLE `images` (
   `width` INTEGER NULL DEFAULT NULL,
   `height` INTEGER NULL DEFAULT NULL,
   `type` INTEGER NULL DEFAULT NULL,
+  `tags` CHAR NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -209,15 +211,15 @@ ALTER TABLE `tripterms` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 -- ('','','','','','','','','','');
 -- INSERT INTO `myclothes` (`id`,`user_id`,`name`,`description`,`sizing`,`quantity`) VALUES
 -- ('','','','','','');
--- INSERT INTO `food` (`id`,`user_id`,`name`,`description`,`quantity`,`amount`,`amount_units`,`share_status`) VALUES
--- ('','','','','','','','');
+-- INSERT INTO `food` (`id`,`user_id`,`name`,`description`,`quantity`,`amount`,`amount_units`,`share_status`,`tags`) VALUES
+-- ('','','','','','','','','');
 -- INSERT INTO `trips` (`id`,`title`,`description`,`start_date`,`end_date`,`address`,`google_maps_url`,`cost_per_member`,`cost_deadline`,`tags`) VALUES
 -- ('','','','','','','','','','');
 -- INSERT INTO `trips_users` (`id`,`trip_id`,`user_id`) VALUES
 -- ('','','');
 -- INSERT INTO `equips_users` (`id`,`user_id`,`equip_id`) VALUES
 -- ('','','');
--- INSERT INTO `images` (`id`,`trip_id`,`user_id`,`equip_id`,`url_small_size`,`url_big_size`,`description`,`width`,`height`,`type`) VALUES
--- ('','','','','','','','','','');
+-- INSERT INTO `images` (`id`,`trip_id`,`user_id`,`equip_id`,`url_small_size`,`url_big_size`,`description`,`width`,`height`,`type`,`tags`) VALUES
+-- ('','','','','','','','','','','');
 -- INSERT INTO `tripterms` (`id`,`trip_id`,`user_id`,`description`,`decision`,`type`) VALUES
 -- ('','','','','','');
