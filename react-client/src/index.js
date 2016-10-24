@@ -16,7 +16,7 @@ class App extends React.Component {
       // $.get(someUrl, function(data) {
       //   resolve(data);
       // });
-    });
+    // });
   }
   componentWillMount() {
     // this.intitialize().then(function(data) {
@@ -30,7 +30,8 @@ class App extends React.Component {
     //   );
     // }
     return (
-      <div></div>
+      <div>Hello World!</div>
     );
   }
 }
+ReactDOM.render(<App />, document.getElementById('app'))
