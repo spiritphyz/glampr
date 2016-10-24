@@ -1,11 +1,12 @@
 import React from 'react';
-
+import WhereLocation from './Where.jsx';
+import DescriptionWhen from './When.jsx';
+import InviteOthers from './Who.jsx';
 class TripDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    events: [],
-    value: ''
+    saveEvents: {},
     };
     //anytime you bind a function to this - do it here in this way -
     // bind only runs once on intializations, and not each render
@@ -15,17 +16,21 @@ class TripDetails extends React.Component {
   }
   // intitialize() {
   //   // return new Promise(function(resolve, reject) {
-  //     // $.get(someUrl, function(data) {
+  // 
   //     //   resolve(data);
   //     // });
   //   // });
   // }
-  handleChange() {
-
+  handleChange(e) {
+    console.log(typeof e.target.id)
+    this.setState({ [e.target.id]: e.target.value })
   }
-  handleSubmit() {
-
+  handleSubmit(e) {
+    console.log(e.target.id,':', this.state[e.target.id]);
+    // this can submit a chunk of a form to database,
+    // or it can save chunk by chunk into state and send at once 
   }
+
   componentWillMount() {
     // this.intitialize().then(function(data) {
     //   that.setState({somethingWithData});
@@ -34,13 +39,19 @@ class TripDetails extends React.Component {
   render() {
     return (
       <div>
-        <DescriptionWhen 
-          value={this.state.value}
+        <Description
+          handleChange = {this.handleChange}
+          handleSubmit = {this.handleSubmit}
+        />
+        <DescriptionWhen
           handleChange = {this.handleChange}
           handleSubmit = {this.handleSubmit}
         /> 
         <WhereLocation 
-          value={this.state.value}
+          handleChange = {this.handleChange}
+          handleSubmit = {this.handleSubmit}
+        />
+        <InviteOthers 
           handleChange = {this.handleChange}
           handleSubmit = {this.handleSubmit}
         />
@@ -49,40 +60,22 @@ class TripDetails extends React.Component {
   }
 }
 
-var DescriptionWhen = (props) => {
+var Description = (props) => {
 
   return (
     <div className="desc-container">
-      <h4>description</h4>
+      <h4>Description</h4>
       <div>
         <input
+          id = "tripDescription test"
           className = "tripDescription"
           type="text"
           placeholder="Hello!"
-          value={props.value}
           onChange={props.handleChange}
         />
+      <button id="TD1" onClick={props.handleSubmit}>Save</button>
       </div>
-      <button onClick={props.handleSubmit}>Submit</button>
     </div>
-  )
-}
-
-var WhereLocation = (props) => {
-  return (
-    <div className="where-container">
-        <h4>Where Would You Like To Go?</h4>
-        <div>
-          <input
-            className = "addressField"
-            type="text"
-            placeholder="AddressField1"
-            value={props.value}
-            onChange={props.handleChange}
-          />
-        </div>
-      <button onClick={props.handleSubmit}>Submit</button>
-      </div>
   )
 }
 
