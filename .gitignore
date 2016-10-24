@@ -3,3 +3,4 @@
 node_modules
 
 react-client/dist/bundle.js
+react-client/dist/bundle.js.map

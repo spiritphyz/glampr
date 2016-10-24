@@ -20,13 +20,16 @@ var APP_DIR = path.resolve(__dirname, 'react-client/src/index.js');
 // one that is running `npm run dev-react` and one that is running `npm start`
 module.exports = {
   entry: APP_DIR,
-  output: { path: './react-client/dist', filename: 'bundle.js' },
+  output: { 
+    path: BUILD_DIR, 
+    filename: 'bundle.js' 
+  },
   module: {
     loaders: [
       {
         test: /.jsx?$/,
         loader: 'babel',
-        exclude: /node_modules/,
+        exclude: 'node_modules/',
         query: {
           presets: ['es2015', 'react']
         }
