@@ -1,7 +1,7 @@
 import React from 'react';
 import TripDetails from './tripDetails/tripDetails.jsx';
 import Terms from './terms/termsMaker.jsx';
-
+import GearListMaker from './gearList/gearMakerView.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +33,7 @@ class App extends React.Component {
     return (
       <div>    
         <div>Hello World!</div>
+        <GearListMaker />
         <TripDetails />
         <Terms />
       </div>
