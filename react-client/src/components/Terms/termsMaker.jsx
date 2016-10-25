@@ -41,7 +41,7 @@ class Terms extends React.Component {
 }
 
 
-var Form = (props) => {
+let Form = (props) => {
   return (
     <h1> Terms Page in Progress </h1>
   )

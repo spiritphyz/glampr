@@ -22,7 +22,7 @@ class TripDetails extends React.Component {
   //   // });
   // }
   handleChange(e) {
-    console.log(typeof e.target.id)
+    console.log(e.target.id)
     this.setState({ [e.target.id]: e.target.value })
   }
   handleSubmit(e) {
@@ -67,7 +67,7 @@ var Description = (props) => {
       <h4>Description</h4>
       <div>
         <input
-          id = "tripDescription test"
+          id = "tripDescription"
           className = "tripDescription"
           type="text"
           placeholder="Hello!"

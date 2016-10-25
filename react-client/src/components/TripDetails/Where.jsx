@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-var WhereLocation = (props) => {
+let WhereLocation = (props) => {
   return (
     <div className="where-container">
         <h4>Where Would You Like To Go?</h4>
