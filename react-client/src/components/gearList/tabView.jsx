@@ -1,22 +1,22 @@
 import React from 'react';
+import GearListMaker from './gearListMaker.jsx'
+import GearTabMaker from './gearTabMaker.jsx'
 
-const TabView = (props) => {
+const TabView = ({ appendInput, handleChange, handleTabSubmit, tabs, inputs, gearCategory }) => {
   console.log(props)
   return (
-    <div className="personalGear">
-        <div id="dynamicInput">
-          {props.inputs.map(input => <input 
-            id= {input} 
-            type="text" 
-            onChange={props.handleChange}
-          />)}
-        </div>
-      <div>
-      <button onClick={ props.appendInput }>
-          CLICK ME TO ADD AN INPUT
-      </button>
-      +sym
-      </div>
+    <div className="GearListInTab">
+      <GearTabMaker 
+        tabs={ tabs }
+        handleChange={ handleChange }
+        handleTabSubmit={ handleTabSubmit }
+        gearCategory={ gearCategory }
+      />
+      <GearListMaker 
+        appendInput={ appendInput } 
+        handleChange={ handleChange } 
+        inputs={ inputs }
+      />
     </div>
   )
 }

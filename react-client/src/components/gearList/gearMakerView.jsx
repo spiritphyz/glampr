@@ -1,34 +1,47 @@
 import React, { Component } from 'react';
 import TabView from './tabView.jsx'
-class GearListMaker extends Component {
+class GearViewMaker extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentTab: '',
       personalInputs: ['personal-input-0'],
-      groupInputs: ['group-input-0']
+      personalTabs: [],
+      groupInputs: ['group-input-0'],
+      groupTabs: []
     };
     this.appendGroupInput = this.appendGroupInput.bind(this);
     this.appendPersonalInput = this.appendPersonalInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(e) {
-    console.log(e.target.id, ':', e.target.value)
+    console.log(e.target.id, ':', e.target.value, e.target.getAttribute('data-gearCategory'))
     this.setState({ [e.target.id]: e.target.value })
   }
+  handleTabSubmit(e) {
+    console.log(e.target.id,':', this.state[e.target.id]);
+    let target = e.target.id.slice(3);
+    if(e.target.data-gearCategory === "group") {
+      let tabs = this.state.groupTabs
+      tabs.push(this.state[target])
+      this.setState({groupsTabs: tabs})
+    } else {
+      let tabs = this.state.personalTabs
+      tabs.push(this.state[target])
+      this.setState({personalTabs: tabs})
+    }
+  }
   appendGroupInput() {
-      var newInput = `group-input-${this.state.groupInputs.length}`;
-      this.setState({ groupInputs: this.state.groupInputs.concat([newInput]) });
+    var newInput = `group-input${this.state.groupInputs.length}`;
+    this.setState({ groupInputs: this.state.groupInputs.concat([newInput]) });
   }
   appendPersonalInput() {
-    console.log(this.state)
-      var newInput = `personal-input-${this.state.personalInputs.length}`;
-      this.setState({ personalInputs: this.state.personalInputs.concat([newInput]) });
-
-    console.log(this.state)
+    var newInput = `personal-input${this.state.personalInputs.length}`;
+    this.setState({ personalInputs: this.state.personalInputs.concat([newInput]) });
   }
   render() {
-    const {personalInputs, groupInputs} = this.state;
-    const {appendPersonalInput, appendGroupInput, handleChange} = this;
+    const {personalInputs, groupInputs, personalTabs, groupTabs} = this.state;
+    const {appendPersonalInput, appendGroupInput, handleChange, handleTabSubmit} = this;
 
     return (
       <div>
@@ -38,19 +51,21 @@ class GearListMaker extends Component {
           inputs={personalInputs}
           appendInput={appendPersonalInput}
           handleChange={handleChange}
+          tabs={personalTabs}
+          gearCategory="personal"
         />
-        <div>
-        Group Gear Requirements
+      Group Gear Requirements
         <TabView 
           className="groupGear"
           inputs={groupInputs}
           appendInput={appendGroupInput}
           handleChange={handleChange}
+          tabs={groupTabs}
+          gearCategory="group"
         />
-        </div>
       </div>
     );
   }
 }
 
-export default GearListMaker;
+export default GearViewMaker;
