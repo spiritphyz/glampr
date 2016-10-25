@@ -73,7 +73,7 @@ var Description = (props) => {
           placeholder="Hello!"
           onChange={props.handleChange}
         />
-      <button id="TD1" onClick={props.handleSubmit}>Save</button>
+      <button id="tripDescription" onClick={props.handleSubmit}>Save</button>
       </div>
     </div>
   )
