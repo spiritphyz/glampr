@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router'
-
+import TripDetails from './tripDetails/tripDetails.jsx';
+import Terms from './terms/termsMaker.jsx';
+import GearViewMaker from './gearList/gearMakerView.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,6 @@ class App extends React.Component {
         <li><Link to="/TermsMaker">Terms Maker</Link></li>
         <li><Link to="/TermsUser">Terms User</Link></li>
         <li><Link to="/UserHome">User Home</Link></li>
-
       </div>
     );
   }
