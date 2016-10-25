@@ -1,10 +1,24 @@
 import React from 'react';
 
+
+/* Hierachy
+  - Categories
+    - Content
+    - Additional Content
+  - Additional Categories
+  - Buttons
+*/
+
 class Terms extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryCount: 1
+      categoryCount: 1,
+      categoryContentCount: {
+        //categoryID : contentCount
+        '0': 2,
+        '1': 2
+      }
     };
     //anytime you bind a function to this - do it here in this way -
     // bind only runs once on intializations, and not each render
@@ -14,6 +28,7 @@ class Terms extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addCategory = this.addCategory.bind(this);
+    this.addContent = this.addContent.bind(this);
   }
   // intitialize() {
   //   // return new Promise(function(resolve, reject) {
@@ -23,8 +38,8 @@ class Terms extends React.Component {
   //   // });
   // }
   handleChange(e) {
-    this.setState({ [e.target.id]: e.target.value })
-    console.log(e.target.value, e.target.id, this.state);
+    //this.setState({ [e.target.id]: e.target.value })
+    //console.log(e.target.value, e.target.id, this.state);
   }
   handleSubmit(e) {
     console.log(e.target.id, ':', this.state[e.target.id])
@@ -36,17 +51,33 @@ class Terms extends React.Component {
   }
   //add a new category
   addCategory () {
-   var count = this.state.categoryCount + 1;
-   this.setState({categoryCount: count});
+    var count = this.state.categoryCount + 1;
+    this.setState({categoryCount: count});
   }
 
-  addContent () {
+  addContent (id) {
+    //var categoryID =  
+    var count = this.state.categoryContentCount[id] || 1;
+    count = count + 1;
+    //console.log(id);
+    // this.setState({
+    //   categoryContentCount: {
+    //     [id]: count
+    //   } 
+    // });
+    var obj = this.state.categoryContentCount;
+    obj[id] = count;
+    this.setState({obj});
   }
 
   render() {
     return (
       <div>
-        <Categories categoryCount = {this.state.categoryCount}/>
+        <Categories 
+          categoryCount = {this.state.categoryCount} 
+          categoryContentCount={this.state.categoryContentCount}
+          addContent={this.addContent}
+          />
         <Buttons
           handleSubmit = {this.handleSubmit}
           addCategory = {this.addCategory}
@@ -73,7 +104,10 @@ var Categories = (props) => {
   var children = [];
 
   for (var i = 0; i < count; i++) {
-    children.push(<Category number={i}/>);
+    children.push(<Category key={i} id={i} 
+      categoryContentCount={props.categoryContentCount}
+      addContent={props.addContent}
+      />);
   }
 
     return (
@@ -87,27 +121,42 @@ var Categories = (props) => {
 
 
 var Category = (props) => {
+  var count = props.categoryContentCount[props.id] || 1;
+  var children = [];
+
+  for (var i = 0; i < count; i++) {
+    children.push(<Content key={i} />)
+  }
       return (
         <div>
         <input 
           type="text" 
           placeholder="Category"
-          id= "Cat1"
-          onChange={props.handleChange} 
+          id= {props.id}
+          //onChange={props.handleChange} 
         />
 
-<<<<<<< HEAD
-        <Content />
-        <button id="addContent" onClick={props.addContent}> Add content </button> 
+        {children}
+        <button id="addContent" onClick = {function () {props.addContent(props.id)}}> Add content </button> 
 
       </div>
     )
 }
 
 var Content = (props) => {
-=======
-let Form = (props) => {
->>>>>>> 05de81fa88f237fa74c9c9e70c45563b95dcb716
+  return (
+    <div>
+    <input 
+      type="text" 
+      placeholder="Content"
+      id= "Content"
+      onChange={props.handleChange} 
+    />
+    </div>
+  )
+}
+
+var Form = (props) => {
   return (
     <div className="segment-content">
       <input 
@@ -119,35 +168,6 @@ let Form = (props) => {
     </div>
   )
 }
-
-
-// var Category = (props) => {
-//   return (
-//     <div>
-//       <input 
-//         type="text" 
-//         placeholder="Category"
-//         id= "Cat1"
-//         onChange={props.handleChange} 
-//       />
-//       <button id="Category" onClick={props.handleSubmit}> Submit </button>
-//     </div>
-//   )
-// }
-
-// var Content = (props) => {
-//   return (
-//     <div>
-//       <input 
-//       type="text" 
-//       placeholder="Your message here"
-//       id="content"
-//       onChange={props.handleChange} 
-//       />
-//       <button onClick={props.handleSubmit}> Submit </button>
-//     </div>
-//   )
-// }
 
 
 export default Terms
