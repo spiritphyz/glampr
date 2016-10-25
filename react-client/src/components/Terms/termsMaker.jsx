@@ -96,6 +96,7 @@ var Category = (props) => {
           onChange={props.handleChange} 
         />
 
+<<<<<<< HEAD
         <Content />
         <button id="addContent" onClick={props.addContent}> Add content </button> 
 
@@ -104,6 +105,9 @@ var Category = (props) => {
 }
 
 var Content = (props) => {
+=======
+let Form = (props) => {
+>>>>>>> 05de81fa88f237fa74c9c9e70c45563b95dcb716
   return (
     <div className="segment-content">
       <input 
