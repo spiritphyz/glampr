@@ -1,6 +1,6 @@
 import React from 'react';
 import TripDetails from './tripDetails/tripDetails.jsx';
-import Terms from './terms/termsMaker.jsx';
+import Terms from './Terms/termsMaker.jsx';
 import GearViewMaker from './gearList/gearMakerView.jsx';
 class App extends React.Component {
   constructor(props) {
