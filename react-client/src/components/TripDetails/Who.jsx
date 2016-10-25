@@ -1,5 +1,5 @@
 import React from 'react';
-var InviteOthers = (props) => {
+let InviteOthers = (props) => {
   // this input fields needs to append a new element in its containing div
   // on each submit - and then clear the entry field for the next submission
   // alternatively, each submission will populate a slide toggle list that can be viewed

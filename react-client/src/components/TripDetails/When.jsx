@@ -1,5 +1,5 @@
 import React from 'react';
-var DescriptionWhen = (props) => {
+let DescriptionWhen = (props) => {
 
   return (
     <div className="tripDate-container">
