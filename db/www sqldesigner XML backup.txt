@@ -50,6 +50,9 @@
 <row name="email" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
+<row name="password" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
 <row name="role" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
@@ -138,7 +141,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="902" y="252" name="stuff_users">
+<table x="902" y="276" name="stuff_users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
