@@ -1,5 +1,4 @@
-var TripModel = require('../models/trips.js');
-
+var TripModel = require('../models/index.js').TripModel;
 
 var findAll = function(callback) {
   TripModel.findAll().then(function(trips) {
@@ -24,8 +23,6 @@ var insertOne = function(trip, callback) {
     callback(trip);
   });
 }
-
-// TripModel.sync({force: true})
 
 exports.findAll = findAll;
 exports.findOne = findOne;
