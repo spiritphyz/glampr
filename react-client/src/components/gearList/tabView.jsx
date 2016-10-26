@@ -3,7 +3,6 @@ import GearListMaker from './gearListMaker.jsx'
 import GearTabMaker from './gearTabMaker.jsx'
 
 const TabView = ({ appendInput, handleChange, handleTabSubmit, tabs, inputs, gearCategory }) => {
-  console.log(props)
   return (
     <div className="GearListInTab">
       <GearTabMaker 
