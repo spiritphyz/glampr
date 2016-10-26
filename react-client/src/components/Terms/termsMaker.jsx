@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-class Terms extends React.Component {
+class TermsMaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ class Terms extends React.Component {
   }
 
   handleSubmit(e) {
-    var submission = this.state.inputs;
+    let submission = this.state.inputs;
     $.ajax({
       type: "POST",
       url: '/terms',
@@ -39,20 +39,20 @@ class Terms extends React.Component {
   }
 
   handleContentChange(e) {
-    var categoryName = e.target.getAttribute('data-categoryname');
-    var contentName = e.target.getAttribute('data-contentname');
-    var inputs = this.state.inputs;
-    var contentVal = e.target.value;
+    let categoryName = e.target.getAttribute('data-categoryname');
+    let contentName = e.target.getAttribute('data-contentname');
+    let inputs = this.state.inputs;
+    let contentVal = e.target.value;
     inputs[categoryName][contentName] = contentVal;
     console.log(inputs);
     this.setState({inputs})
   }
 
   handleCategoryChange(e) {
-    var categoryName = e.target.getAttribute('data-categoryname');
-    var contentName = e.target.getAttribute('data-contentname');
-    var inputs = this.state.inputs;
-    var categoryTitle = e.target.value;
+    let categoryName = e.target.getAttribute('data-categoryname');
+    let contentName = e.target.getAttribute('data-contentname');
+    let inputs = this.state.inputs;
+    let categoryTitle = e.target.value;
     inputs[categoryName] = inputs[categoryName] || {};
     inputs[categoryName].title = categoryTitle;
     console.log(inputs);
@@ -81,6 +81,7 @@ class Terms extends React.Component {
   render() {
     return (
       <div>
+        <h1> Maker T&CS </h1>
         <Categories 
           categoryCount = {this.state.categoryCount} 
           categoryContentCount={this.state.categoryContentCount}
@@ -98,31 +99,31 @@ class Terms extends React.Component {
 }
 
 // submit all content at the end
-var Buttons = (props) => {
+let Buttons = ({handleSubmit, addCategory}) => {
   return (
     <div>
       <h3> buttons </h3>
-      <button id="submit" onClick={props.handleSubmit}> Submit </button>
-      <button id="addCategory" onClick={props.addCategory}> Add category </button>
+      <button id="submit" onClick={handleSubmit}> Submit </button>
+      <button id="addCategory" onClick={addCategory}> Add category </button>
     </div>
   )
 }
 
-var Categories = (props) => {
+let Categories = ({categoryCount, categoryContentCount, addContent, handleContentChange, handleCategoryChange}) => {
 
-  var count = props.categoryCount;
-  var children = [];
+  let count = categoryCount;
+  let children = [];
 
-  for (var i = 0; i < count; i++) {
-    var categoryName = `category${i}`; 
+  for (let i = 0; i < count; i++) {
+    let categoryName = `category${i}`; 
 
     children.push( <Category 
       key={i} 
       categoryName={categoryName} 
-      categoryContentCount={props.categoryContentCount}
-      addContent={props.addContent}
-      handleCategoryChange={props.handleCategoryChange}
-      handleContentChange={props.handleContentChange}
+      categoryContentCount={categoryContentCount}
+      addContent={addContent}
+      handleCategoryChange={handleCategoryChange}
+      handleContentChange={handleContentChange}
       />);
   }
 
@@ -136,17 +137,17 @@ var Categories = (props) => {
 }
 
 
-var Category = (props) => {
-  var count = props.categoryContentCount[props.categoryName] || 1;
-  var children = [];
+let Category = ({handleContentChange,categoryName, categoryContentCount, handleCategoryChange, addContent}) => {
+  let count = categoryContentCount[categoryName] || 1;
+  let children = [];
 
 
   for (var i = 0; i < count; i++) {
-    var contentName = `content${i}`;
+    let contentName = `content${i}`;
     children.push(<Content 
       key={i} 
-      handleContentChange = {props.handleContentChange} 
-      categoryName = {props.categoryName}
+      handleContentChange = {handleContentChange} 
+      categoryName = {categoryName}
       contentName = {contentName}
       />)
   }
@@ -155,29 +156,29 @@ var Category = (props) => {
         <input 
           type="text" 
           placeholder="Category"
-          data-categoryname= {props.categoryName}
-          onChange={props.handleCategoryChange}
+          data-categoryname= {categoryName}
+          onChange={handleCategoryChange}
         />
 
         {children}
-        <button id="addContent" onClick = {function () {props.addContent(props.categoryName)}}> Add content </button> 
+        <button id="addContent" onClick = {function () {addContent(categoryName)}}> Add content </button> 
 
       </div>
     )
 }
 
-var Content = (props) => {
+let Content = ({categoryName, contentName, handleContentChange}) => {
   return (
     <div>
     <input 
       type="text" 
       placeholder="Content"
-      data-categoryname= {props.categoryName}
-      data-contentname= {props.contentName}
-      onChange={props.handleContentChange} 
+      data-categoryname= {categoryName}
+      data-contentname= {contentName}
+      onChange={handleContentChange} 
     />
     </div>
   )
 }
 
-export default Terms
+export default TermsMaker
