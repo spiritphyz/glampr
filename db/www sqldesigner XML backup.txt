@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="452" y="204" name="users">
+</datatypes><table x="783" y="13" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -51,29 +51,32 @@
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="role" null="1" autoincrement="0">
-<datatype>SMALLINT</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="phone_number" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="invite_status" null="1" autoincrement="0">
-<datatype>SMALLINT</datatype>
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
+<row name="tags" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="884" y="127" name="equips">
+<table x="702" y="319" name="stuff">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
 <row name="trip_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="trips" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
 </row>
 <row name="name" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
@@ -90,65 +93,8 @@
 <row name="borrow_slot" null="1" autoincrement="0">
 <datatype>SMALLINT</datatype>
 <default>NULL</default></row>
-<row name="tags" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
-<row name="status" null="1" autoincrement="0">
-<datatype>SMALLINT</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="585" y="602" name="myclothes">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="name" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
-<row name="description" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
-<row name="sizing" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
-<row name="quantity" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="852" y="436" name="food">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="name" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
-<row name="description" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
-<row name="quantity" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="amount" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="amount_units" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
 <row name="share_status" null="1" autoincrement="0">
-<datatype>SMALLINT</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="tags" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
@@ -157,7 +103,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="20" y="129" name="trips">
+<table x="21" y="13" name="trips">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -192,7 +138,23 @@
 <part>id</part>
 </key>
 </table>
-<table x="265" y="24" name="trips_users">
+<table x="902" y="252" name="stuff_users">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="stuff_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="stuff" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="265" y="399" name="images">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -204,47 +166,15 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="670" y="23" name="equips_users">
-<row name="id" null="1" autoincrement="1">
+<row name="stuff_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="equip_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="equips" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="248" y="409" name="images">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="trip_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="trips" row="id" />
-</row>
-<row name="user_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="equip_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="equips" row="id" />
+<default>NULL</default><relation table="stuff" row="id" />
 </row>
 <row name="url_small_size" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="url_big_size" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
+<datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <row name="description" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
@@ -256,7 +186,7 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="type" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="tags" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
@@ -265,7 +195,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="263" y="209" name="tripterms">
+<table x="302" y="200" name="terms">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -280,12 +210,25 @@
 <row name="description" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
-<row name="decision" null="1" autoincrement="0">
+<row name="category" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="445" y="16" name="trips_users">
+<row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="type" null="1" autoincrement="0">
+<row name="trip_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><relation table="trips" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
