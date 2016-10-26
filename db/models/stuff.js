@@ -1,31 +1,34 @@
 module.exports = function(sequelize, Sequelize) {
 
-  var User = sequelize.define('users', {
+  var Stuff = sequelize.define('stuff', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    first_name: {
+    name: {
       type: Sequelize.STRING
     },
-    last_name: {
+    description: {
       type: Sequelize.STRING
     },
-    email: {
+    sizing: {
       type: Sequelize.STRING
     },
-    role: {
-      type: Sequelize.STRING,
+    quantity: {
+      type: Sequelize.INTEGER
     },
-    phone_number: {
+    borrow_slot: {
+      type: Sequelize.INTEGER
+    },
+    tags: {
       type: Sequelize.STRING
     },
-    invite_status: {
-      type: Sequelize.STRING,
+    status: {
+      type: Sequelize.STRING
     }
   });
 
-  return User;
+  return Stuff;
 }

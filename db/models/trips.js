@@ -1,9 +1,11 @@
 module.exports = function(sequelize, Sequelize) {
-  var TripModel = sequelize.define('trip', {
+
+  var Trip = sequelize.define('trips', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      autoIncrement: true
     },
     title: {
       type: Sequelize.STRING
@@ -34,7 +36,7 @@ module.exports = function(sequelize, Sequelize) {
     }
   });
 
-  return TripModel;
+  return Trip;
 }
 
 
