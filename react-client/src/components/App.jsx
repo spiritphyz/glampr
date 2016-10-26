@@ -1,5 +1,5 @@
 import React from 'react';
-import TripDetails from './tripDetails/tripDetails.jsx';
+import TripDetails from './TripDetails/tripDetails.jsx';
 import TermsMaker from './Terms/termsMaker.jsx';
 import TermsUser from './Terms/termsUser.jsx';
 import GearViewMaker from './gearList/gearMakerView.jsx';
