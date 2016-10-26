@@ -1,7 +1,10 @@
 import React from 'react';
 import TripDetails from './tripDetails/tripDetails.jsx';
-import Terms from './Terms/termsMaker.jsx';
+import TermsMaker from './Terms/termsMaker.jsx';
+import TermsUser from './Terms/termsUser.jsx';
 import GearViewMaker from './gearList/gearMakerView.jsx';
+import UserHome from './UserHome/userHome.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +38,9 @@ class App extends React.Component {
         <div>Hello World!</div>
         <GearViewMaker />
         <TripDetails />
-        <Terms />
+        <TermsMaker />
+        <TermsUser />
+        <UserHome />
       </div>
     );
   }
