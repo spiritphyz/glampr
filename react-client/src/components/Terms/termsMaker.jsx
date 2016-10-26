@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class Terms extends React.Component {
   constructor(props) {
@@ -25,7 +26,16 @@ class Terms extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(e.target.id, ':', this.state[e.target.id])
+    var submission = this.state.inputs;
+    $.ajax({
+      type: "POST",
+      url: '/terms',
+      data: submission
+    }).done(function(){
+      console.log('successful post from terms');
+    }).fail(function(){
+      console.log('failed to post from terms');
+    });
   }
 
   handleContentChange(e) {
