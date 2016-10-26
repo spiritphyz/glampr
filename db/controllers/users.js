@@ -1,24 +1,11 @@
-var UserModel = require('../models/users.js');
-var TripModel = require('../models/trips.js');
+var UserModel = require('../models/index.js').UserModel;
+var TripModel = require('../models/index.js').TripModel;
 
-
-UserModel.belongsToMany(TripModel, {
-  through: 'trips_users',
-  foreignKey: 'user_id',
-  otherKey: 'trip_id'
-});
-
-
-TripModel.belongsToMany(UserModel, {
-  through: 'trips_users',
-  foreignKey: 'trip_id',
-  otherKey: 'user_id'
-});
-
+console.log(Object.keys(TripModel.associations.users))
+console.log(Object.keys(TripModel.associations.users.target))
 
 var findAll = function(callback) {
   UserModel.findAll().then(function(users) {
-    console.log('findAll in controllers file: ', users)
     callback(users)
   }).catch(function(err) {
     console.log(err);
@@ -35,12 +22,40 @@ var findOne = function(query, callback) {
   });
 }
 
-var insertOne = function(user, callback) {
-  UserModel.create(user).then(function(user) {
-    callback(user);
-  });
+var insertMembers = function(users, trip, callback) {
+  var insertOne = function(userIndex) {
+    if(userIndex === users.length) {
+      callback();
+      return;
+    }
+    UserModel.create(users[userIndex]).then(function(user) {
+      user.addTrip(trip).then(function() {
+        insertOne(userIndex + 1);
+      });
+    });
+  }
+  insertOne(0);
 }
+
 
 exports.findAll = findAll;
 exports.findOne = findOne;
-exports.insertOne = insertOne;
+exports.insertMembers = insertMembers;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
