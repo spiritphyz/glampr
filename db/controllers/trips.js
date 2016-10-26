@@ -1,4 +1,4 @@
-var TripModel = require('../models/index.js').TripModel;
+var TripModel = require('../models/index.js').Trip;
 
 var findAll = function(callback) {
   TripModel.findAll().then(function(trips) {

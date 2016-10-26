@@ -1,5 +1,5 @@
-var UserModel = require('../models/index.js').UserModel;
-var TripModel = require('../models/index.js').TripModel;
+var UserModel = require('../models/index.js').User;
+var TripModel = require('../models/index.js').Trip;
 
 console.log(Object.keys(TripModel.associations.users))
 console.log(Object.keys(TripModel.associations.users.target))
