@@ -16,7 +16,7 @@ class TripDetails extends React.Component {
     //anytime you bind a function to this - do it here in this way -
     // bind only runs once on intializations, and not each render
     // this.intitialize = this.intitialize.bind(this);
-    this.state.submission.google_maps_urls = "";
+    this.state.submission.google_maps_url = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addInvite = this.addInvite.bind(this);
