@@ -1,34 +1,34 @@
 module.exports = function(sequelize, Sequelize) {
-  
-  var Image = sequelize.define('image', {
+
+  var Required = sequelize.define('requires', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    url_small_size: {
-      type: Sequelize.TEXT
-    },
-    url_big_size: {
-      type: Sequelize.TEXT
+    name: {
+      type: Sequelize.STRING
     },
     description: {
       type: Sequelize.STRING
     },
-    width: {
-      type: Sequelize.INTEGER
-    },
-    height: {
-      type: Sequelize.INTEGER
-    },
-    type: {
+    sizing: {
       type: Sequelize.STRING
+    },
+    quantity: {
+      type: Sequelize.INTEGER
+    },
+    icon_pic: {
+      type: Sequelize.STRING
+    },
+    required: {
+      type: Sequelize.INTEGER      
     },
     tags: {
       type: Sequelize.STRING
     }
   });
 
-  return Image;
+  return Required;
 }

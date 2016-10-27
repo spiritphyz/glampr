@@ -1,3 +1,6 @@
+// This file is used only for testing for now,
+// it will not be included in the final project submission
+
 var express = require('express');
 var userController = require('../../db/controllers/users.js');
 var tripController = require('../../db/controllers/trips.js');

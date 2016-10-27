@@ -16,14 +16,20 @@ module.exports = function(sequelize, Sequelize) {
     email: {
       type: Sequelize.STRING
     },
+    password: {
+      type: Sequelize.STRING
+    },
     role: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     phone_number: {
       type: Sequelize.STRING
     },
-    invite_status: {
-      type: Sequelize.STRING,
+    profile_pic: {
+      type: Sequelize.TEXT
+    },
+    tags: {
+      type: Sequelize.STRING
     }
   });
 
