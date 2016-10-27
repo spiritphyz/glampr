@@ -16,6 +16,7 @@ class App extends React.Component {
     return (
       <div>    
         <div>Hello World!</div>
+        <li><Link to="/SignIn">Sign In</Link></li>
         <li><Link to="/TripDetails">Trip Details</Link></li>
         <li><Link to="/GearViewMaker">Gear View Maker</Link></li>
         <li><Link to="/TermsMaker">Terms Maker</Link></li>
