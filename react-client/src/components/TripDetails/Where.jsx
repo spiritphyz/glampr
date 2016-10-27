@@ -16,36 +16,38 @@ let WhereLocation = (props) => {
         <h4>Where Would You Like To Go?</h4>
         <div>
           <input
-            id = "whereStreet"
-            className = "address addressStreet"
+            id = "address"
+            className = "address"
             type="text"
-            placeholder="Street"
+            placeholder="Address"
             onChange={props.handleChange}
           />
-          <input
-            id = "whereCity"
-            className = "address addressCity"
-            type="text"
-            placeholder="City"
-            onChange={props.handleChange}
-          />
-          <input
-            id = "whereZip"
-            className = "address addressZip"
-            type="text"
-            placeholder="Zip"
-            onChange={props.handleChange}
-          />
-          <input
-            id = "whereCountry"
-            className = "address addressCountry"
-            type="text"
-            placeholder="Country"
-            onChange={props.handleChange}
-          />
+
         </div>
       </div>
   )
 }
 
 module.exports = WhereLocation;
+
+          // <input
+          //   id = "whereCity"
+          //   className = "address addressCity"
+          //   type="text"
+          //   placeholder="City"
+          //   onChange={props.handleChange}
+          // />
+          // <input
+          //   id = "whereZip"
+          //   className = "address addressZip"
+          //   type="text"
+          //   placeholder="Zip"
+          //   onChange={props.handleChange}
+          // />
+          // <input
+          //   id = "whereCountry"
+          //   className = "address addressCountry"
+          //   type="text"
+          //   placeholder="Country"
+          //   onChange={props.handleChange}
+          // />
