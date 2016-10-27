@@ -28,11 +28,13 @@ class TripDetails extends React.Component {
   handleChange(e) {
     let { submission } = this.state;
     this.setState({ submission: Object.assign({}, submission, {
-      [e.target.id] : [e.target.value]
+      [e.target.id] : e.target.value
     })});
+    console.log(submission);
   }
   handleSubmit(e) {
     let { submission } = this.state;
+    console.log(submission);
     $.ajax({
       type: "POST",
       url: '/tripInfo',
