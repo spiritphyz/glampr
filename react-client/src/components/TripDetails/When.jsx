@@ -7,22 +7,21 @@ let DescriptionWhen = (props) => {
       <div>
         <input
           className = "tripDeparture"
-          id = "whenDepart"
-          type="text"
+          id = "start_date"
+          type="date"
           placeholder="Hello!"
           value={props.value}
           onChange={props.handleChange}
         />
         <input
-          id = "whenReturn"
           className = "tripReturn"
-          type="text"
+          id = "end_date"
+          type="date"
           placeholder="Hello!"
           value={props.value}
           onChange={props.handleChange}
         />
       </div>
-      <button onClick={props.handleSubmit}>Submit</button>
     </div>
   )
 }

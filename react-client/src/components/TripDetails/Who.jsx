@@ -7,17 +7,20 @@ let InviteOthers = (props) => {
   return (
     <div className="invite-container">
       <h4>Lets Invite Others!</h4>
-      <div>
-        <input
-          id = "whoEmail"
-          className = "invitationText"
-          type="text"
-          placeholder="Hello!"
-          value={props.value}
-          onChange={props.handleChange}
-        />
-      </div>
-      <button onClick={props.handleSubmit}>Submit</button>
+      {props.invitees.map((invite)  =>
+        (
+        <div>
+          <input
+            id = {"email" + invite }
+            key = {invite}
+            className = "invitationText"
+            type="text"
+            placeholder="Email Address"
+            onChange={props.handleChange}
+          />
+        </div>
+        ))}
+        <button className="addInvite" onClick={props.addInvite}>Invite More</button>
     </div>
   )
 }
