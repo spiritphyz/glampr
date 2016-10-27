@@ -10,11 +10,13 @@ class TripDetails extends React.Component {
     super(props);
     this.state = {
     submission: {},
-    invitees: [1]
+    invitees: [1],
+    submissionEmail: {}
     };
     //anytime you bind a function to this - do it here in this way -
     // bind only runs once on intializations, and not each render
     // this.intitialize = this.intitialize.bind(this);
+    this.state.submission.google_maps_urls = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addInvite = this.addInvite.bind(this);
@@ -26,19 +28,30 @@ class TripDetails extends React.Component {
   }
 
   handleChange(e) {
-    let { submission } = this.state;
-    this.setState({ submission: Object.assign({}, submission, {
+    let { submission, submissionEmail } = this.state;
+    if ( e.target.id.slice(0,5) === 'email' ) {
+      this.setState({ submissionEmail: Object.assign({}, submissionEmail, {
       [e.target.id] : e.target.value
     })});
-    console.log(submission);
+    } else {
+      this.setState({ submission: Object.assign({}, submission, {
+        [e.target.id] : e.target.value
+      })});      
+    }
   }
   handleSubmit(e) {
     let { submission } = this.state;
-    console.log(submission);
+    let invitees = this.state.submissionEmail;
+    let tripData = this.state.submission;
+    invitees = Object.keys(invitees).map(function(email) {
+      return invitees[email];
+    })
+    let data = { tripData, invitees };
+    console.log(data);
     $.ajax({
       type: "POST",
       url: '/tripInfo',
-      data: submission
+      data: data
     }).done(function(){
       console.log('successful post from tripDetails');
     }).fail(function(){
