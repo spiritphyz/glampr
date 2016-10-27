@@ -1,13 +1,15 @@
 module.exports = function(sequelize, Sequelize) {
-  
-  var EquipsUsers = sequelize.define('equips_users', {
+
+  var RequiredUsers = sequelize.define('required_users', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
+    },
+    status: {
+      type: Sequelize.STRING
     }
   });
-
-  return EquipsUsers;
+  return RequiredUsers;
 }

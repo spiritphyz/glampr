@@ -1,6 +1,6 @@
 module.exports = function(sequelize, Sequelize) {
 
-  var Stuff = sequelize.define('stuff', {
+  var Borrow = sequelize.define('borrows', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -22,13 +22,13 @@ module.exports = function(sequelize, Sequelize) {
     borrow_slot: {
       type: Sequelize.INTEGER
     },
-    tags: {
+    share_status: {
       type: Sequelize.STRING
     },
-    status: {
+    tags: {
       type: Sequelize.STRING
     }
   });
 
-  return Stuff;
+  return Borrow;
 }

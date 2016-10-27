@@ -8,12 +8,13 @@ var sequelize = new Sequelize('glampr', 'happyglampr', 'glamprabmt', {
 // Any vairable that starts with a capital letter is a model
 var Trip = require('./trips.js')(sequelize, Sequelize);
 var User = require('./users.js')(sequelize, Sequelize);
-var Stuff = require('./stuff.js')(sequelize, Sequelize);
+var Borrow = require('./borrow.js')(sequelize, Sequelize);
+var Term = require('./terms.js')(sequelize, Sequelize);
+var Required = require('./required.js')(sequelize, Sequelize);
 
 var TripsUsers = require('./tripsUsers.js')(sequelize, Sequelize);
-var Terms = require('./terms.js')(sequelize, Sequelize);
-var Images = require('./images.js')(sequelize, Sequelize);
-var StuffUsers = require('./stuffUsers')(sequelize, Sequelize);
+var BorrowUsers = require('./borrowUsers')(sequelize, Sequelize);
+var RequiredUsers = require('./borrowUsers')(sequelize, Sequelize);
 
 // TripsUsers join table:
 User.belongsToMany(Trip, {
@@ -26,80 +27,58 @@ Trip.belongsToMany(User, {
   foreignKey: 'trip_id'
 });
 
-// Terms join table:
-User.belongsToMany(Trip, {
-  through: 'terms',
-  foreignKey: 'user_id'
+// Terms connections:
+Term.belongsTo(Trip, {
+  foreignKey:'trip_id'
 });
 
-Trip.belongsToMany(User, {
-  through: 'terms',
+Trip.hasMany(Term, {
   foreignKey: 'trip_id'
 });
 
-// Images join table:
-User.belongsToMany(Trip, {
-  through: 'images',
+// BorrowUsers join table:
+User.belongsToMany(Borrow, {
+  through: 'borrow_users',
   foreignKey: 'user_id'
 });
 
-Trip.belongsToMany(User, {
-  through: 'images',
+Borrow.belongsToMany(User, {
+  through: 'borrow_users',
+  foreignKey: 'borrow_id'
+});
+
+// Required to trips connection:
+Required.belongsTo(Trip, {
   foreignKey: 'trip_id'
 });
 
-User.belongsToMany(Stuff, {
-  through: 'images',
-  foreignKey: 'user_id'
-});
-
-Stuff.belongsToMany(User, {
-  through: 'images',
-  foreignKey: 'stuff_id'
-});
-
-Trip.belongsToMany(Stuff, {
-  through: 'images',
+Trip.hasMany(Required, {
   foreignKey: 'trip_id'
 });
 
-Stuff.belongsToMany(Trip, {
-  through: 'images',
-  foreignKey: 'stuff_id'
+// RequiredUsers join table connections:
+Required.belongsToMany(User, {
+  through: 'required_users',
+  foreignKey: 'required_id'
 });
 
-// Stuff join table:
-User.belongsToMany(Trip, {
-  through: 'stuff',
+User.belongsToMany(Required, {
+  through: 'required_users',
   foreignKey: 'user_id'
 });
 
-Trip.belongsToMany(User, {
-  through: 'stuff',
-  foreignKey: 'trip_id'
-});
-
-// StuffUsers join table:
-User.belongsToMany(Stuff, {
-  through: 'stuff_users',
-  foreignKey: 'user_id'
-});
-
-Stuff.belongsToMany(User, {
-  through: 'stuff_users',
-  foreignKey: 'stuff_id'
-});
 
 sequelize.sync({force: true})
 
-exports.User = User;
 exports.Trip = Trip;
-exports.Stuff = Stuff;
+exports.User = User;
+exports.Borrow = Borrow;
+exports.Term = Term;
+exports.Required = Required;
 
 exports.TripsUsers = TripsUsers;
-exports.Terms = Terms;
-exports.Images = Images;
-exports.StuffUsers = StuffUsers;
+exports.BorrowUsers = BorrowUsers;
+exports.RequiredUsers = RequiredUsers;
 
 
 

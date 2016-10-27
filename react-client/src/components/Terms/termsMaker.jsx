@@ -27,10 +27,12 @@ class TermsMaker extends React.Component {
 
   handleSubmit(e) {
     let submission = this.state.inputs;
+    console.log(submission);
     $.ajax({
       type: "POST",
-      url: '/terms',
-      data: submission
+      url: '/terms/maker',
+      dataType: 'application/json',
+      data: {terms: submission, tripId: 1}
     }).done(function(){
       console.log('successful post from terms');
     }).fail(function(){
