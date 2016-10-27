@@ -4,42 +4,46 @@ import React from 'react';
 let WhereLocation = (props) => {
   return (
     <div className="where-container">
+    <div>
+      <h4>Title of The Event : </h4>
+      <input 
+        id="tripTitle"
+        type="text"
+        placeholder="" 
+        onChange={ props.handleChange }
+      />
+    </div>
         <h4>Where Would You Like To Go?</h4>
         <div>
           <input
             id = "whereStreet"
-            className = "addressStreet"
+            className = "address addressStreet"
             type="text"
-            placeholder="AddressField1"
-            value={props.value}
+            placeholder="Street"
             onChange={props.handleChange}
           />
           <input
             id = "whereCity"
-            className = "addressCity"
+            className = "address addressCity"
             type="text"
-            placeholder="AddressField1"
-            value={props.value}
+            placeholder="City"
             onChange={props.handleChange}
           />
           <input
             id = "whereZip"
-            className = "addressZip"
+            className = "address addressZip"
             type="text"
-            placeholder="AddressField1"
-            value={props.value}
+            placeholder="Zip"
             onChange={props.handleChange}
           />
           <input
             id = "whereCountry"
-            className = "addressCountry"
+            className = "address addressCountry"
             type="text"
-            placeholder="AddressField1"
-            value={props.value}
+            placeholder="Country"
             onChange={props.handleChange}
           />
         </div>
-      <button onClick={props.handleSubmit}>Submit</button>
       </div>
   )
 }
