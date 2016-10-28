@@ -16,6 +16,9 @@ module.exports = function(sequelize, Sequelize) {
     email: {
       type: Sequelize.STRING
     },
+    password: {
+      type: Sequelize.STRING
+    },
     role: {
       type: Sequelize.STRING,
     },
@@ -28,4 +31,4 @@ module.exports = function(sequelize, Sequelize) {
   });
 
   return User;
-}
+};
