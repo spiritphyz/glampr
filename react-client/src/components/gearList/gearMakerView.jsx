@@ -4,64 +4,78 @@ class GearViewMaker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: '',
-      personalInputs: ['personal-input-0'],
-      personalTabs: [],
-      groupInputs: ['group-input-0'],
-      groupTabs: []
+      currentPersonalTab: undefined, // renders this array of list items
+      personalInputs: [],
+      personalTabs: {},
+      currentGroupTab: undefined, // renders this array of list items
+      groupInputs: [],
+      groupTabs: {} //holds arrays of list items in each tab
     };
-    this.appendGroupInput = this.appendGroupInput.bind(this);
     this.appendPersonalInput = this.appendPersonalInput.bind(this);
+    this.appendGroupInput = this.appendGroupInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleTabSubmit = this.handleTabSubmit.bind(this);
+    this.setTabView = this.setTabView.bind(this)
   }
   handleChange(e) {
-    console.log(e.target.id, ':', e.target.value, e.target.getAttribute('data-gearCategory'))
     this.setState({ [e.target.id]: e.target.value })
   }
-  handleTabSubmit(e) {
-    console.log(e.target.id,':', this.state[e.target.id]);
-    let target = e.target.id.slice(3);
-    if(e.target.data-gearCategory === "group") {
-      let tabs = this.state.groupTabs
-      tabs.push(this.state[target])
-      this.setState({groupsTabs: tabs})
-    } else {
-      let tabs = this.state.personalTabs
-      tabs.push(this.state[target])
-      this.setState({personalTabs: tabs})
+  handleTabSubmit(groupOrPersonalTabs) {
+    return function(e) {
+      let tabs = this.state[groupOrPersonalTabs]
+        if(!tabs[this.state.addTab]) {
+          tabs[this.state.addTab] = [];
+        }
+      this.setState({[groupOrPersonalTabs]: tabs})
     }
   }
-  appendGroupInput() {
-    var newInput = `group-input${this.state.groupInputs.length}`;
-    this.setState({ groupInputs: this.state.groupInputs.concat([newInput]) });
-  }
   appendPersonalInput() {
-    var newInput = `personal-input${this.state.personalInputs.length}`;
-    this.setState({ personalInputs: this.state.personalInputs.concat([newInput]) });
+    let currentTab = this.state.currentPersonalTab;
+    let newInput = `personal-input-${this.state.currentPersonalTab}-${this.state.personalTabs[currentTab].length + 1}`;
+    let tabs = this.state.personalTabs;
+    tabs[currentTab] = tabs[currentTab].concat(newInput);
+    this.setState({ personalTabs: tabs });
+  }
+  appendGroupInput() {
+    let currentTab = this.state.currentGroupTab;
+    let newInput = `personal-input-${this.state.currentGroupTab}-${this.state.groupTabs[currentTab].length + 1}`;
+    let tabs = this.state.groupTabs;
+    tabs[currentTab] = tabs[currentTab].concat(newInput);
+    this.setState({ groupTabs: tabs });
+  }
+  setTabView(groupOrPersonal) {
+    return function(e) {
+      this.setState({[groupOrPersonal]: e.target.id})
+    }.bind(this);
   }
   render() {
-    const {personalInputs, groupInputs, personalTabs, groupTabs} = this.state;
-    const {appendPersonalInput, appendGroupInput, handleChange, handleTabSubmit} = this;
-
+    const {personalInputs, groupInputs, personalTabs, groupTabs, currentPersonalTab, currentGroupTab} = this.state;
+    const {setTabView, handlePersonalTabSubmit, appendPersonalInput, appendGroupInput, handleChange, handleTabSubmit} = this;
     return (
       <div>
       Personal Gear Requirements
         <TabView 
           className="personalGear"
+          addTab={handleTabSubmit('personalTabs')}
           inputs={personalInputs}
           appendInput={appendPersonalInput}
           handleChange={handleChange}
           tabs={personalTabs}
+          currentTab={currentPersonalTab}
           gearCategory="personal"
+          setTabView={setTabView('currentPersonalTab')}
         />
-      Group Gear Requirements
+        Group Gear Requirements
         <TabView 
           className="groupGear"
+          addTab={handleTabSubmit('groupTabs')}
           inputs={groupInputs}
           appendInput={appendGroupInput}
           handleChange={handleChange}
           tabs={groupTabs}
+          currentTab={currentGroupTab}
           gearCategory="group"
+          setTabView={setTabView('currentGroupTab')}
         />
       </div>
     );
@@ -69,3 +83,27 @@ class GearViewMaker extends Component {
 }
 
 export default GearViewMaker;
+      // currentGroupTab: '',
+      // groupInputs: ['group-input-0'],
+      // groupTabs: {}
+// if(e.target.data-gearCategory === "group") {
+//   let tabs = this.state.groupTabs
+//   tabs.push(this.state[target])
+//   this.setState({groupsTabs: tabs})
+// } else {
+  // this.appendGroupInput = this.appendGroupInput.bind(this);
+  // 
+  // appendGroupInput() {
+  //   var newInput = `group-input${this.state.groupInputs.length}`;
+  //   this.setState({ groupInputs: this.state.groupInputs.concat([newInput]) });
+  // }
+      // Group Gear Requirements
+      //   <TabView 
+      //     className="groupGear"
+      //     inputs={groupInputs}
+      //     appendInput={appendGroupInput}
+      //     handleChange={handleChange}
+      //     tabs={groupTabs}
+      //     currentTab={currentGroupTab}
+      //     gearCategory="group"
+      //   />
