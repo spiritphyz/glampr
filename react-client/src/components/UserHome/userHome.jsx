@@ -19,14 +19,18 @@ class UserHome extends React.Component {
   componentDidMount() {
     $.ajax({
       type: "GET",
-      url: '/terms',
+      url: 'http://104.236.160.117:3000/users/trips/',
     }).done(function(data){
-      console.log(data);
+      console.log(data, 'data from user trips');
       this.setState({data})
       console.log('successful post from terms');
     }).fail(function(){
       console.log('failed to post from terms');
     });
+  }
+
+  getTripDetails() {
+
   }
 
   render() {

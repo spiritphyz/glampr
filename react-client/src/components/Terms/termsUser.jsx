@@ -33,13 +33,13 @@ class TermsUser extends React.Component {
   componentDidMount() {
     $.ajax({
       type: "GET",
-      url: '/terms',
+      url: '/terms/user',
     }).done(function(data){
       console.log(data);
       this.setState({data})
-      console.log('successful post from terms');
+      console.log('successful get from terms');
     }).fail(function(){
-      console.log('failed to post from terms');
+      console.log('failed to get from terms');
     });
   }
 
