@@ -1,13 +1,14 @@
 var Trip = require('../models/index.js').Trip;
 var Term = require('../models/index.js').Term;
 
-var findAll = function(tripId, res, callback) {
-  Trip.find({where: {id: tripId}}).then(function(trip) {
-    callback(trip.getTerms())
+var findAll = function(tripId, callback) {
+  Term.findAll({where: {trip_id: tripId}}).then(function(terms) {
+    callback(terms);
   })
 }
 
 var insertTerms = function(terms, tripId, callback) {
+  console.log(terms)
   var termsArr = []
   for (var category in terms) {
     for(var content in terms[category])
@@ -15,11 +16,11 @@ var insertTerms = function(terms, tripId, callback) {
         termsArr.push({category: terms[category].title, description: terms[category][content]});        
       }
   }
-
+  console.log(termsArr)
   Trip.find({where: {id: tripId}}).then(function(trip) {
     var insertOne = function(termIndex) {
       if(termIndex === termsArr.length) {
-        callback();
+        callback(terms);
         return;
       }
       Term.create(termsArr[termIndex]).then(function(term) {

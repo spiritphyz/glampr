@@ -30,13 +30,15 @@ class TermsMaker extends React.Component {
     console.log(submission);
     $.ajax({
       type: "POST",
-      url: '/terms/maker',
-      dataType: 'application/json',
-      data: {terms: submission, tripId: 1}
+      url: '/terms/maker/1',
+      contentType: 'application/json',
+      data: JSON.stringify(submission)
     }).done(function(){
+      console.log(arguments[2])
       console.log('successful post from terms');
-    }).fail(function(){
-      console.log('failed to post from terms');
+    }).fail(function(err){
+      console.log('failed to post from terms ');
+      console.log(err);
     });
   }
 
