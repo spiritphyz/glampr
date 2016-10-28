@@ -2,7 +2,7 @@ import React from 'react';
   const GearListMaker = ({inputs, handleChange, appendInput}) => {
    return (
     <div id="dynamicInput" className="gearWindow">
-      { inputs.map(input => <input
+      { Object.keys(inputs).map(input => <input
         key= {input} 
         id= {input} 
         type="text" 
