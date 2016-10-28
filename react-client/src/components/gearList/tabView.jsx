@@ -2,22 +2,35 @@ import React from 'react';
 import GearListMaker from './gearListMaker.jsx'
 import GearTabMaker from './gearTabMaker.jsx'
 
-const TabView = ({ appendInput, handleChange, handleTabSubmit, tabs, inputs, gearCategory }) => (
-  <div className="GearListInTab">
+const TabView = ({ setTabView, appendInput, gearCategory, addTab, handleChange, currentTab, tabs, inputs }) => {
+  const gearTab = (
     <GearTabMaker 
       tabs={ tabs }
       handleChange={ handleChange }
-      handleTabSubmit={ handleTabSubmit }
+      addTab={ addTab }
       gearCategory={ gearCategory }
-    />
-
-    <GearListMaker 
-      appendInput={ appendInput } 
-      handleChange={ handleChange } 
-      inputs={ inputs }
-    />
-  </div>
-)
+      setTabView = { setTabView }
+    />)
+  if( !currentTab ) {
+    return (
+      <div className="TabView">
+        {gearTab}
+      </div>
+    )
+  } else {
+    return (
+      <div className="TabView">
+        {gearTab}
+        <GearListMaker 
+            appendInput={ appendInput } 
+            handleChange={ handleChange } 
+            inputs={ inputs }
+          />
+      </div>
+    )
+  }
+}
 
 
 export default TabView;
+

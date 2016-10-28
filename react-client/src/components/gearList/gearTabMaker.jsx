@@ -1,11 +1,12 @@
 import React from 'react'
 
-const GearTabMaker = ({ tabs, handleTabSubmit, handleChange, gearCategory }) => {
+const GearTabMaker = ({ setTabView, tabs, addTab, handleChange, gearCategory }) => {
+  
   return (
     <div>
-      { tabs.map(function(tab) {return <button key={tab.toString()} className="gearTab">{ tab }</button>}) }
+    { Object.keys(tabs).map(function(tab, i) {return <button id={ tab } key={ i } className="gearTab" onClick={ setTabView }>{ tab }</button>}) }
       <div>
-      <button data-gearCategory={ gearCategory } id="btn-addTab" onClick={ handleTabSubmit }>
+      <button data-gearCategory={ gearCategory } id="btn-addTab" onClick={ addTab }>
         Submit
       </button>
         <input
@@ -22,3 +23,4 @@ const GearTabMaker = ({ tabs, handleTabSubmit, handleChange, gearCategory }) => 
 }
 
 export default GearTabMaker
+
