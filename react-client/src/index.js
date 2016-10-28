@@ -13,6 +13,7 @@ import TermsMaker from './components/Terms/termsMaker.jsx'
 import TermsUser from './components/Terms/termsUser.jsx'
 
 import UserHome from './components/UserHome/userHome.jsx';
+import Borrow from './components/borrowPage/borrowIndex.jsx';
 
 ReactDOM.render((
   <Router history={hashHistory}>
@@ -24,5 +25,6 @@ ReactDOM.render((
     <Route path="/termsmaker" component={TermsMaker}/>
     <Route path="/TermsUser" component={TermsUser}/>
     <Route path="/UserHome" component={UserHome}/>
+    <Route path="/Borrow" component={Borrow}/>
   </Router>
   ), document.getElementById('app'))
