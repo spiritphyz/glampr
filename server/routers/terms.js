@@ -3,12 +3,10 @@ var termsController = require('../../db/controllers/terms.js');
 
 var router = express.Router();
 
-router.route('/maker')
+router.route('/maker/:tripId')
   .post(function(req, res) {
-    console.log(req.body)
-      termsController.insertTerms(req.body.terms, req.body.tripId, function(data) {
+      termsController.insertTerms(req.body, req.params.tripId, function(data) {
         console.log('Inserted new terms')
-        console.log('data in database: ', data);
         res.send('done')
       })
     })
