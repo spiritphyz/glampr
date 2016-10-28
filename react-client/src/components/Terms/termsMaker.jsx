@@ -46,7 +46,7 @@ class TermsMaker extends React.Component {
     let inputs = this.state.inputs;
     let contentVal = e.target.value;
     inputs[categoryName][contentName] = contentVal;
-    console.log(inputs);
+    console.log(JSON.stringify(inputs));
     this.setState({inputs})
   }
 

@@ -5,7 +5,8 @@ class TermsUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //inputs: false;
+      acceptance: false,
+      terms: {}
       }
     };
 
@@ -17,11 +18,12 @@ class TermsUser extends React.Component {
     // this.addContent = this.addContent.bind(this);
 
   handleSubmit(e) {
-    let submission = this.state.inputs;
+    var currState = this.state;
+    currState.acceptance = true;
     $.ajax({
       type: "POST",
       url: '/terms/user',
-      data: submission
+      data: this.state.acceptance
     }).done(function(){
       console.log('successful post from terms');
     }).fail(function(){
@@ -29,17 +31,18 @@ class TermsUser extends React.Component {
     });
   }
 
-
   componentDidMount() {
     $.ajax({
       type: "GET",
-      url: '/terms',
+      url: '/terms/user',
     }).done(function(data){
       console.log(data);
-      this.setState({data})
-      console.log('successful post from terms');
+      var currState = this.state;
+      currState.terms = data;
+      this.setState({currState});
+      console.log('successful get from terms');
     }).fail(function(){
-      console.log('failed to post from terms');
+      console.log('failed to get from terms');
     });
   }
 
@@ -47,53 +50,26 @@ class TermsUser extends React.Component {
     return (
       <div>
         <h1> User T&Cs </h1>
-        <Categories 
-          />
-        <Buttons
-          handleSubmit = {this.handleSubmit}
-        />
+        <Terms terms={this.state.terms}/>
+        <div className="user-acceptance">
+          <button id="user-acceptance" onClick={this.handleSubmit}> Accept </button>
+        </div>
       </div>
     );
   }
 }
 
 // submit all content at the end
-let Buttons = ({handleSubmit}) => {
-  return (
-    <div>
-      <h3> buttons </h3>
-      <button id="submit" onClick={handleSubmit}> Submit </button>
-    </div>
-  )
-}
 
-let Categories = ({}) => {
+let Terms = ({}) => {
 
     return (
       <div>
-      <h3> categories </h3>
-      <Category />
+      <h3> Terms </h3>
       </div>
     )
     
 }
 
-
-let Category = ({}) => {
-
-      return (
-        <div>
-        <h1> category </h1>
-      </div>
-    )
-}
-
-let Content = ({}) => {
-  return (
-    <div>
-    <h1> Content </h1>
-    </div>
-  )
-}
 
 export default TermsUser
