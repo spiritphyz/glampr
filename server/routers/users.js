@@ -4,6 +4,7 @@
 var express = require('express');
 var userController = require('../../db/controllers/users.js');
 var tripController = require('../../db/controllers/trips.js');
+var util = require('../../db/controllers/utilities.js');
 
 var router = express.Router();
 
@@ -26,6 +27,15 @@ router.route('/')
 
 router.route('/trips')
   .get(function(req, res) {
+    tripController.findAll(function(trips) {
+      res.send(trips);
+    });
+  });
+
+// confirming that we can call checkUser as the 
+// first function in a get() function call
+router.route('/tripsTest')
+  .get(util.checkUser, function(req, res) {
     tripController.findAll(function(trips) {
       res.send(trips);
     });
