@@ -45,21 +45,21 @@ const SignUp = () => {
     } else {
       $.ajax({
         type: "POST",
-        url: '/SignUp',
-        data: currUser
-      }).done(function(){
-        console.log('successful post from signin');
+        url: '/SignUp'
+      }).done(function(data){
+        if (typeof data.redirect === 'string') {
+            window.location = data.redirect
+          }
+        console.log('successful sign up');
       }).fail(function(){
-        console.log('failed to post from signin');
-      });      
-      document.getElementById('signUpForm').reset();
+        console.log('failed sign up');
+      }); 
     }
   }
 
   return (
     <div id="signUp" className="container class">
       <h1> Sign Up </h1>
-      <form id="signUpForm">
         <div>
           <div>First Name*</div>
           <input 
@@ -105,10 +105,8 @@ const SignUp = () => {
             onChange= {handleChange}
           />
         </div>
-        <input id="submit" onClick={signUp} type="submit" value="Submit"/>
-      </form>
-
-    </div>
+        <button id="submit" onClick={signUp}>Submit</button>
+      </div>
   );
 }
 

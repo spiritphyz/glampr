@@ -66,7 +66,7 @@ class UserHome extends React.Component {
   componentDidMount() {
     $.ajax({
       type: "GET",
-      url: 'http://104.236.160.117:3000/users/trips/',
+      url: '/users/trips/',
     }).done(function(data){
       // console.log(data, 'data from user trips');
       // this.setState({data})
