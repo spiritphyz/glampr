@@ -4,7 +4,7 @@
 var express = require('express');
 var userController = require('../../db/controllers/users.js');
 var tripController = require('../../db/controllers/trips.js');
-var util = require('../../db/controllers/utilities.js');
+var util = require('../../server/routers/utilities.js');
 
 var router = express.Router();
 
@@ -32,10 +32,10 @@ router.route('/trips')
     });
   });
 
-// confirming that we can call checkUser as the 
+// this works: we can call checkAuth as the 
 // first function in a get() function call
 router.route('/tripsTest')
-  .get(util.checkUser, function(req, res) {
+  .get(util.checkAuth, function(req, res) {
     tripController.findAll(function(trips) {
       res.send(trips);
     });
