@@ -72,12 +72,12 @@ sequelize.sync({force: true})
 
 exports.Trip = Trip;
 exports.User = User;
-exports.Borrow = Borrow;
+// exports.Borrow = Borrow;
 exports.Term = Term;
 exports.Required = Required;
 
 exports.TripsUsers = TripsUsers;
-exports.BorrowUsers = BorrowUsers;
+// exports.BorrowUsers = BorrowUsers;
 exports.RequiredUsers = RequiredUsers;
 
 
