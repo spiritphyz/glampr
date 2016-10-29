@@ -1,4 +1,4 @@
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone_number`, `invite_status`, `tags`, `createdAt`, `updatedAt`)
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone_number`, `profile_pic`, `tags`, `createdAt`, `updatedAt`)
 VALUES
 (1, 'Casey', 'Garcia', 'caseyggarcia@gmail.com', '123', 'member', NULL, NULL, NULL, '2016-10-26 17:23:26', '2016-10-26 17:23:26'),
 (2, 'Cindy', 'Manit', 'cindymanit@gmail.com', '123', 'member', NULL, NULL, NULL, '2016-10-26 17:23:32', '2016-10-26 17:23:32'),
