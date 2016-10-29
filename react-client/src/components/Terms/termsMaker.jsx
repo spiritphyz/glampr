@@ -32,7 +32,7 @@ class TermsMaker extends React.Component {
       type: "POST",
       url: 'localhost/terms/maker/1',
       dataType: 'application/json',
-      data: JSON.stringify(submission);
+      data: JSON.stringify(submission)
     }).done(function(){
       console.log(arguments[2])
       console.log('successful post from terms');
