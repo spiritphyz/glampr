@@ -61,7 +61,7 @@ class TripDetails extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container center">
         <WhereLocation 
           handleChange = {this.handleChange}
         />
@@ -81,13 +81,11 @@ class TripDetails extends React.Component {
         />
         <button className="tripDetailsSubmit"onClick={this.handleSubmit}>Submit</button>
       </div>
-
     );
   }
 }
 
 var Description = (props) => {
-
   return (
     <div className="desc-container">
       <h4>Description</h4>

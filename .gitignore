@@ -10,3 +10,5 @@ react-client/dist/bundle.js.map
 
 # powerpoint temp file
 ~*
+bootstrap/
+twilioquickstart.js
