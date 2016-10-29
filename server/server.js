@@ -52,7 +52,8 @@ app.post('/login', function(req, res) {
 
 app.get('/logout', function(req, res) {
   req.session.destroy(function() {
-    res.redirect('/login');
+    // res.redirect('/login');
+    res.send('session destroyed');
   });
 });
 
@@ -64,7 +65,7 @@ app.post('/signup', function(req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
-  userController.findOne({'email': email, 'password': password}, function(user) {
+  userController.findOne({'email': email}, function(user) {
     if (!user) {
       bcrypt.hash(password, null, null, function(err, hash) {
         userController.create({
@@ -76,7 +77,7 @@ app.post('/signup', function(req, res) {
       });
     } else {
       console.log('Account already exists');
-      userController.update(user, function() {
+      userController.update(user, req, function() {
         // res.redirect('/');
         res.send('existing user updated');
       });

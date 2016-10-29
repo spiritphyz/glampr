@@ -25,12 +25,12 @@ var create = function(props, callback) {
   });
 };
 
-var update = function(user, callback) {
+var update = function(user, req, callback) {
   user.updateAttributes({
-    first_name: userData.first_name,
-    last_name: userData.last_name,
-    password: userData.password,
-    phone_number: userData.phone_number,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    password: req.body.password,
+    phone_number: req.body.phone_number,
     tags: null
   })
   .then(function(user) {
