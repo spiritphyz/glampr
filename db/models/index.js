@@ -8,13 +8,13 @@ var sequelize = new Sequelize('glampr', 'happyglampr', 'glamprabmt', {
 // Any vairable that starts with a capital letter is a model
 var Trip = require('./trips.js')(sequelize, Sequelize);
 var User = require('./users.js')(sequelize, Sequelize);
-// var Borrow = require('./borrow.js')(sequelize, Sequelize);
 var Term = require('./terms.js')(sequelize, Sequelize);
-var Required = require('./required.js')(sequelize, Sequelize);
+var Gear = require('./gear.js')(sequelize, Sequelize);
+// var Borrow = require('./borrow.js')(sequelize, Sequelize);
 
 var TripsUsers = require('./tripsUsers.js')(sequelize, Sequelize);
+var GearUsers = require('./gearUsers')(sequelize, Sequelize);
 // var BorrowUsers = require('./borrowUsers')(sequelize, Sequelize);
-var RequiredUsers = require('./requiredUsers')(sequelize, Sequelize);
 
 // TripsUsers join table:
 User.belongsToMany(Trip, {
@@ -48,22 +48,22 @@ Term.belongsTo(Trip, {
 // });
 
 // Required to trips connection:
-Required.belongsTo(Trip, {
+Gear.belongsTo(Trip, {
   foreignKey: 'trip_id'
 });
 
-Trip.hasMany(Required, {
+Trip.hasMany(Gear, {
   foreignKey: 'trip_id'
 });
 
 // RequiredUsers join table connections:
-Required.belongsToMany(User, {
-  through: 'required_users',
-  foreignKey: 'required_id'
+Gear.belongsToMany(User, {
+  through: 'gear_users',
+  foreignKey: 'gear_id'
 });
 
-User.belongsToMany(Required, {
-  through: 'required_users',
+User.belongsToMany(Gear, {
+  through: 'gear_users',
   foreignKey: 'user_id'
 });
 
@@ -72,13 +72,13 @@ sequelize.sync({force: true})
 
 exports.Trip = Trip;
 exports.User = User;
-// exports.Borrow = Borrow;
 exports.Term = Term;
-exports.Required = Required;
+exports.Gear = Gear;
+// exports.Borrow = Borrow;
 
 exports.TripsUsers = TripsUsers;
+exports.GearUsers = GearUsers;
 // exports.BorrowUsers = BorrowUsers;
-exports.RequiredUsers = RequiredUsers;
 
 
 

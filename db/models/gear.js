@@ -1,6 +1,6 @@
 module.exports = function(sequelize, Sequelize) {
 
-  var Required = sequelize.define('requires', {
+  var Required = sequelize.define('gear', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,

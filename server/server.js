@@ -30,7 +30,7 @@ app.use('/tripDetailsMaker', tripDetailsMakerRouter)
 app.use('/gearViewMaker', gearViewMakerRouter)
 app.use('/termsMaker', termsMakerRouter)
 app.use('/termsUser', termsUserRouter)
-app.use('/userHome', userHomeRouter)
+app.use('/tripDetailsUser', userHomeRouter)
 app.use('/shoppingList', shoppingListRouter)
 
 app.use('/users', userRouter); // for testing

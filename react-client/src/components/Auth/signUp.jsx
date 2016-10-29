@@ -45,7 +45,9 @@ const SignUp = () => {
     } else {
       $.ajax({
         type: "POST",
-        url: '/SignUp'
+        url: '/SignUp',
+        contentType: 'application/json',
+        data: JSON.stringify(currUser)
       }).done(function(data){
         if (typeof data.redirect === 'string') {
             window.location = data.redirect
@@ -109,7 +111,5 @@ const SignUp = () => {
       </div>
   );
 }
-
-
 
 export default SignUp

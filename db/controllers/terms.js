@@ -9,13 +9,19 @@ var findAll = function(tripId, callback) {
 
 var insertTerms = function(terms, tripId, callback) {
   console.log(terms)
-  var termsArr = []
+  var termsArr = [];
   for (var category in terms) {
-    for(var content in terms[category])
-      if(content !== 'title') {
+    termsArr[category.splice(8, category.length)] = d
+    for (var content in terms[category]) {
+      if (content !== 'title') {
         termsArr.push({category: terms[category].title, description: terms[category][content]});        
       }
+    }
   }
+  var termsArr = [];
+
+
+
   console.log(termsArr)
   Trip.find({where: {id: tripId}}).then(function(trip) {
     var insertOne = function(termIndex) {

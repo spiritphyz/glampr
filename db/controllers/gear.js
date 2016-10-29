@@ -1,29 +1,46 @@
-var Gear = require('../models/index.js').Required;
+var Trip = require('../models/index.js').Trip;
+var Gear = require('../models/index.js').Gear;
 
-var findAll = function(callback) {
-  Gear.findAll().then(function(gears) {
-    callback(trips)
-  }).catch(function(err) {
-    console.log(err);
+var findAll = function(tripId, callback) {
+  Gear.findAll({where: {trip_id: tripId}}).then(function(terms) {
+    callback(terms);
   })
 }
 
-var findOne = function(query, callback) {
-  Gear.find({where: query}).then(function(err, gear) {
-    if(err) {
-      callback(err)
-    } else {
-      callback(gear)        
+var insertTerms = function(terms, tripId, callback) {
+  console.log(terms);
+  var termsArr = [];
+  for (var category in terms) {
+    for (var content in terms[category]) {
+      if(content !== 'title') {
+        termsArr.push({category: terms[category].title, description: terms[category][content]});        
+      }
     }
-  });
+  }
+  console.log(termsArr)
+  Trip.find({where: {id: tripId}}).then(function(trip) {
+    var insertOne = function(termIndex) {
+      if(termIndex === termsArr.length) {
+        callback(terms);
+        return;
+      }
+      Term.create(termsArr[termIndex]).then(function(term) {
+        term.setTrip(trip).then(function() {
+          insertOne(termIndex + 1);
+        });
+      });
+    }
+    insertOne(0);
+  })
 }
 
-var insertOne = function(gear, callback) {
-  Gear.create(gear).then(function(gear) {
-    callback(gear);
-  });
+var acceptTerms = function(userId, tripId, callback) {
+  
 }
+
 
 exports.findAll = findAll;
-exports.findOne = findOne;
-exports.insertOne = insertOne;
+exports.insertTerms = insertTerms;
+
+
+
