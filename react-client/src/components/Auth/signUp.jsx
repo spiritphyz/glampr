@@ -60,7 +60,7 @@ const SignUp = () => {
   }
 
   return (
-    <div id="signUp" className="container class">
+    <div id="signUp" className="container center">
       <h1> Sign Up </h1>
         <div>
           <div>First Name*</div>
