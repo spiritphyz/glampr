@@ -21,67 +21,58 @@ app.use(session({
 }));
 
 app.use('/users', userRouter);
-// FIXME: check to see if checkAuth can be added here
-//app.use('/users', util.checkAuth, userRouter);
 app.use('/tripInfo', tripInfoRouter);
 app.use('/terms', termsRouter);
 
 /* auth routes -------------------------------------------------------------- */
-app.get('/login', function(req, res) {
-  res.redirect('/#/SignIn');
-});
-
-app.post('/login', function(req, res) {
+app.post('/SignIn', function(req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
   userController.findOne({'email': email}, function(user) {
     if (!user) {
-      // res.redirect('/login');
-      res.send('user doesn\'t exist, redirect to login');
+      res.redirect('/SignIn');
+      // res.send('user doesn\'t exist, redirect to login');
     } else {
       userController.comparePassword(user, password, function(match) {
         if (match) {
           util.createSession(req, res, user);
         } else {
-          // res.redirect('/login');
-          res.send('passwords don\'t match');
+          res.redirect('/SignIn');
+          // res.send('passwords don\'t match');
         }
       });
     }
   });
 });
 
-app.get('/logout', function(req, res) {
+app.get('/SignOut', function(req, res) {
   req.session.destroy(function() {
-    // res.redirect('/login');
-    res.send('session destroyed');
+    res.redirect('/');
+    // res.send('session destroyed');
   });
 });
 
-app.get('/signup', function(req, res) {
-  res.redirect('/signup');
-});
-
-app.post('/signup', function(req, res) {
+app.post('/SignUp', function(req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
   userController.findOne({'email': email}, function(user) {
     if (!user) {
       bcrypt.hash(password, null, null, function(err, hash) {
-        userController.create({
-          email: email,
-          password: hash
-        }, function(user) {
+        req.body.password = hash;
+        userController.create(req.body, function(user) {
           util.createSession(req, res, user);
         });
       });
     } else {
       console.log('Account already exists');
-      userController.update(user, req, function() {
-        // res.redirect('/');
-        res.send('existing user updated');
+      bcrypt.hash(password, null, null, function(err, hash) {
+        req.body.password = hash;
+        userController.update(user, req, function() {
+          res.redirect('/');
+          // res.send('existing user updated');
+        });
       });
     }
   });

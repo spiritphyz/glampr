@@ -2,11 +2,6 @@ var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/index.js').User;
 var Trip = require('../models/index.js').Trip;
 
-// example find user then get property from sequelize docs
-// User.findOne().then(function (user) {
-//     console.log(user.get('firstName'));
-// });
-
 var comparePassword = function(user, attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, user.get('password'), function(err, isMatch) {
     callback(isMatch);
