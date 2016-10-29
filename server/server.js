@@ -5,9 +5,15 @@ var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 
-var tripInfoRouter = require('./routers/tripInfo.js');
+var tripDetailsMakerRouter = require('./routers/tripDetailsMaker.js');
+var gearViewMakerRouter = require('./routers/gearViewMaker.js');
+var termsMakerRouter = require('./routers/termsMaker.js');
+var termsUserRouter = require('./routers/termsUser.js');
+var userHomeRouter = require('./routers/userHome.js');
+var shoppingListRouter = require('./routers/shoppingList.js');
+
 var userRouter = require('./routers/users.js');
-var termsRouter = require('./routers/terms.js');
+
 var util = require('./routers/utilities.js');
 var userController = require('../db/controllers/users.js');
 
@@ -20,9 +26,14 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use('/users', userRouter);
-app.use('/tripInfo', tripInfoRouter);
-app.use('/terms', termsRouter);
+app.use('/tripDetailsMaker', tripDetailsMakerRouter)
+app.use('/gearViewMaker', gearViewMakerRouter)
+app.use('/termsMaker', termsMakerRouter)
+app.use('/termsUser', termsUserRouter)
+app.use('/userHome', userHomeRouter)
+app.use('/shoppingList', shoppingListRouter)
+
+app.use('/users', userRouter); // for testing
 
 /* auth routes -------------------------------------------------------------- */
 app.post('/SignIn', function(req, res) {
