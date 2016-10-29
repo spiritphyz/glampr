@@ -53,7 +53,7 @@ class TermsUser extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="container center">
         <h1> User T&Cs </h1>
           <div>
             {Object.keys(this.state.terms).map((key, i) => {

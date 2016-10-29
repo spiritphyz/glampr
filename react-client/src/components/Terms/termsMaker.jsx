@@ -76,7 +76,7 @@ class TermsMaker extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container center">
         <h1> Maker T&CS </h1>
         <Categories 
           categoryCount = {this.state.categoryCount} 
