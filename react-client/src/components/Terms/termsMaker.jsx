@@ -30,9 +30,9 @@ class TermsMaker extends React.Component {
     console.log(submission);
     $.ajax({
       type: "POST",
-      url: '/terms/maker/1',
-      contentType: 'application/json',
-      data: JSON.stringify(submission)
+      url: 'localhost/terms/maker/1',
+      dataType: 'application/json',
+      data: JSON.stringify(submission);
     }).done(function(){
       console.log(arguments[2])
       console.log('successful post from terms');
@@ -61,12 +61,6 @@ class TermsMaker extends React.Component {
     inputs[categoryName].title = categoryTitle;
     console.log(inputs);
     this.setState({inputs})
-  }
-
-  componentWillMount() {
-    // this.intitialize().then(function(data) {
-    //   that.setState({somethingWithData});
-    // });
   }
 
   addCategory () {
