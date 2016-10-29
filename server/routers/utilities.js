@@ -18,7 +18,7 @@ exports.createSession = function(req, res, newUser) {
   return req.session.regenerate(function() {
     req.session.email = newUser.email;
     req.session.password = newUser.password;
-    res.redirect('/');
-    // res.send('session created');
+    // res.redirect('/#/UserHome');
+    res.send({redirect: '/#/UserHome'});
   });
 };

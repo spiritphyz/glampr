@@ -15,18 +15,33 @@ import TermsUser from './components/Terms/termsUser.jsx'
 
 import UserHome from './components/UserHome/userHome.jsx';
 import ShoppingList from './components/ShoppingList/ShoppingList.jsx';
+import $ from 'jquery';
+
+const signOut = ()  => {
+      $.ajax({
+        type: "GET",
+        url: '/SignOut',
+      }).done(function(){
+        console.log('successful sign out');
+      }).fail(function(){
+        console.log('failed sign out');
+      });      
+    }
 
 ReactDOM.render((
-  <Router history={hashHistory}>
-    <Route path="/" component={App}/>
-    <Route path="/SignIn" component={SignIn}/>
-    <Route path="/SignUp" component={SignUp}/>
-    <Route path="/TripDetails" component={TripDetails}/>
-    <Route path="/GearViewMaker" component={GearViewMaker}/>
-    <Route path="/TripDetails" component={TripDetails}/>
-    <Route path="/termsmaker" component={TermsMaker}/>
-    <Route path="/TermsUser" component={TermsUser}/>
-    <Route path="/UserHome" component={UserHome}/>
-    <Route path="/ShoppingList" component={ShoppingList}/>
-  </Router>
+  <div>
+    <Router history={hashHistory}>
+      <Route path="/" component={App}/>
+      <Route path="/SignIn" component={SignIn}/>
+      <Route path="/SignUp" component={SignUp}/>
+      <Route path="/TripDetails" component={TripDetails}/>
+      <Route path="/GearViewMaker" component={GearViewMaker}/>
+      <Route path="/TripDetails" component={TripDetails}/>
+      <Route path="/termsmaker" component={TermsMaker}/>
+      <Route path="/TermsUser" component={TermsUser}/>
+      <Route path="/UserHome" component={UserHome}/>
+      <Route path="/ShoppingList" component={ShoppingList}/>
+    </Router>
+    <button onClick={signOut}>Sign Out</button>
+  </div>
   ), document.getElementById('app'))
