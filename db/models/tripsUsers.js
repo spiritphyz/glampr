@@ -9,6 +9,9 @@ module.exports = function(sequelize, Sequelize) {
     },
     invite_status: {
       type: Sequelize.STRING
+    },
+    role: {
+      type: Sequelize.STRING
     }
   });
   return TripsUsers;
