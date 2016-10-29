@@ -4,7 +4,7 @@ var tripController = require('../../db/controllers/trips.js');
 
 var router = express.Router();
 
-router.route('/maker')
+router.route('/')
   .post(function(req, res) {
       tripController.insertOne(req.body.tripData, function(trip) {
         console.log('Added trip');
@@ -15,9 +15,4 @@ router.route('/maker')
       });
     });
 
-router.route('/user')
-  .get(function(req, res) {
-    // userController.get
-  })
-
-module.exports = router;  
+module.exports = router;

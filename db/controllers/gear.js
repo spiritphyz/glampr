@@ -1,7 +1,7 @@
-var Trip = require('../models/index.js').Trip;
+var Gear = require('../models/index.js').Required;
 
 var findAll = function(callback) {
-  Trip.findAll().then(function(trips) {
+  Gear.findAll().then(function(gears) {
     callback(trips)
   }).catch(function(err) {
     console.log(err);
@@ -9,18 +9,18 @@ var findAll = function(callback) {
 }
 
 var findOne = function(query, callback) {
-  Trip.find({where: query}).then(function(err, trip) {
+  Gear.find({where: query}).then(function(err, gear) {
     if(err) {
       callback(err)
     } else {
-      callback(trip)        
+      callback(gear)        
     }
   });
 }
 
-var insertOne = function(trip, callback) {
-  Trip.create(trip).then(function(trip) {
-    callback(trip);
+var insertOne = function(gear, callback) {
+  Gear.create(gear).then(function(gear) {
+    callback(gear);
   });
 }
 

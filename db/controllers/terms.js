@@ -33,6 +33,10 @@ var insertTerms = function(terms, tripId, callback) {
   })
 }
 
+var acceptTerms = function(userId, tripId, callback) {
+  
+}
+
 
 exports.findAll = findAll;
 exports.insertTerms = insertTerms;
