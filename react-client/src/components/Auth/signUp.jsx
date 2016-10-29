@@ -38,7 +38,7 @@ const SignUp = () => {
 
       var errorMsg = '<div class=\"error\">Please enter all the required fields</div>';
 
-      if(!$('#signUp').children('div').hasClass('error')) {
+      if(!($('#signUp').children('div').hasClass('error'))) {
         $('#signUp').append(errorMsg);        
       }
       
@@ -52,7 +52,7 @@ const SignUp = () => {
       }).fail(function(){
         console.log('failed to post from signin');
       });      
-      document.getElementById('#signUpForm').reset();
+      document.getElementById('signUpForm').reset();
     }
   }
 
