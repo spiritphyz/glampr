@@ -1,19 +1,12 @@
 import React from 'react';
 import $ from 'jquery';
 
-class Borrow extends React.Component {
+class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       }
     };
-
-    //bind functions to class
-    //this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleContentChange = this.handleContentChange.bind(this);
-    // this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    // this.addCategory = this.addCategory.bind(this);
-    // this.addContent = this.addContent.bind(this);
 
   handleSubmit(e) {
 
@@ -37,7 +30,7 @@ class Borrow extends React.Component {
   render() {
     return (
       <div>
-        <h1> Borrow </h1>
+        <h1> Shopping List </h1>
         <Items/>
       </div>
     );
@@ -57,4 +50,4 @@ let Items = ({}) => {
 }
 
 
-export default Borrow
+export default ShoppingList
