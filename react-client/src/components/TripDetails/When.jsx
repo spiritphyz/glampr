@@ -2,7 +2,7 @@ import React from 'react';
 let DescriptionWhen = (props) => {
 
   return (
-    <div className="tripDate-container">
+    <div className="container">
       <h4>When Would You Like To Go?</h4>
       <div>
         <input

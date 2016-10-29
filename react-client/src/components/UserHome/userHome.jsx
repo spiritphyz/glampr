@@ -82,7 +82,7 @@ class UserHome extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container center">
         <h1> User HomePage </h1>
         <TripDetails info={this.state.tripInfo}/>
         <InviteStatus />

@@ -10,3 +10,10 @@ react-client/dist/bundle.js.map
 
 # powerpoint temp file
 ~*
+<<<<<<< bc50ee2239e1500e73afcef7b1862aae3b68a8e2
+=======
+
+react-client/dist/bundle.js.map
+>>>>>>> initiate bootstrap and center all container divs
+bootstrap/
+twilioquickstart.js

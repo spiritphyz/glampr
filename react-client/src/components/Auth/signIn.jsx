@@ -33,11 +33,11 @@ const SignIn = () => {
   }
 
   return (
-    <div>
+    <div className ="container center">
       <h1> Sign In </h1>
       <div>
         <input 
-          data-type='username'
+          data-type="username"
           type="text" 
           placeholder="Username(email)"
           onChange= {handleChange}
