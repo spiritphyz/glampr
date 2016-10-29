@@ -35,15 +35,17 @@ app.post('/login', function(req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
-  userController.findOne({'email': email, 'password': password}, function(user) {
+  userController.findOne({'email': email}, function(user) {
     if (!user) {
-      res.redirect('/login');
+      // res.redirect('/login');
+      res.send('user doesn\'t exist, redirect to login');
     } else {
       userController.comparePassword(user, password, function(match) {
         if (match) {
           util.createSession(req, res, user);
         } else {
-          res.redirect('/login');
+          // res.redirect('/login');
+          res.send('passwords don\'t match');
         }
       });
     }

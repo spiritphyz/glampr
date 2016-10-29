@@ -8,10 +8,8 @@ var Trip = require('../models/index.js').Trip;
 // });
 
 var comparePassword = function(user, attemptedPassword, callback) {
-  user.get('password').then(function(password) {
-    bcrypt.compare(attemptedPassword, password, function(err, isMatch) {
-      callback(isMatch);
-    });
+  bcrypt.compare(attemptedPassword, user.get('password'), function(err, isMatch) {
+    callback(isMatch);
   });
 };
 
