@@ -44,7 +44,7 @@ class App extends React.Component {
           {childrenWithProps}
         </div>
         <div className="Sidebar">
-          <SideBar views = {this.state.loginStatus}/>
+          <SideBar views={this.state.loginStatus}/>
         </div>
         <div className="navBar">    
           <li><Link to="/SignIn">Sign In</Link></li>

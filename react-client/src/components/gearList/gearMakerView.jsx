@@ -34,6 +34,7 @@ class TermsMaker extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(submission)
     }).done(function(){
+      window.location = window.location.pathname + '#/TripDetailsUser';
       console.log('successful post from terms');
     }).fail(function(err){
       console.log(err);

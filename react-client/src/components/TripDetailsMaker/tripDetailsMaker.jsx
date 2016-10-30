@@ -46,14 +46,19 @@ class TripDetails extends React.Component {
     invitees = Object.keys(invitees).map(function(email) {
       return invitees[email];
     })
+<<<<<<< 34661ec1c90b2aad8b7eeabbd18b150d780e0fab
     let data = { tripData: tripData, invitees: invitees };
     console.log(data);
+=======
+    let data = { tripData, invitees };
+>>>>>>> route through maker and user views
     $.ajax({
       type: "POST",
       url: '/tripDetailsMaker',
       contentType: 'application/json',
       data: JSON.stringify(data)
     }).done(function(){
+      window.location = window.location.pathname + '#/TermsMaker';
       console.log('successful post from tripDetails');
     }).fail(function(){
       console.log('failed to post from tripDetails');
