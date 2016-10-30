@@ -41,13 +41,17 @@ class TermsMaker extends React.Component {
   }
 
   handleContentChange(e) {
+    console.log(e.target.checked);
     let categoryName = e.target.getAttribute('data-categoryname');
     let contentName = e.target.getAttribute('data-contentname');
     let description = e.target.getAttribute('data-description');
+    let required = e.target.getAttribute('data-required');
     let inputs = this.state.inputs;
     let contentVal = e.target.value;
     if ( description ) {
       inputs[categoryName][description] = contentVal;
+    } else if (required) {
+      inputs[categoryName][required] = e.target.checked;
     } else {
       inputs[categoryName][contentName] = contentVal;
     }
@@ -147,12 +151,15 @@ let Category = ({handleContentChange,categoryName, categoryContentCount, handleC
   for (var i = 0; i < count; i++) {
     let contentName = `content${i}`;
     let description = `description${i}`;
+    let required = `required${i}`;
+
     children.push(<Content 
       key={i} 
       handleContentChange = {handleContentChange} 
       categoryName = {categoryName}
       contentName = {contentName}
       description = {description}
+      required = {required}
       />)
   }
       return (
@@ -171,7 +178,7 @@ let Category = ({handleContentChange,categoryName, categoryContentCount, handleC
     )
 }
 
-let Content = ({categoryName, contentName, description, handleContentChange}) => {
+let Content = ({categoryName, contentName, description, handleContentChange, required}) => {
   return (
     <div>
     <input 
@@ -186,6 +193,12 @@ let Content = ({categoryName, contentName, description, handleContentChange}) =>
       placeholder="Description"
       data-categoryname= {categoryName}
       data-description= {description}
+      onChange={handleContentChange} 
+    />  
+    <input 
+      type="checkbox" 
+      data-categoryname= {categoryName}
+      data-required= {required}
       onChange={handleContentChange} 
     />
     </div>
