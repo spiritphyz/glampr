@@ -50,8 +50,9 @@ class TripDetails extends React.Component {
     console.log(data);
     $.ajax({
       type: "POST",
-      url: '/tripInfo',
-      data: data
+      url: '/tripDetailsMaker',
+      contentType: 'json/application',
+      data: JSON.stringify(data)
     }).done(function(){
       console.log('successful post from tripDetails');
     }).fail(function(){

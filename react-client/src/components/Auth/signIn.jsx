@@ -24,10 +24,10 @@ const SignIn = () => {
     $.ajax({
       type: "POST",
       url: '/SignIn',
-      data: currUser
+      contentType: 'application/json',
+      data: JSON.stringify(currUser)
     }).done(function(){
-      window.location = '/#/UserHome';
-
+      
       console.log('successful post from signin');
     }).fail(function(){
       console.log('failed to post from signin');

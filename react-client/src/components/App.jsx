@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 import SignIn from './Auth/signUp.jsx';
-import sideBar from './sideBar/sideBar.jsx'
-import $ from 'jquery'
+import sideBar from './sideBar/sideBar.jsx';
+import $ from 'jquery';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -46,6 +46,7 @@ class App extends React.Component {
           <div>Hello World!</div>
           <li><Link to="/SignIn">Sign In</Link></li>
           <li><Link to="/SignUp">Sign Up</Link></li>
+          <li><Link to="/StartTrip">Start Trip</Link></li>
           <li><Link to="/TripDetailsMaker">Trip Details Maker</Link></li>
           <li><Link to="/GearViewMaker">Gear View Maker</Link></li>
           <li><Link to="/TermsMaker">Terms Maker</Link></li>
