@@ -54,6 +54,7 @@ class TripDetails extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(data)
     }).done(function(){
+      window.location = window.location.pathname + '#/TermsMaker';
       console.log('successful post from tripDetails');
     }).fail(function(){
       console.log('failed to post from tripDetails');

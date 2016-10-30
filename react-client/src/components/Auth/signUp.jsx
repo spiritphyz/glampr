@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-
+import SignIn from './SignIn.jsx'
+let signIn = SignIn.signIn
 const SignUp = (props) => {
 
   let currUser = {};
@@ -29,31 +30,6 @@ const SignUp = (props) => {
       currUser.phone_number = input;
     }
   }
-  const signIn = (currUser)  => {
-
-    $.ajax({
-      type: "POST",
-      url: '/SignIn',
-      contentType: 'application/json',
-      data: JSON.stringify(currUser)
-    }).done(function(res){
-      console.log(res);
-      if(res.auth) {
-        if (res.status) {
-          props.loginStatus('user')
-          window.location = window.location.pathname + '#/TripDetailsUser';
-        } else {
-          props.loginStatus('maker')
-          window.location = window.location.pathname + '#/TripDetailsMaker';
-        }
-      }
-      console.log('successful post from signin');
-    }).fail(function(){
-      window.location = window.location.pathname + '#/TripDetailsUser';
-
-      console.log('failed to post from signin');
-    });
-  }
 
   const signUp = ()  => {
     if (currUser.first_name === '' ||
@@ -64,7 +40,7 @@ const SignUp = (props) => {
       var errorMsg = '<div class=\"error\">Please enter all the required fields</div>';
 
       if(!($('#signUp').children('div').hasClass('error'))) {
-        $('#signUp').append(errorMsg);        
+        $('#signUp').append(errorMsg);
       }
       
     } else {
@@ -74,7 +50,7 @@ const SignUp = (props) => {
         contentType: 'application/json',
         data: JSON.stringify(currUser)
       }).done(function(data){
-        signIn(currUser)
+        signIn()
         console.log('successful sign up');
       }).fail(function(){
         console.log('failed sign up');

@@ -35,6 +35,7 @@ class App extends React.Component {
      (child) => React.cloneElement(child, {
        loginStatus: this.loginStatus
      }))
+    console.log(childrenWithProps[0].props)
     return (
       <div>
         <button onClick={this.signOut}>Sign Out</button>
@@ -44,7 +45,7 @@ class App extends React.Component {
           {childrenWithProps}
         </div>
         <div className="Sidebar">
-          <SideBar views = {this.state.loginStatus}/>
+          <SideBar views={this.state.loginStatus}/>
         </div>
         <div className="navBar">    
           <li><Link to="/SignIn">Sign In</Link></li>

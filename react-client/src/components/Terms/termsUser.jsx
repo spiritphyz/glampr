@@ -24,6 +24,7 @@ class TermsUser extends React.Component {
       url: '/termsUser',
       data: true
     }).done(function(){
+      window.location = window.location.pathname + '#/ShoppingList';
       console.log('successful post from terms');
     }).fail(function(){
       console.log('failed to post from terms');

@@ -20,6 +20,8 @@ class ShoppingList extends React.Component {
       data: JSON.stringify(checkList),
       contentType: 'application/json'
     }).done(function(data){
+      window.location = window.location.pathname + '#/TripDetailsUser';
+
       console.log('submit checklist')
     }).fail(function(){
       console.log('failed to post checklist');
