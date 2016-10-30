@@ -24,7 +24,8 @@ const SignIn = () => {
     $.ajax({
       type: "POST",
       url: '/SignIn',
-      data: currUser
+      data: JSON.stringify(currUser),
+      contentType: 'application/json'
     }).done(function(){
       console.log('successful post from signin');
     }).fail(function(){
