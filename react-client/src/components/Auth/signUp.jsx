@@ -49,9 +49,8 @@ const SignUp = () => {
         contentType: 'application/json',
         data: JSON.stringify(currUser)
       }).done(function(data){
-        if (typeof data.redirect === 'string') {
-            window.location = data.redirect
-          }
+        // window.location = data.redirect;
+        window.location = '/#/SignIn';
         console.log('successful sign up');
       }).fail(function(){
         console.log('failed sign up');
