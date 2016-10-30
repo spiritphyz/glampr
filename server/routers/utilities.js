@@ -14,10 +14,10 @@ exports.checkAuth = function(req, res, next) {
   }
 };
 
-exports.createSession = function(req, res, newUser) {
+exports.createSession = function(req, res, newUser, response) {
   return req.session.regenerate(function() {
     req.session.email = newUser.email;
     req.session.password = newUser.password;
-    res.send(true);
+    res.send(response);
   });
 };

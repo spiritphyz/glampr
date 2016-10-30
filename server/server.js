@@ -41,16 +41,23 @@ app.post('/SignIn', function(req, res) {
   var password = req.body.password;
 
   userController.findOne({'email': email}, function(user) {
+    var tripId = user.get('trip_id') || false;
+    var response = {};
+    response.status = tripId;
+    console.log('response: ', response);
     if (!user) {
       // res.redirect('/SignIn');
-      res.send(false);
+      response.auth = false;
+      res.send(response)
     } else {
       userController.comparePassword(user, password, function(match) {
         if (match) {
-          util.createSession(req, res, user);
+          response.auth = true;
+          util.createSession(req, res, user, response);
         } else {
           // res.redirect('/SignIn');
-          res.send(false);
+          response.auth = false;
+          res.send(response)
         }
       });
     }

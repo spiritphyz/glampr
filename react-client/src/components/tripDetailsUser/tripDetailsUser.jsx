@@ -55,6 +55,7 @@ class UserHome extends React.Component {
       type: "GET",
       url: '/tripDetailsUser',
     }).done(function(data){
+      console.log(data);
       this.getTripDetails(data);
       console.log('successful get from terms');
     }).fail(function(){

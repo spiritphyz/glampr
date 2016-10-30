@@ -6,10 +6,13 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    userController.findOne({'email': req.session.email}).success(function(user) {
-        tripController.findOne({'user_id': user.get('id')}, function(trip) {
+    userController.findOne({'email': req.session.email}, function(user) {
+      console.log('user: ', user)
+        user.getTrips().then(function(trip) {
+          trip = trip[0];
+          console.log(trip)
           req.session.tripId = trip.get('id');
-          res.send(trips);
+          res.send(trip);
         });
       });
     });
