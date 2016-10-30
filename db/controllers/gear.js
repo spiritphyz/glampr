@@ -51,9 +51,19 @@ var insertGear = function(gear, tripId, callback) {
   })
 }
 
+var editGearStatus = function(boughtGear, userId, tripId, callback) {
+  boughtGear.forEach(function(gear) {
+    User.find({where: {id: userId, trip_id: tripId, gear_id: gear}})
+    .success(function(user) {
+      user.updateAttributes({
+        status: 'i own it'
+      })
+    })
+  })
+}
 
 exports.findAll = findAll;
 exports.insertGear = insertGear;
-
+exports.editGearStatus = editGearStatus;
 
 

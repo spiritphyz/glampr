@@ -26,12 +26,12 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use('/tripDetailsMaker', tripDetailsMakerRouter)
-app.use('/gearViewMaker', gearViewMakerRouter)
-app.use('/termsMaker', termsMakerRouter)
-app.use('/termsUser', termsUserRouter)
-app.use('/tripDetailsUser', userHomeRouter)
-app.use('/shoppingList', shoppingListRouter)
+app.use('/tripDetailsMaker', util.checkAuth, tripDetailsMakerRouter)
+app.use('/gearViewMaker', util.checkAuth, gearViewMakerRouter)
+app.use('/termsMaker', util.checkAuth, termsMakerRouter)
+app.use('/termsUser', util.checkAuth, termsUserRouter)
+app.use('/tripDetailsUser', util.checkAuth, userHomeRouter)
+app.use('/shoppingList', util.checkAuth, shoppingListRouter)
 
 app.use('/users', userRouter); // for testing
 
@@ -42,25 +42,33 @@ app.post('/SignIn', function(req, res) {
 
   userController.findOne({'email': email}, function(user) {
     if (!user) {
-      res.redirect('/SignIn');
-      // res.send('user doesn\'t exist, redirect to login');
+      // res.redirect('/SignIn');
+      res.send(false);
     } else {
       userController.comparePassword(user, password, function(match) {
         if (match) {
           util.createSession(req, res, user);
         } else {
-          res.redirect('/SignIn');
-          // res.send('passwords don\'t match');
+          // res.redirect('/SignIn');
+          res.send(false);
         }
       });
     }
   });
 });
 
+app.get('/SignIn', util.checkAuth, function(req, res) {
+  res.send(true)//*****
+});
+
+app.get('/SignUp', util.checkAuth, function(req, res) {
+  res.send(true)//*****
+});
+
 app.get('/SignOut', function(req, res) {
   req.session.destroy(function() {
-    res.redirect('/');
-    // res.send('session destroyed');
+    // res.redirect('/');
+    res.send('session destroyed');
   });
 });
 
@@ -81,8 +89,7 @@ app.post('/SignUp', function(req, res) {
       bcrypt.hash(password, null, null, function(err, hash) {
         req.body.password = hash;
         userController.update(user, req, function() {
-          res.redirect('/');
-          // res.send('existing user updated');
+          res.send({redirect: '/#/UserHome'});
         });
       });
     }

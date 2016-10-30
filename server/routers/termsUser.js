@@ -14,7 +14,7 @@ router.route('/')
       })
     })
   .post(function(req, res) {
-      termsController.acceptTerms(req.session.userId, req.session.tripId, function() {
+      termsController.acceptTerms(req.body, req.session.userId, req.session.tripId, function() {
         res.send({redirect: '/shoppingList'})
       })
     })
