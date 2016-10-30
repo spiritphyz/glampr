@@ -9,8 +9,7 @@ router.route('/')
       tripController.insertOne(req.body.tripData, function(trip) {
         console.log('Added trip');
         userController.inviteMembers(req.body.invitees, trip, function() {
-          console.log('Invited member')
-          res.end();
+          res.send('Added trip and invited all members');
         })
       });
     });

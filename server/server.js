@@ -89,7 +89,7 @@ app.post('/SignUp', function(req, res) {
       bcrypt.hash(password, null, null, function(err, hash) {
         req.body.password = hash;
         userController.update(user, req, function() {
-          res.send({redirect: '/#/UserHome'});
+          res.send(true);
         });
       });
     }
