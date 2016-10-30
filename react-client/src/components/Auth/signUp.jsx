@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-const SignUp = () => {
+const SignUp = (props) => {
 
   let currUser = {};
   currUser.first_name = '';
@@ -29,8 +29,31 @@ const SignUp = () => {
       currUser.phone_number = input;
     }
   }
+  const signIn = (currUser)  => {
+
+    $.ajax({
+      type: "POST",
+      url: '/SignIn',
+      data: currUser
+    }).success(function(res){
+      console.log(res);
+      if (res) {
+        props.loginStatus('user')
+        window.location = window.location.pathname + '#/TripDetailsUser';
+      } else {
+        props.loginStatus('maker')
+        window.location = window.location.pathname + '#/TripDetailsMaker';
+      }
+      console.log('successful post from signin');
+    }).fail(function(){
+      window.location = window.location.pathname + '#/TripDetailsUser';
+
+      console.log('failed to post from signin');
+    });
+  }
 
   const signUp = ()  => {
+    let signIn = this.signIn;
     if (currUser.first_name === '' ||
         currUser.last_name === '' ||
         currUser.email === '' ||
@@ -48,9 +71,8 @@ const SignUp = () => {
         url: '/SignUp',
         contentType: 'application/json',
         data: JSON.stringify(currUser)
-      }).done(function(data){
-        // window.location = data.redirect;
-        window.location = '/#/SignIn';
+      }).success(function(data){
+        signIn(currUser)
         console.log('successful sign up');
       }).fail(function(){
         console.log('failed sign up');

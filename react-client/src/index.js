@@ -18,17 +18,6 @@ import TripDetailsUser from './components/tripDetailsUser/tripDetailsUser.jsx';
 import ShoppingList from './components/ShoppingList/ShoppingList.jsx';
 import $ from 'jquery';
 
-const signOut = ()  => {
-      $.ajax({
-        type: "GET",
-        url: '/SignOut',
-      }).done(function(){
-        console.log('successful sign out');
-      }).fail(function(){
-        console.log('failed sign out');
-      });      
-    }
-
 ReactDOM.render((
   <div>
     <Router history={hashHistory}>

@@ -26,10 +26,20 @@ const SignIn = () => {
       url: '/SignIn',
       contentType: 'application/json',
       data: JSON.stringify(currUser)
-    }).done(function(){
-      
+    }).success(function(res){
+      console.log(res);
+      if (res) {
+        props.loginStatus('user')
+        window.location = window.location.pathname + '#/TripDetailsUser';
+      } else {
+        props.loginStatus('maker')
+        window.location = window.location.pathname + '#/TripDetailsMaker';
+      }
       console.log('successful post from signin');
     }).fail(function(){
+      console.log(window.location = window.location.pathname + '#/TripDetailsUser')
+      window.location = window.location.pathname + '#/UserHome';
+
       console.log('failed to post from signin');
     });
   }
