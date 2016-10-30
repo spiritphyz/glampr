@@ -7,7 +7,7 @@ import App from './components/App.jsx';
 import SignIn from './components/auth/signIn.jsx';
 import SignUp from './components/auth/signUp.jsx';
 
-
+import StartTrip from './components/startTrip/startTrip.jsx';
 import TripDetailsMaker from './components/tripDetailsMaker/tripDetailsMaker.jsx';
 import GearViewMaker from './components/gearList/gearMakerView.jsx';
 
@@ -35,6 +35,7 @@ ReactDOM.render((
       <Route path="/" component={App}>
         <Route path="SignIn" component={SignIn}/>
         <Route path="SignUp" component={SignUp}/>
+        <Route path="StartTrip" component={StartTrip}/>
         <Route path="TripDetailsMaker" component={TripDetailsMaker}/>
         <Route path="GearViewMaker" component={GearViewMaker}/>
         <Route path="termsmaker" component={TermsMaker}/>
