@@ -42,7 +42,7 @@ var findAll = function(callback) {
 };
 
 var findOne = function(query, callback) {
-  User.find({where: query}).then(function(err, user) {
+  User.find(query).then(function(err, user) {
     if (err) {
       callback(err);
     } else {

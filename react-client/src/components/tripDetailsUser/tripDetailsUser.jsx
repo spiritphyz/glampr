@@ -48,15 +48,17 @@ class UserHome extends React.Component {
       //inputs: false;
       tripInfo: {}
     }
+    this.getTripDetails = this.getTripDetails.bind(this);
   };
 
   componentDidMount() {
+    var context = this;
     $.ajax({
       type: "GET",
       url: '/tripDetailsUser',
     }).done(function(data){
       console.log(data);
-      this.getTripDetails(data);
+      context.getTripDetails(data);
       console.log('successful get from terms');
     }).fail(function(){
       console.log('failed to get from terms');
@@ -64,12 +66,13 @@ class UserHome extends React.Component {
   }
 
   getTripDetails(data) {
+    console.log(data, 'data')
     var tripInfo = {};
-    tripInfo.title = data.tripInfo.tripData.title;
-    tripInfo.description= data.tripData.description;
-    tripInfo.start_date= data.tripData.start_date;
-    tripInfo.end_date= data.tripData.end_date;
-    tripInfo.address= data.tripData.address;
+    tripInfo.title = data.title;
+    tripInfo.description= data.description;
+    tripInfo.start_date= data.start_date;
+    tripInfo.end_date= data.end_date;
+    tripInfo.address= data.address;
     this.setState({tripInfo: tripInfo});
   }
 

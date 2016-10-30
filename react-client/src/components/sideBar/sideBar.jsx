@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router'
 
 const SideBar = (props) => {
-    if ( props.view === 'user' ) {
+  console.log(props, 'sidebar props')
+    if ( props.views === 'user' ) {
         return ( <div className="navBar">    
           <li><Link to="/SignIn">Sign In</Link></li>
           <li><Link to="/SignUp">Sign Up</Link></li>
@@ -11,7 +12,7 @@ const SideBar = (props) => {
           <li><Link to="/ShoppingList">Shopping List</Link></li>
         </div> )
     }
-    if ( props.view === 'maker' ) {
+    if ( props.views === 'maker' ) {
         return (
         <div className="navBar">    
           <li><Link to="/SignIn">Sign In</Link></li>
