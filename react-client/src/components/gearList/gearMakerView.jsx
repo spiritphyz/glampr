@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-class TermsMaker extends React.Component {
+class GearMaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,9 +87,9 @@ class TermsMaker extends React.Component {
 
   render() {
     return (
-      <div className="container center">
-        <h1> Gear </h1>
-        <h5> What Gear is needed for the trip? </h5>
+      <div className="rxContainer">
+        <h1> Gear List </h1>
+        <p> Let your team know what to bring. Add categories and related content </p>
         <Categories 
           categoryCount = {this.state.categoryCount} 
           categoryContentCount={this.state.categoryContentCount}
@@ -110,9 +110,12 @@ class TermsMaker extends React.Component {
 let Buttons = ({handleSubmit, addCategory}) => {
   return (
     <div>
-      <h3> buttons </h3>
-      <button id="submit" onClick={handleSubmit}> Submit </button>
-      <button id="addCategory" onClick={addCategory}> Add category </button>
+      <div>
+        <button id="addCategory" onClick={addCategory}> Add new category </button>
+      </div>
+      <div>
+        <button id="submit" onClick={handleSubmit}> Save this list </button>
+      </div>
     </div>
   )
 }
@@ -137,7 +140,6 @@ let Categories = ({categoryCount, categoryContentCount, addContent, handleConten
 
     return (
       <div>
-      <h3> categories </h3>
       {children}
       </div>
     )
@@ -166,9 +168,10 @@ let Category = ({handleContentChange,categoryName, categoryContentCount, handleC
   }
       return (
         <div>
+        <h2> Category </h2>
         <input 
           type="text" 
-          placeholder="Category"
+          placeholder="Category (E.g. Clothes, Kitchen, Sleeping)"
           data-categoryname= {categoryName}
           onChange={handleCategoryChange}
         />
@@ -176,35 +179,38 @@ let Category = ({handleContentChange,categoryName, categoryContentCount, handleC
         {children}
         <button id="addContent" onClick = {function () {addContent(categoryName)}}> Add content </button> 
 
-      </div>
+        </div>
     )
 }
 
 let Content = ({categoryName, contentName, description, handleContentChange, required}) => {
   return (
     <div>
-    <input 
-      type="text" 
-      placeholder="Content"
-      data-categoryname= {categoryName}
-      data-contentname= {contentName}
-      onChange={handleContentChange} 
-    />
-    <input 
-      type="text" 
-      placeholder="Description"
-      data-categoryname= {categoryName}
-      data-description= {description}
-      onChange={handleContentChange} 
-    />  
-    <input 
-      type="checkbox" 
-      data-categoryname= {categoryName}
-      data-required= {required}
-      onChange={handleContentChange} 
-    />
+      <input 
+        type="text" 
+        placeholder="Item"
+        data-categoryname= {categoryName}
+        data-contentname= {contentName}
+        onChange={handleContentChange} 
+      />
+      <input 
+        type="text" 
+        placeholder="Description"
+        data-categoryname= {categoryName}
+        data-description= {description}
+        onChange={handleContentChange} 
+      />  
+    <div>
+      <p> Mandatory? </p>
+      <input 
+        type="checkbox" 
+        data-categoryname= {categoryName}
+        data-required= {required}
+        onChange={handleContentChange} 
+      />
+      </div>
     </div>
   )
 }
 
-export default TermsMaker
+export default GearMaker

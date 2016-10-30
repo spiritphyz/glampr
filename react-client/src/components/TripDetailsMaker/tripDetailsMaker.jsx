@@ -63,7 +63,7 @@ class TripDetails extends React.Component {
 
   render() {
     return (
-      <div className="container center">
+      <div className="rxContainer">
         <WhereLocation 
           handleChange = {this.handleChange}
         />
@@ -81,7 +81,7 @@ class TripDetails extends React.Component {
           addInvite = {this.addInvite}
           invitees = {this.state.invitees}
         />
-        <button className="tripDetailsSubmit"onClick={this.handleSubmit}>Submit</button>
+        <button onClick={this.handleSubmit}>Submit</button>
       </div>
     );
   }
@@ -89,8 +89,8 @@ class TripDetails extends React.Component {
 
 var Description = (props) => {
   return (
-    <div className="desc-container">
-      <h4>Description</h4>
+    <div>
+      <h3>Description</h3>
       <div>
         <input
           id= "description"

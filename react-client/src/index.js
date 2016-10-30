@@ -9,7 +9,7 @@ import SignUp from './components/auth/signUp.jsx';
 
 import StartTrip from './components/startTrip/startTrip.jsx';
 import TripDetailsMaker from './components/tripDetailsMaker/tripDetailsMaker.jsx';
-import GearViewMaker from './components/gearList/gearMakerView.jsx';
+import GearMaker from './components/gearList/gearMakerView.jsx';
 
 import TermsMaker from './components/terms/termsMaker.jsx'
 import TermsUser from './components/terms/termsUser.jsx'
@@ -26,7 +26,7 @@ ReactDOM.render((
         <Route path="SignUp" component={SignUp}/>
         <Route path="StartTrip" component={StartTrip}/>
         <Route path="TripDetailsMaker" component={TripDetailsMaker}/>
-        <Route path="GearViewMaker" component={GearViewMaker}/>
+        <Route path="GearMaker" component={GearMaker}/>
         <Route path="termsmaker" component={TermsMaker}/>
         <Route path="TermsUser" component={TermsUser}/>
         <Route path="TripDetailsUser" component={TripDetailsUser}/>

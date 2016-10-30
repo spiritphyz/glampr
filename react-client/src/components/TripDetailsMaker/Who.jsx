@@ -6,7 +6,7 @@ let InviteOthers = (props) => {
   // to save screen real estate
   return (
     <div className="invite-container">
-      <h4>Lets Invite Others!</h4>
+      <h3>Lets Invite Others!</h3>
       {props.invitees.map((invite)  =>
         (
         <div>
@@ -20,7 +20,7 @@ let InviteOthers = (props) => {
           />
         </div>
         ))}
-        <button className="addInvite" onClick={props.addInvite}>Invite More</button>
+        <button onClick={props.addInvite}>Invite More</button>
     </div>
   )
 }

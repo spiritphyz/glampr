@@ -3,9 +3,9 @@ import React from 'react';
 
 let WhereLocation = (props) => {
   return (
-    <div className="where-container">
     <div>
-      <h4>Title of The Event : </h4>
+    <div>
+      <h3>Title of The Event : </h3>
       <input 
         id="tripTitle"
         type="text"
@@ -13,7 +13,7 @@ let WhereLocation = (props) => {
         onChange={ props.handleChange }
       />
     </div>
-        <h4>Where Would You Like To Go?</h4>
+        <h3>Where Would You Like To Go?</h3>
         <div>
           <input
             id = "address"
@@ -22,32 +22,9 @@ let WhereLocation = (props) => {
             placeholder="Address"
             onChange={props.handleChange}
           />
-
         </div>
       </div>
   )
 }
 
 module.exports = WhereLocation;
-
-          // <input
-          //   id = "whereCity"
-          //   className = "address addressCity"
-          //   type="text"
-          //   placeholder="City"
-          //   onChange={props.handleChange}
-          // />
-          // <input
-          //   id = "whereZip"
-          //   className = "address addressZip"
-          //   type="text"
-          //   placeholder="Zip"
-          //   onChange={props.handleChange}
-          // />
-          // <input
-          //   id = "whereCountry"
-          //   className = "address addressCountry"
-          //   type="text"
-          //   placeholder="Country"
-          //   onChange={props.handleChange}
-          // />

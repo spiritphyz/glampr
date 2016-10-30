@@ -80,7 +80,7 @@ class App extends React.Component {
           <li><Link to="/SignUp">Sign Up</Link></li>
           <li><Link to="/StartTrip">Start Trip</Link></li>
           <li><Link to="/TripDetailsMaker">Trip Details Maker</Link></li>
-          <li><Link to="/GearViewMaker">Gear View Maker</Link></li>
+          <li><Link to="/GearMaker">Gear Maker View</Link></li>
           <li><Link to="/TermsMaker">Terms Maker</Link></li>
           <li><Link to="/TermsUser">Terms User</Link></li>
           <li><Link to="/TripDetailsUser">Trip Details User</Link></li>

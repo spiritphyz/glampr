@@ -3,7 +3,7 @@ let DescriptionCost = (props) => {
 
   return (
     <div className="tripDate-container">
-      <h4>How Much Will This Cost?</h4>
+      <h3>How Much Will This Cost?</h3>
       <div>
         <input
           className = "tripCost"
