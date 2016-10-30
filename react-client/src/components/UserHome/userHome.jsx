@@ -65,10 +65,10 @@ class UserHome extends React.Component {
   getTripDetails(data) {
     var tripInfo = {};
     tripInfo.title = data.tripInfo.tripData.title;
-    tripInfo.description: data.tripInfo.tripData.description;
-    tripInfo.start_date: data.tripInfo.tripData.start_date;
-    tripInfo.end_date: data.tripInfo.tripData.end_date;
-    tripInfo.address: data.tripInfo.tripData.address;
+    tripInfo.description= data.tripInfo.tripData.description;
+    tripInfo.start_date= data.tripInfo.tripData.start_date;
+    tripInfo.end_date= data.tripInfo.tripData.end_date;
+    tripInfo.address= data.tripInfo.tripData.address;
     this.setState({tripInfo: tripInfo});
   }
 
@@ -78,7 +78,6 @@ class UserHome extends React.Component {
         <h1> User HomePage </h1>
         <TripDetails info={this.state.tripInfo}/>
         <InviteStatus />
-        <GearListStatus />
         <GearObtainedStatus />
        
       </div>
