@@ -9,7 +9,7 @@ var findAll = function(callback) {
 }
 
 var findOne = function(query, callback) {
-  Trip.find({where: query}).then(function(err, trip) {
+  Trip.find(query).then(function(err, trip) {
     if(err) {
       callback(err)
     } else {

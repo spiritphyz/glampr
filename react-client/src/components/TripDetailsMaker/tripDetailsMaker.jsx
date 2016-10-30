@@ -46,12 +46,12 @@ class TripDetails extends React.Component {
     invitees = Object.keys(invitees).map(function(email) {
       return invitees[email];
     })
-    let data = { tripData, invitees };
+    let data = { tripData: tripData, invitees: invitees };
     console.log(data);
     $.ajax({
       type: "POST",
       url: '/tripDetailsMaker',
-      contentType: 'json/application',
+      contentType: 'application/json',
       data: JSON.stringify(data)
     }).done(function(){
       console.log('successful post from tripDetails');

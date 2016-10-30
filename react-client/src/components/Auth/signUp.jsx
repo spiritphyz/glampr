@@ -34,15 +34,18 @@ const SignUp = (props) => {
     $.ajax({
       type: "POST",
       url: '/SignIn',
-      data: currUser
-    }).success(function(res){
+      contentType: 'application/json',
+      data: JSON.stringify(currUser)
+    }).done(function(res){
       console.log(res);
-      if (res) {
-        props.loginStatus('user')
-        window.location = window.location.pathname + '#/TripDetailsUser';
-      } else {
-        props.loginStatus('maker')
-        window.location = window.location.pathname + '#/TripDetailsMaker';
+      if(res.auth) {
+        if (res.status) {
+          props.loginStatus('user')
+          window.location = window.location.pathname + '#/TripDetailsUser';
+        } else {
+          props.loginStatus('maker')
+          window.location = window.location.pathname + '#/TripDetailsMaker';
+        }
       }
       console.log('successful post from signin');
     }).fail(function(){
@@ -53,7 +56,6 @@ const SignUp = (props) => {
   }
 
   const signUp = ()  => {
-    let signIn = this.signIn;
     if (currUser.first_name === '' ||
         currUser.last_name === '' ||
         currUser.email === '' ||
@@ -71,7 +73,7 @@ const SignUp = (props) => {
         url: '/SignUp',
         contentType: 'application/json',
         data: JSON.stringify(currUser)
-      }).success(function(data){
+      }).done(function(data){
         signIn(currUser)
         console.log('successful sign up');
       }).fail(function(){

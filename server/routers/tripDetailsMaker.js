@@ -8,8 +8,15 @@ router.route('/')
   .post(function(req, res) {
       tripController.insertOne(req.body.tripData, function(trip) {
         console.log('Added trip');
-        userController.inviteMembers(req.body.invitees, trip, function() {
-          res.send('Added trip and invited all members');
+        userController.findOne({where: {email: req.session.email}}, function(user) {
+
+          user.addTrip(trip, {invite_status: 'going', role: 'organizer'}).then(function() {
+
+            userController.inviteMembers(req.body.invitees, trip, function() {
+              res.send('Added trip and invited all members');
+
+            })
+          });
         })
       });
     });

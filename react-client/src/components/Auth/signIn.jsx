@@ -28,12 +28,14 @@ const SignIn = () => {
       data: JSON.stringify(currUser)
     }).success(function(res){
       console.log(res);
-      if (res) {
-        props.loginStatus('user')
-        window.location = window.location.pathname + '#/TripDetailsUser';
-      } else {
-        props.loginStatus('maker')
-        window.location = window.location.pathname + '#/TripDetailsMaker';
+      if(res.auth) {
+        if (res.status) {
+          props.loginStatus('user')
+          window.location = window.location.pathname + '#/TripDetailsUser';
+        } else {
+          props.loginStatus('maker')
+          window.location = window.location.pathname + '#/TripDetailsMaker';
+        }
       }
       console.log('successful post from signin');
     }).fail(function(){
