@@ -2,31 +2,48 @@ var Trip = require('../models/index.js').Trip;
 var Gear = require('../models/index.js').Gear;
 
 var findAll = function(tripId, callback) {
-  Gear.findAll({where: {trip_id: tripId}}).then(function(terms) {
-    callback(terms);
+  Gear.findAll({where: {trip_id: tripId}}).then(function(gear) {
+    callback(gear);
   })
 }
 
-var insertTerms = function(terms, tripId, callback) {
-  console.log(terms);
-  var termsArr = [];
-  for (var category in terms) {
-    for (var content in terms[category]) {
-      if(content !== 'title') {
-        termsArr.push({category: terms[category].title, description: terms[category][content]});        
-      }
-    }
+
+var parseGearData = function(gearData) {
+  gearData = gearData[0];
+  var gearCategory = [];
+
+  for (var category in gearData) {
+    gearCategory[category.slice('category'.length)] = gearData[category]
   }
-  console.log(termsArr)
+
+  var gearContent = [];
+
+  gearCategory.forEach(function(category) {
+    var l = (Object.keys(category).length - 1) / 2;
+    for (var  i = 0; i < l; i++) {
+      gearContent.push({
+        'category': category.title,
+        'name': category['content' + i],
+        'description': category['description' + i]
+      })
+    }
+  })
+  return gearContent;
+}
+
+var insertGear = function(gear, tripId, callback) {
+
+  gearArr = parseGearData(gear);
+
   Trip.find({where: {id: tripId}}).then(function(trip) {
-    var insertOne = function(termIndex) {
-      if(termIndex === termsArr.length) {
-        callback(terms);
+    var insertOne = function(gearIndex) {
+      if(gearIndex === gearArr.length) {
+        callback(gear);
         return;
       }
-      Term.create(termsArr[termIndex]).then(function(term) {
-        term.setTrip(trip).then(function() {
-          insertOne(termIndex + 1);
+      Gear.create(gearArr[gearIndex]).then(function(gear) {
+        gear.setTrip(trip).then(function() {
+          insertOne(gearIndex + 1);
         });
       });
     }
@@ -34,13 +51,19 @@ var insertTerms = function(terms, tripId, callback) {
   })
 }
 
-var acceptTerms = function(userId, tripId, callback) {
-  
+var editGearStatus = function(boughtGear, userId, tripId, callback) {
+  boughtGear.forEach(function(gear) {
+    User.find({where: {id: userId, trip_id: tripId, gear_id: gear}})
+    .success(function(user) {
+      user.updateAttributes({
+        status: 'i own it'
+      })
+    })
+  })
 }
 
-
 exports.findAll = findAll;
-exports.insertTerms = insertTerms;
-
+exports.insertGear = insertGear;
+exports.editGearStatus = editGearStatus;
 
 

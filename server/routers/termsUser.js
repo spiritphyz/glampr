@@ -6,15 +6,15 @@ var termsController = require('../../db/controllers/terms.js');
 
 var router = express.Router();
 
-router.route('/:tripId')
+router.route('/')
   .get(function(req, res) {
-      termsController.findAll(req.params.tripId, function(terms) {
+      termsController.findAll(req.session.tripId, function(terms) {
         console.log(terms);
         res.json(terms)
       })
     })
   .post(function(req, res) {
-      termsController.acceptTerms(req.session.userId, req.params.tripId, function() {
+      termsController.acceptTerms(req.body, req.session.userId, req.session.tripId, function() {
         res.send({redirect: '/shoppingList'})
       })
     })
