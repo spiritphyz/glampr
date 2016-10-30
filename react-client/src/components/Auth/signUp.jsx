@@ -1,7 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import SignIn from './SignIn.jsx'
-let signIn = SignIn.signIn
 const SignUp = (props) => {
 
   let currUser = {};
@@ -50,7 +48,8 @@ const SignUp = (props) => {
         contentType: 'application/json',
         data: JSON.stringify(currUser)
       }).done(function(data){
-        signIn()
+        window.location = window.location.pathname + '#/SignIn';
+
         console.log('successful sign up');
       }).fail(function(){
         console.log('failed sign up');

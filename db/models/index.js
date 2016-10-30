@@ -68,7 +68,7 @@ User.belongsToMany(Gear, {
 });
 
 
-sequelize.sync({force: true})
+sequelize.sync({force: true});
 // sequelize.sync();
 
 exports.Trip = Trip;

@@ -7,7 +7,6 @@ var router = express.Router();
 router.route('/')
   .get(function(req, res) {
     userController.findOne({'email': req.session.email}, function(user) {
-      console.log('user: ', user)
         user.getTrips().then(function(trip) {
           trip = trip[0];
           console.log(trip)
