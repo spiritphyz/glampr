@@ -14,11 +14,15 @@ class TermsUser extends React.Component {
 
   handleSubmit(e) {
     var currState = this.state;
-    currState.acceptance = true;
+    if ( e.target.id = 'user-acceptance') {
+      currState.acceptance = true;
+    } else {
+      currState.acceptance = false;
+    }
     $.ajax({
       type: "POST",
-      url: '/terms/user',
-      data: this.state.acceptance
+      url: '/termsUser',
+      data: true
     }).done(function(){
       console.log('successful post from terms');
     }).fail(function(){
@@ -63,6 +67,7 @@ class TermsUser extends React.Component {
         <h2> Stoked? Click on the button below to join the trip </h2>
         <div className="user-acceptance">
           <button id="user-acceptance" onClick={this.handleSubmit}> Count me in! </button>
+          <button id="user-decline" onClick={this.handleSubmit}> Count me out! </button>
         </div>
       </div>
     );
