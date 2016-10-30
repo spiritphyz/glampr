@@ -25,7 +25,7 @@ module.exports = function(sequelize, Sequelize) {
     required: {
       type: Sequelize.INTEGER      
     },
-    tags: {
+    category: {
       type: Sequelize.STRING
     }
   });

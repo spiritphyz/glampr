@@ -7,22 +7,32 @@ var findAll = function(tripId, callback) {
   })
 }
 
-var insertTerms = function(terms, tripId, callback) {
-  console.log(terms)
-  var termsArr = [];
-  for (var category in terms) {
-    termsArr[category.splice(8, category.length)] = d
-    for (var content in terms[category]) {
-      if (content !== 'title') {
-        termsArr.push({category: terms[category].title, description: terms[category][content]});        
-      }
-    }
+var parseTermData = function(termData) {
+
+  var termCategory = [];
+
+  for (var category in gearData) {
+    gearCategory[category.slice('category'.length)] = gearData[category]
   }
-  var termsArr = [];
 
+  var termContent = [];
 
+  termCategory.forEach(function(category) {
+    var l = (Object.keys(category).length - 1) / 2;
+    for (var  i = 0; i < l; i++) {
+      termContent.push({
+        'category': category.title,
+        'description': category['description' + i]
+      })
+    }
+  })
+  return termContent;
+}
 
-  console.log(termsArr)
+var insertTerms = function(terms, tripId, callback) {
+
+  var termsArr = parseTermData(terms)
+
   Trip.find({where: {id: tripId}}).then(function(trip) {
     var insertOne = function(termIndex) {
       if(termIndex === termsArr.length) {

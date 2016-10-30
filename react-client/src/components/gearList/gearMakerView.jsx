@@ -30,7 +30,7 @@ class TermsMaker extends React.Component {
     console.log(submission);
     $.ajax({
       type: "POST",
-      url: '/terms/maker/1',
+      url: '/gearViewMaker',
       contentType: 'application/json',
       data: JSON.stringify(submission)
     }).done(function(){

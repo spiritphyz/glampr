@@ -1,19 +1,14 @@
-// ***Needs Work***
 var express = require('express');
-var userController = require('../../db/controllers/users.js');
-var tripController = require('../../db/controllers/trips.js');
+var gearController = require('../../db/controllers/gear.js');
 
 var router = express.Router();
 
 router.route('/')
   .post(function(req, res) {
-      tripController.insertOne(req.body.tripData, function(trip) {
-        console.log('Added trip');
-        userController.inviteMembers(req.body.invitees, trip, function() {
-          console.log('Invited member')
-          res.end();
-        })
-      });
-    });
+      gearController.insertGear(req.body, req.session.tripId, function(data) {
+        console.log('Inserted new gear')
+        res.send('done')
+      })
+    })
 
-module.exports = router;
+module.exports = router;  
