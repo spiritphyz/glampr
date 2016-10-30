@@ -4,17 +4,17 @@ import { Router, Route, hashHistory } from 'react-router'
 
 import App from './components/App.jsx';
 
-import SignIn from './components/Auth/signIn.jsx';
-import SignUp from './components/Auth/signUp.jsx';
+import SignIn from './components/auth/signIn.jsx';
+import SignUp from './components/auth/signUp.jsx';
 
-import TripDetails from './components/TripDetails/tripDetails.jsx';
+import TripDetails from './components/tripDetails/tripDetails.jsx';
 import GearViewMaker from './components/gearList/gearMakerView.jsx';
 
-import TermsMaker from './components/Terms/termsMaker.jsx'
-import TermsUser from './components/Terms/termsUser.jsx'
+import TermsMaker from './components/terms/termsMaker.jsx'
+import TermsUser from './components/terms/termsUser.jsx'
 
-import UserHome from './components/UserHome/userHome.jsx';
-import ShoppingList from './components/ShoppingList/ShoppingList.jsx';
+import UserHome from './components/userHome/userHome.jsx';
+import ShoppingList from './components/shoppingList/shoppingList.jsx';
 import $ from 'jquery';
 
 const signOut = ()  => {
@@ -32,15 +32,15 @@ ReactDOM.render((
   <div>
     <Router history={hashHistory}>
       <Route path="/" component={App}/>
-      <Route path="/SignIn" component={SignIn}/>
-      <Route path="/SignUp" component={SignUp}/>
-      <Route path="/TripDetails" component={TripDetails}/>
-      <Route path="/GearViewMaker" component={GearViewMaker}/>
-      <Route path="/TripDetails" component={TripDetails}/>
-      <Route path="/termsmaker" component={TermsMaker}/>
-      <Route path="/TermsUser" component={TermsUser}/>
-      <Route path="/UserHome" component={UserHome}/>
-      <Route path="/ShoppingList" component={ShoppingList}/>
+      <Route path="/signIn" component={SignIn}/>
+      <Route path="/signUp" component={SignUp}/>
+      <Route path="/tripDetails" component={TripDetails}/>
+      <Route path="/gearViewMaker" component={GearViewMaker}/>
+      <Route path="/tripDetails" component={TripDetails}/>
+      <Route path="/termsMaker" component={TermsMaker}/>
+      <Route path="/termsUser" component={TermsUser}/>
+      <Route path="/userHome" component={UserHome}/>
+      <Route path="/shoppingList" component={ShoppingList}/>
     </Router>
     <button onClick={signOut}>Sign Out</button>
   </div>
