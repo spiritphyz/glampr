@@ -35,6 +35,7 @@ class App extends React.Component {
      (child) => React.cloneElement(child, {
        loginStatus: this.loginStatus
      }))
+    console.log(childrenWithProps[0].props)
     return (
       <div>
         <button onClick={this.signOut}>Sign Out</button>
