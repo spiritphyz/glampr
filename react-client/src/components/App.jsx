@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Router, Navigation } from 'react-router'
-import SignIn from './Auth/signUp.jsx';
+import SignIn from './Auth/signIn.jsx';
 import SideBar from './sideBar/sideBar.jsx'
 import $ from 'jquery'
 class App extends React.Component {
@@ -35,7 +35,31 @@ class App extends React.Component {
      (child) => React.cloneElement(child, {
        loginStatus: this.loginStatus
      }))
-    console.log(childrenWithProps[0].props)
+    if (!childrenWithProps) {
+   return (
+     <div>
+       <button onClick={this.signOut}>Sign Out</button>
+       <button><Link to="/SignUp">Sign Up</Link></button>
+       <button><Link to="/SignIn">Sign In</Link></button>
+       <div className="Main">
+         {<SignIn/>}
+       </div>
+       <div className="Sidebar">
+         <SideBar views={this.state.loginStatus}/>
+       </div>
+       <div className="navBar">    
+         <li><Link to="/SignIn">Sign In</Link></li>
+         <li><Link to="/SignUp">Sign Up</Link></li>
+         <li><Link to="/StartTrip">Start Trip</Link></li>
+         <li><Link to="/TripDetailsMaker">Trip Details Maker</Link></li>
+         <li><Link to="/GearViewMaker">Gear View Maker</Link></li>
+         <li><Link to="/TermsMaker">Terms Maker</Link></li>
+         <li><Link to="/TermsUser">Terms User</Link></li>
+         <li><Link to="/TripDetailsUser">Trip Details User</Link></li>
+         <li><Link to="/ShoppingList">Shopping List</Link></li>
+       </div>
+     </div>
+   )}
     return (
       <div>
         <button onClick={this.signOut}>Sign Out</button>
@@ -47,7 +71,7 @@ class App extends React.Component {
         <div className="Sidebar">
           <SideBar views={this.state.loginStatus}/>
         </div>
-        <div className="navBar">    
+        <div>    
           <li><Link to="/SignIn">Sign In</Link></li>
           <li><Link to="/SignUp">Sign Up</Link></li>
           <li><Link to="/StartTrip">Start Trip</Link></li>

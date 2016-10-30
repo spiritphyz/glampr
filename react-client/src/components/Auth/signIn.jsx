@@ -1,32 +1,21 @@
 import React from 'react';
 import $ from 'jquery';
-  const signIn = ()  => {
-    $.ajax({
-      type: "POST",
-      url: '/SignIn',
-      contentType: 'application/json',
-      data: JSON.stringify(currUser)
-    }).done(function(res){
-      console.log(res);
-      if(res.auth) {
-        if (res.status) {
-          props.loginStatus('user')
-          window.location = window.location.pathname + '#/TripDetailsUser';
-        } else {
-          props.loginStatus('maker')
-          window.location = window.location.pathname + '#/TripDetailsMaker';
-        }
-      }
-      console.log('successful post from signin');
-    }).fail(function (){
-      window.location = window.location.pathname + '#/TripDetailsUser';
-
-      console.log('failed to post from signin');
-    });
-  }
 
 
-const SignIn = () => {
+const SignIn = (props) => {
+  // $.ajax({
+  //  type: "GET",
+  //  url: '/SignIn',
+  // }).done(function(res) {
+  //      if (res) {
+  //        window.location = window.location.pathname + '#/TripDetailsUser';
+  //      }
+  //    console.log('successful post from signin');
+  // }).fail(function (){
+  //    // window.location = window.location.pathname + '#/TripDetailsUser';
+
+  //    console.log('failed to post from signin');
+  // });
 
   let username = ''
   let password = ''
@@ -43,6 +32,30 @@ const SignIn = () => {
     if (inputType === 'password') {
       currUser.password = input;
     }
+  }
+  const signIn = ()  => {
+    $.ajax({
+      type: "POST",
+      url: '/SignIn',
+      contentType: 'application/json',
+      data: JSON.stringify(currUser)
+    }).done(function(res){
+      console.log(res);
+      if(res.auth) {
+        if (res.status) {
+          props.loginStatus('user')
+          window.location = window.location.pathname + '#/TripDetailsUser';
+        } else {
+          props.loginStatus('maker')
+          window.location = window.location.pathname + '#/StartTrip';
+        }
+      }
+      console.log('successful post from signin');
+    }).fail(function (){
+      window.location = window.location.pathname + '#/SignIn';
+
+      console.log('failed to post from signin');
+    });
   }
 
 
@@ -71,8 +84,4 @@ const SignIn = () => {
   );
 }
 
-
-
 export default SignIn
-
-exports.signin = signIn;

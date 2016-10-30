@@ -12,8 +12,8 @@ var parseTermData = function(termData) {
 
   var termCategory = [];
 
-  for (var category in gearData) {
-    gearCategory[category.slice('category'.length)] = gearData[category]
+  for (var category in termData) {
+    termCategory[category.slice('category'.length)] = termData[category]
   }
 
   var termContent = [];

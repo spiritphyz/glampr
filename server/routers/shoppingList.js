@@ -5,6 +5,7 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
+      console.log(req.session);
       gearController.findAll(req.session.tripId, function(gears) {
         res.json(gears)
       })

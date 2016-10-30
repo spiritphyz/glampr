@@ -10,6 +10,7 @@ class ShoppingList extends React.Component {
     }
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleShoppingListItems = this.handleShoppingListItems.bind(this);
   }
 
   handleSubmit() {
@@ -36,6 +37,7 @@ class ShoppingList extends React.Component {
   }
 
   handleShoppingListItems(data) {
+    console('handle initiated');
     var items = {}
     data.forEach(function(item){
       items[item.category] = items[item.category] || [];
@@ -48,18 +50,22 @@ class ShoppingList extends React.Component {
         required: item.required
       });
     });
+    console.log(items)
     this.setState({items: items})
   }
 
   componentDidMount() {
+    let context = this;
     $.ajax({
       type: "GET",
       url: '/shoppingList',
-    }).done(function(data){
-      this.handleShoppingListItems(data);
-      console.log('successful get from terms');
+    }).done(function(data) {
+      console.log(data);
+      context.handleShoppingListItems(data);
+      console.log(context.handleShoppingListItems);
+      console.log('successful get from shopping list');
     }).fail(function(){
-      console.log('failed to get from terms');
+      console.log('failed to get from shopping list');
     });
   }
 

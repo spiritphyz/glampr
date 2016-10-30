@@ -9,7 +9,6 @@ var router = express.Router();
 router.route('/')
   .get(function(req, res) {
       termsController.findAll(req.session.tripId, function(terms) {
-        console.log(terms);
         res.json(terms)
       })
     })
