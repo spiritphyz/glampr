@@ -46,38 +46,30 @@ class UserHome extends React.Component {
     super(props);
     this.state = {
       //inputs: false;
-      tripInfo: {
-        title: mockData.tripInfo.tripData.title,
-        description: mockData.tripInfo.tripData.description,
-        start_date: mockData.tripInfo.tripData.start_date,
-        end_date: mockData.tripInfo.tripData.end_date,
-        address: mockData.tripInfo.tripData.address
-      }
+      tripInfo: {}
     }
   };
-
-    //bind functions to class
-    //this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleContentChange = this.handleContentChange.bind(this);
-    // this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    // this.addCategory = this.addCategory.bind(this);
-    // this.addContent = this.addContent.bind(this);
 
   componentDidMount() {
     $.ajax({
       type: "GET",
-      url: '/users/trips/',
+      url: '/tripDetailsUser',
     }).done(function(data){
-      // console.log(data, 'data from user trips');
-      // this.setState({data})
+      this.getTripDetails(data);
       console.log('successful get from terms');
     }).fail(function(){
       console.log('failed to get from terms');
     });
   }
 
-  getTripDetails() {
-
+  getTripDetails(data) {
+    var tripInfo = {};
+    tripInfo.title = data.tripInfo.tripData.title;
+    tripInfo.description: data.tripInfo.tripData.description;
+    tripInfo.start_date: data.tripInfo.tripData.start_date;
+    tripInfo.end_date: data.tripInfo.tripData.end_date;
+    tripInfo.address: data.tripInfo.tripData.address;
+    this.setState({tripInfo: tripInfo});
   }
 
   render() {
@@ -115,13 +107,6 @@ let InviteStatus = () => {
   )
 }
 
-let GearListStatus = () => {
-  return (
-    <div>
-      <h3> Gear List Status </h3>
-    </div>
-  )
-}
 
 let GearObtainedStatus = () => {
   return (

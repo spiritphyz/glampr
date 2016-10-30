@@ -32,7 +32,7 @@ class TermsUser extends React.Component {
 
     $.ajax({
       type: "GET",
-      url: '/terms/user/1',
+      url: '/termsUser',
     }).done(function(data){
 
       let termsStore = {};

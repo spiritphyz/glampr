@@ -5,33 +5,118 @@ class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      }
-    };
+      items: {},
+      checkList: []
+    }
+    this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  handleSubmit(e) {
+  handleSubmit() {
+    console.log(checkList, 'checkList from submit');
+    $.ajax({
+      type: "POST",
+      url: '/shoppingList',
+      data: JSON.stringify(checkList),
+      contentType: 'application/json'
+    }).done(function(data){
+      console.log('submit checklist')
+    }).fail(function(){
+      console.log('failed to post checklist');
+    });
+  }
 
+  handleCheckbox(e) {
+    let item = e.target.id;
+    let currList = this.state.checkList;
+    currList.push(item);
+    this.setState({checkList: currList})
+  }
+
+  handleShoppingListItems(data) {
+    var items = {}
+    data.forEach(function(item){
+      items[item.category] = items[item.category] || [];
+      items[item.category].push({
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        sizing: item.sizing,
+        quantity: item.quantity,
+        required: item.required
+      });
+    });
+    this.setState({items: items})
   }
 
   componentDidMount() {
-    // $.ajax({
-    //   type: "GET",
-    //   url: '/terms/user',
-    // }).done(function(data){
-    //   console.log(data);
-    //   var currState = this.state;
-    //   currState.terms = data;
-    //   this.setState({currState});
-    //   console.log('successful get from terms');
-    // }).fail(function(){
-    //   console.log('failed to get from terms');
-    // });
+    $.ajax({
+      type: "GET",
+      url: '/shoppingList',
+    }).done(function(data){
+      this.handleShoppingListItems(data);
+      console.log('successful get from terms');
+    }).fail(function(){
+      console.log('failed to get from terms');
+    });
+  }
+
+  handleSubmit(e) {
+    var checkList = this.state.checkList;
+    console.log(checkList, 'checkList from submit');
+    $.ajax({
+      type: "POST",
+      url: '/shoppingList',
+      data: JSON.stringify(checkList),
+      contentType: 'application/json'
+    }).done(function(data){
+      console.log('submit checklist')
+    }).fail(function(){
+      console.log('failed to post checklist');
+    });
+  }
+
+  handleCheckbox(e) {
+    let item = e.target.id;
+    let currList = this.state.checkList;
+    console.log(currList);
+    currList.push(item);
+    this.setState({checkList: currList})
+  }
+
+  handleShoppingListItems(data) {
+    var items = {}
+    data.forEach(function(item){
+      items[item.category] = items[item.category] || [];
+      items[item.category].push({
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        sizing: item.sizing,
+        quantity: item.quantity,
+        required: item.required
+      });
+    });
+    this.setState({items: items})
   }
 
   render() {
     return (
       <div>
-        <h1> Shopping List </h1>
-        <Items/>
+        <div>
+          <p>Here are the items you have to get for your trip. 
+          As you acquire them, check it off here</p>
+        </div>
+        {Object.keys(this.state.items).map((category, i) => {
+          return ( 
+          <Category 
+          key={i}
+          title={category}
+          items={this.state.items[category]}
+          handleCheckbox={this.handleCheckbox}
+          />
+        )})}
+        <button id="" onClick={this.handleSubmit}> Update your list </button>
       </div>
     );
   }
@@ -39,15 +124,38 @@ class ShoppingList extends React.Component {
 
 // submit all content at the end
 
-let Items = ({}) => {
+let Category = (props) => {
 
     return (
       <div>
-      <h3> Items </h3>
+      <h2>{props.title}</h2>
+      {props.items.map((item, i) => {
+        return (<Item key={i} attributes={item} handleCheckbox={props.handleCheckbox}/>)
+      })}
       </div>
     )
     
 }
 
+let Item = (props) => {
+  
+    return (
+      <div>
+        <div> 
+          <input 
+            id={props.attributes.id}
+            type="checkbox" 
+            onChange={props.handleCheckbox}
+          />
+          <div> <h3> {props.attributes.name} </h3></div>
+        </div>
+        <div> {props.attributes.description} </div>
+        <div> {props.attributes.sizing} </div>
+        <div> {props.attributes.quantity} </div>
+        <div> {props.attributes.required} </div>
+      </div>
+    )
+    
+}
 
 export default ShoppingList
