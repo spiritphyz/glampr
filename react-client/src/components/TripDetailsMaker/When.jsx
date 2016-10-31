@@ -9,7 +9,7 @@ let DescriptionWhen = (props) => {
           className = "tripDeparture"
           id = "start_date"
           type="date"
-          placeholder="Hello!"
+          placeholder="Start"
           value={props.value}
           onChange={props.handleChange}
         />
@@ -17,7 +17,7 @@ let DescriptionWhen = (props) => {
           className = "tripReturn"
           id = "end_date"
           type="date"
-          placeholder="Hello!"
+          placeholder="End"
           value={props.value}
           onChange={props.handleChange}
         />

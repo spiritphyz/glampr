@@ -1,13 +1,13 @@
-const twilio = require('./twilio.js').modules
-const _ = require('underscore')
+const twilio = require('./twilio.js').modules;
+const _ = require('underscore');
 const CronJob = require('cron').CronJob;
-const twilioSMS = twilio.smsProtocol
-
+const twilioSMS = twilio.smsProtocol;
+const Promise = require('bluebird');
+var phone = require('phone');
 const job = new CronJob({
   cronTime: '* * * * * *', //change this to every 6 hours
   onTick: function() {
     let d = new Date();
-    console.log('twilio', d.getTime(), twilioSMS())
     // underscore compare objects return diff for each user
     // send message to user with unmet requirements
     // use moment to retrieve time untill trip
@@ -25,4 +25,11 @@ const job = new CronJob({
   start: false,
   timeZone: 'America/Los_Angeles'
 });
-job.start();
+
+exports.phoneInvite = function(phoneNum, message) {
+  let e164num = phone(phoneNum, '');
+  e164num = e164num[0]
+  twilioSMS(e164num, message)
+}
+
+exports.phoneInvite('6077650585', 'hello from Ben @ twilo!')

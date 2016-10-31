@@ -19,7 +19,7 @@ let WhereLocation = (props) => {
             id = "address"
             className = "address"
             type="text"
-            placeholder="Address"
+            placeholder="i.e. Kilamanjaro"
             onChange={props.handleChange}
           />
         </div>

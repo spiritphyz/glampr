@@ -34,6 +34,7 @@ const SignIn = (props) => {
     }
   }
   const signIn = ()  => {
+
     $.ajax({
       type: "POST",
       url: '/SignIn',
@@ -58,24 +59,21 @@ const SignIn = (props) => {
     });
   }
 
-
   return (
-    <div className ="rxContainer">
+    <div className ="container center">
       <h1> Sign In </h1>
       <div>
-        <p> Username* </p>
         <input 
           data-type="username"
           type="text" 
-          placeholder="email address"
+          placeholder="Username(email)"
           onChange= {handleChange}
         />
       </div>
       <div>
-       <p> Password* </p>
         <input 
           data-type="password" 
-          type="text" 
+          type="password" 
           placeholder="password"
           onChange={handleChange}
         />

@@ -96,7 +96,7 @@ var Description = (props) => {
           id= "description"
           className= "tripDescription"
           type="text"
-          placeholder="Hello!"
+          placeholder=""
           onChange={props.handleChange}
         />
       </div>
