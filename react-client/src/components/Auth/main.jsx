@@ -12,7 +12,7 @@ const Main = (props) => {
           <div className="card-block">
             <h4 className="text-xs-center light-green card-title">Get your trips organized without the fuss.</h4>
             <hr className="my-1" />
-            <p className="text-xs-center card-text">Happy Campr lets you create gear lists for your camp crew where they'll get notified on what to bring for an awesome adventure outdoors.</p>
+            <p className="text-xs-center card-text">Happy Campr lets you create gear lists for your camp crew where they'll get notified of what to bring for an awesome adventure outdoors.</p>
             <p className="text-xs-center">
             <Link to="/SignUp"><button className="btn btn-warning btn-lg">Sign Up Now</button></Link>
             </p>
