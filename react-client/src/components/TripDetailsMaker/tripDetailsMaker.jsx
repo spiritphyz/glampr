@@ -64,6 +64,7 @@ class TripDetails extends React.Component {
   render() {
     return (
       <div className="rxContainer">
+        <img className="rounded-circle float-xs-right" src="images/great-outdoors/tent-morning-circle.jpg" width="300" height="300" alt="Card image cap" />
         <WhereLocation 
           handleChange = {this.handleChange}
         />
@@ -81,7 +82,7 @@ class TripDetails extends React.Component {
           addInvite = {this.addInvite}
           invitees = {this.state.invitees}
         />
-        <button onClick={this.handleSubmit}>Submit</button>
+        <button className="btn btn-warning btn-lg" onClick={this.handleSubmit}>Save Trip</button>
       </div>
     );
   }
@@ -90,19 +91,20 @@ class TripDetails extends React.Component {
 var Description = (props) => {
   return (
     <div>
-      <h3>Description</h3>
-      <div>
-        <input
-          id= "description"
-          className= "tripDescription"
-          type="text"
-          placeholder=""
-          onChange={props.handleChange}
-        />
-      </div>
+      <p>
+        <h4 className="card-title">Description</h4>
+        <div>
+          <input
+            id= "description"
+            className= "tripDescription"
+            type="text"
+            placeholder=""
+            onChange={props.handleChange}
+          />
+        </div>
+      </p>
     </div>
-  )
-}
+  );
+};
 
-
-export default TripDetails
+export default TripDetails;

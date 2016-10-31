@@ -5,9 +5,10 @@ let InviteOthers = (props) => {
   // alternatively, each submission will populate a slide toggle list that can be viewed
   // to save screen real estate
   return (
+    <p>
     <div className="invite-container">
-      <h3>Lets Invite Others!</h3>
-      {props.invitees.map((invite)  =>
+      <h4 className="card-title">Who's going?</h4>
+      {props.invitees.map((invite) =>
         (
         <div>
           <input
@@ -20,9 +21,10 @@ let InviteOthers = (props) => {
           />
         </div>
         ))}
-        <button onClick={props.addInvite}>Invite More</button>
+        <button className="btn btn-warning btn-lg btn-sm" onClick={props.addInvite}>+ Person</button>
     </div>
-  )
-}
+    </p>
+  );
+};
 
 module.exports = InviteOthers;

@@ -115,7 +115,7 @@ const SignUp = (props) => {
           />
           </p>
         </div>
-        <button id="submit" onClick={signUp}>Submit</button>
+        <button className="btn btn-warning btn-lg btn-sm" id="submit" onClick={signUp}>Submit</button>
       </div>
   );
 };

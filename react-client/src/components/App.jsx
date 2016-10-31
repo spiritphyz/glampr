@@ -56,7 +56,7 @@ class App extends React.Component {
         <nav className="col-xs-5 navbar navbar-full navbar-dark">
           <div className="form-inline float-xs-right">
             <button className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign In</Link></button>
-            <button onClick={this.signOut} className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign Out</Link></button>
+            <button onClick={this.signOut} className="mt-1 mr-1 btn btn-outline-warning" type="submit">Sign Out</button>
           </div>
         </nav>
       </div>
@@ -109,6 +109,7 @@ class App extends React.Component {
         </div>
       );
     } else { // this is a non-signup view with sidebar
+      console.log('we are in the non-signup with to show a sidebar');
       return (
         <div>
           <div className="row pt-1">
