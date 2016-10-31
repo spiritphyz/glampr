@@ -109,7 +109,7 @@ const SignUp = (props) => {
           <p>Phone Number<br />
           <input 
             data-type='phoneNumber'
-            type="text" 
+            type="text"
             placeholder=""
             onChange= {handleChange}
           />

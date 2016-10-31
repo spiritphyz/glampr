@@ -16,7 +16,7 @@ import TermsMaker from './components/terms/termsMaker.jsx'
 import TermsUser from './components/terms/termsUser.jsx'
 
 import TripDetailsUser from './components/tripDetailsUser/tripDetailsUser.jsx';
-import ShoppingList from './components/ShoppingList/shoppingList.jsx';
+import ShoppingList from './components/shoppingList/shoppingList.jsx';
 import $ from 'jquery';
 
 ReactDOM.render((
