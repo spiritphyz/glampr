@@ -63,7 +63,7 @@ const SignUp = (props) => {
 
   return (
     <div className="rxContainer">
-      <img className="mt-3 img-thumbnail float-xs-right" width="500" src="images/great-outdoors/hdr-nightfall.jpg" />
+      <img className="img-thumbnail float-xs-right" width="700" src="images/great-outdoors/hdr-nightfall.jpg" />
       <h1 className="pb-1">Sign Up</h1>
         <div>
           <p>First Name<br />
