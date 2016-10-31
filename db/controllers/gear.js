@@ -1,5 +1,8 @@
 var Trip = require('../models/index.js').Trip;
 var Gear = require('../models/index.js').Gear;
+var User = require('../models/index.js').User;
+var GearUsers = require('../models/index.js').GearUsers;
+// update directly inside of join table (GearUsers)
 
 var findAll = function(tripId, callback) {
   Gear.findAll({where: {trip_id: tripId}}).then(function(gear) {
@@ -9,7 +12,6 @@ var findAll = function(tripId, callback) {
 
 
 var parseGearData = function(gearData) {
-  gearData = gearData[0];
   var gearCategory = [];
 
   for (var category in gearData) {
@@ -32,8 +34,7 @@ var parseGearData = function(gearData) {
 }
 
 var insertGear = function(gear, tripId, callback) {
-
-  gearArr = parseGearData(gear);
+  var gearArr = parseGearData(gear);
 
   Trip.find({where: {id: tripId}}).then(function(trip) {
     var insertOne = function(gearIndex) {
@@ -43,7 +44,13 @@ var insertGear = function(gear, tripId, callback) {
       }
       Gear.create(gearArr[gearIndex]).then(function(gear) {
         gear.setTrip(trip).then(function() {
-          insertOne(gearIndex + 1);
+          trip.getUsers().then(function(users) {
+
+            users.forEach(function(user) {
+              gear.addUser(user, {status: 'i will buy it'})
+            })
+            insertOne(gearIndex + 1);
+          })
         });
       });
     }
@@ -51,12 +58,14 @@ var insertGear = function(gear, tripId, callback) {
   })
 }
 
-var editGearStatus = function(boughtGear, userId, tripId, callback) {
-  boughtGear.forEach(function(gear) {
-    User.find({where: {id: userId, trip_id: tripId, gear_id: gear}})
-    .success(function(user) {
-      user.updateAttributes({
-        status: 'i own it'
+var editGearStatus = function(boughtGear, userEmail, tripId, callback) {
+  User.find({where: {email: userEmail}}).then(function(user) {
+    boughtGear.forEach(function(gearId) {
+      GearUsers.find({where: {gear_id: parseInt(gearId), user_id: user.get('id')}})
+      .then(function(gearUser) {
+        gearUser.updateAttributes({
+          status: 'i own it'
+        })
       })
     })
   })

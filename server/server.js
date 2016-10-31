@@ -37,30 +37,40 @@ app.use('/users', userRouter); // for testing
 
 /* auth routes -------------------------------------------------------------- */
 app.post('/SignIn', function(req, res) {
-  var email = req.body.email;
+  var email = req.body.username;
   var password = req.body.password;
 
-  userController.findOne({'email': email}, function(user) {
-    var tripId = user.get('trip_id') || false;
-    var response = {};
-    response.status = tripId;
-    console.log('response: ', response);
-    if (!user) {
-      // res.redirect('/SignIn');
-      response.auth = false;
-      res.send(response)
-    } else {
-      userController.comparePassword(user, password, function(match) {
-        if (match) {
-          response.auth = true;
-          util.createSession(req, res, user, response);
-        } else {
-          // res.redirect('/SignIn');
-          response.auth = false;
-          res.send(response)
-        }
-      });
-    }
+  userController.findOne({where: {email: email}}, function(user) {
+    user.getTrips().then(function(trips) {
+      var tripId = false;
+      if(trips[0] !== undefined) {
+        tripId = trips[0].get('id');
+      }
+
+      var response = {};
+      response.status = tripId;
+      console.log('response: ', response);
+      if (!user) {
+        // res.redirect('/SignIn');
+        response.auth = false;
+        res.send(response)
+      } else {
+        console.log(user.get('first_name'))
+        console.log(password)
+        userController.comparePassword(user, password, function(match) {
+          console.log('match: ', match)
+          if (match) {
+            console.log('its a match')
+            response.auth = true;
+            util.createSession(req, res, user, response);
+          } else {
+            // res.redirect('/SignIn');
+            response.auth = false;
+            res.send(response)
+          }
+        });
+      }      
+    })
   });
 });
 
@@ -80,24 +90,36 @@ app.get('/SignOut', function(req, res) {
 });
 
 app.post('/SignUp', function(req, res) {
+
   var email = req.body.email;
   var password = req.body.password;
 
-  userController.findOne({'email': email}, function(user) {
+  userController.findOne({where: {email: email}}, function(user) {
+
     if (!user) {
       bcrypt.hash(password, null, null, function(err, hash) {
         req.body.password = hash;
         userController.create(req.body, function(user) {
-          util.createSession(req, res, user);
+          util.createSession(req, res, user, true);
         });
       });
-    } else {
+
+    } else {  //if user exists
+
       console.log('Account already exists');
       bcrypt.hash(password, null, null, function(err, hash) {
+
         req.body.password = hash;
-        userController.update(user, req, function() {
-          res.send(true);
-        });
+
+        if (user.get('first_name') === null) {
+          userController.update(user, req, function() {
+            util.createSession(req, res, user, true);
+          });
+        }
+
+        else {
+          res.send(false);
+        }
       });
     }
   });

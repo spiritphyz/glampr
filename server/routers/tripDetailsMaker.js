@@ -7,6 +7,7 @@ var router = express.Router();
 router.route('/')
   .post(function(req, res) {
       tripController.insertOne(req.body.tripData, function(trip) {
+        req.session.tripId = trip.get('id');
         console.log('Added trip');
         userController.findOne({where: {email: req.session.email}}, function(user) {
           console.log('found user ');

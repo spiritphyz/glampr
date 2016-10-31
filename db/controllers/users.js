@@ -42,12 +42,12 @@ var findAll = function(callback) {
 };
 
 var findOne = function(query, callback) {
-  User.find(query).then(function(err, user) {
-    if (err) {
-      callback(err);
-    } else {
-      callback(user);
-    }
+  User.findAll(query).done(function(users) {
+    // if (err) {
+    //   callback(err);
+    // } else {
+      callback(users[0]);
+    // }
   });
 };
 

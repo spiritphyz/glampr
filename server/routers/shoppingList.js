@@ -11,7 +11,7 @@ router.route('/')
       })
     })
   .post(function(req, res) {
-      gearController.editGearStatus(req.body, req.session.userId, req.session.tripId, function() {
+      gearController.editGearStatus(req.body, req.session.email, req.session.tripId, function() {
         res.send('success');
       })
     })

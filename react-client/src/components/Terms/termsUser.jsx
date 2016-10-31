@@ -5,20 +5,22 @@ class TermsUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      acceptance: false,
       terms: {}
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
 
 
   handleSubmit(e) {
-    var currState = this.state;
-    console.log(this, currState);
+
+    var currState;
     if ( e.target.id = 'user-acceptance') {
-      currState.acceptance = true;
+      currState = true;
     } else {
-      currState.acceptance = false;
+      currState = false;
     }
+    this.setState({acceptance: currState})
     $.ajax({
       type: "POST",
       url: '/termsUser',

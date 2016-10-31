@@ -1,6 +1,7 @@
 var Trip = require('../models/index.js').Trip;
 var Term = require('../models/index.js').Term;
 var User = require('../models/index.js').User;
+var TripsUsers = require('../models/index.js').TripsUsers;
 
 var findAll = function(tripId, callback) {
   Term.findAll({where: {trip_id: tripId}}).then(function(terms) {
@@ -50,17 +51,21 @@ var insertTerms = function(terms, tripId, callback) {
   })
 }
 
-var acceptTerms = function(decision, userId, tripId, callback) {
-  User.find({where: {id: userId, trip_id: tripId}}).success(function(user) {
-    if (decision) {
-      user.updateAttributes({
-        invite_status: 'accepted'
-      })
-    } else {
-      user.updateAttributes({
-        invite_status: 'rejected'
-      })
-    }
+var acceptTerms = function(decision, userEmail, tripId, callback) {
+  User.find({where: {email: userEmail}}).then(function(user) {
+    
+    TripsUsers.find({where: {id: user.get('id'), trip_id: tripId}}).then(function(tripUser) {
+      if (decision) {
+        tripUser.updateAttributes({
+          invite_status: 'accepted'
+        })
+      } else {
+        tripUser.updateAttributes({
+          invite_status: 'rejected'
+        })
+      }
+    })
+
   })
 }
 

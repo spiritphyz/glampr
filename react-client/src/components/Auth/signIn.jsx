@@ -42,7 +42,7 @@ const SignIn = (props) => {
     }).done(function(res){
       console.log(res);
       if(res.auth) {
-        if (res.status) {
+        if (!!res.status) {
           props.loginStatus('user')
           window.location = window.location.pathname + '#/TripDetailsUser';
         } else {
