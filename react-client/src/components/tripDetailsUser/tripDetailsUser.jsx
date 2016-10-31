@@ -7,7 +7,9 @@ class TripDetailsUser extends React.Component {
     super(props);
     this.state = {
       //inputs: false;
-      tripInfo: {}
+      tripInfo: {
+        description: 'Kilimanjaro'
+      }
     }
     this.getTripDetails = this.getTripDetails.bind(this);
     this.setPhotoState = this.setPhotoState.bind(this);
@@ -50,14 +52,17 @@ class TripDetailsUser extends React.Component {
   }
 
   getTripDetails(data) {
-    console.log(data, 'data')
-    var tripInfo = {};
-    tripInfo.title = data.title;
-    tripInfo.description= data.description;
-    tripInfo.start_date= data.start_date;
-    tripInfo.end_date= data.end_date;
-    tripInfo.address= data.address;
-    this.setState({tripInfo: tripInfo});
+    console.log(data, 'data');
+    if (data) {
+      var tripInfo = {};
+      tripInfo.title = data.title;
+      var des = data.description || 'Kilimanjaro';
+      tripInfo.description = des;
+      tripInfo.start_date = data.start_date;
+      tripInfo.end_date = data.end_date;
+      tripInfo.address = data.address;
+      this.setState({tripInfo: tripInfo});
+    }
   }
 
   render() {

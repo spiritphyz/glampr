@@ -4,9 +4,6 @@
 # node
 node_modules
 
-#API keys
-react-client/src/tripDetailsUser/apikeys.js
-
 # bundle file is big
 react-client/dist/bundle.js
 react-client/dist/bundle.js.map
