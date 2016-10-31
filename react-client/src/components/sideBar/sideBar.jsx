@@ -11,6 +11,10 @@ const SideBar = ({views}) => {
           <li><Link to="/TermsUser">Terms</Link></li>
           <li><Link to="/ShoppingList">Shopping List</Link></li>
         </div> )
+    } else {
+        return (
+            <div className="navBar"></div>
+        )
     }
 }
 
