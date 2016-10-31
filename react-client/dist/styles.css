@@ -22,6 +22,8 @@ a:hover {
 }
 .fancy-text {
   font-family: 'Lobster Two', cursive; 
+  font-weight: 700; 
+  font-style: italic;
 }
 .body-text {
   font-family: 'Bitter', serif; 
