@@ -6,10 +6,9 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    userController.findOne({'email': req.session.email}, function(user) {
-        user.getTrips().then(function(trip) {
-          trip = trip[0];
-          console.log(trip)
+    userController.findOne({where: {'email': req.session.email}}, function(user) {
+        user.getTrips().then(function(trips) {
+          trip = trips[0];
           req.session.tripId = trip.get('id');
           res.send(trip);
         });
@@ -17,6 +16,3 @@ router.route('/')
     });
 
 module.exports = router;
-
-// *** user signs up, if they have not been invited then they are a maker
-// *** make create trip button if new user is organizer
