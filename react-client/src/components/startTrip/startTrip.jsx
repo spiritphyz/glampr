@@ -6,10 +6,11 @@ class StartTrip extends React.Component {
   render() {
     return (
       <div>
-        <button>
-          <Link to="/TripDetailsMaker">Start a trip!</Link>
-        </button>
+        <Link to="/TripDetailsMaker">
+        <button className="btn btn-warning btn-sm">Let's start planning!</button>
+        </Link>
       </div>
+
     )
   }
 }
