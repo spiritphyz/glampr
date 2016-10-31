@@ -41,35 +41,78 @@ class App extends React.Component {
        loginStatus: this.loginStatus
      }));
   
-    if (!childrenWithProps) {
-      return (
-       <div>
-        <div className="row pt-1">
-          { /* logo */ } 
-          <Link to="/Main">
-          <div className="col-xs-1"><img className="d-inline-block align-bottom mx-auto" src="images/hcampr-logo.png" width="72" /></div>
-          <div className="col-xs-6">
-            <div className="headline off-white">Happy Campr</div>
-          </div>
-          </Link>
-       
-          { /* top navbar */ } 
-          <nav className="col-xs-5 navbar navbar-full navbar-dark">
-            <div className="form-inline float-xs-right">
-              <button className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign In</Link></button>
-              <button onClick={this.signOut} className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign Out</Link></button>
-            </div>
-          </nav>
+
+
+  if (!childrenWithProps) {
+    return (
+     <div>
+      <div className="row pt-1">
+        { /* logo */ } 
+        <Link to="/Main">
+        <div className="col-xs-1"><img className="d-inline-block align-bottom mx-auto" src="images/hcampr-logo.png" width="72" /></div>
+        <div className="col-xs-6">
+          <div className="headline off-white">Happy Campr</div>
         </div>
+        </Link>
+     
+        { /* top navbar */ } 
+        <nav className="col-xs-5 navbar navbar-full navbar-dark">
+          <div className="form-inline float-xs-right">
+            <button className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign In</Link></button>
+            <button onClick={this.signOut} className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign Out</Link></button>
+          </div>
+        </nav>
+      </div>
 
-         <div className="Main mt-1">
-           {<Main/>}
-         </div>
-         
+       <div className="Main mt-1">
+          <div className="row">
+            <div className="">
+              {<Main/>}
+            </div>
+          </div>
        </div>
-     ); 
-    }
+       
+     </div>
+   ); }
 
+
+    console.log('childrenwithProps', childrenWithProps);
+    var pathName = childrenWithProps[0].props.location.pathname;
+
+    // for signup view, set column to be full-width
+    if (pathName = "/SignUp") {
+      return (
+        <div>
+          <div className="row pt-1">
+            { /* logo */ } 
+            <div className="col-xs-1"><img className="d-inline-block align-bottom mx-auto" src="images/hcampr-logo.png" width="72" /></div>
+            <div className="col-xs-6">
+              <div className="headline off-white">Happy Campr</div>
+            </div>
+         
+            { /* top navbar */ } 
+            <nav className="col-xs-5 navbar navbar-full navbar-dark">
+              <div className="form-inline float-xs-right">
+                <button className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign In</Link></button>
+                <button onClick={this.signOut} className="mt-1 mr-1 btn btn-outline-warning" type="submit"><Link to="/SignIn">Sign Out</Link></button>
+              </div>
+            </nav>
+          </div>
+
+
+          <div className="Main mt-1">
+           <div className="col-xs-12 card">
+             <div className="card-block">
+              {childrenWithProps}
+             </div>
+           </div>
+          </div>
+          <div className="col-xs-4 pt-1 Sidebar">
+            <SideBar views={this.state.loginStatus}/>
+          </div>
+        </div>
+      );
+    } else { // this is a non-signup view with sidebar
       return (
         <div>
           <div className="row pt-1">
@@ -100,6 +143,8 @@ class App extends React.Component {
           </div>
         </div>
       );
-} }
+    }
+  }
+}
 
 export default App; 

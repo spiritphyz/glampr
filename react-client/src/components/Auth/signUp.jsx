@@ -27,9 +27,9 @@ const SignUp = (props) => {
     if (inputType === 'phoneNumber') {
       currUser.phone_number = input;
     }
-  }
+  };
 
-  const signUp = ()  => {
+  const signUp = () => {
     if (currUser.first_name === '' ||
         currUser.last_name === '' ||
         currUser.email === '' ||
@@ -38,13 +38,13 @@ const SignUp = (props) => {
 
       var errorMsg = '<div class=\"error\">Please enter all the required fields</div>';
 
-      if(!($('#signUp').children('div').hasClass('error'))) {
+      if (!($('#signUp').children('div').hasClass('error'))) {
         $('#signUp').append(errorMsg);
       }
       
     } else {
       $.ajax({
-        type: "POST",
+        type: 'POST',
         url: '/SignUp',
         contentType: 'application/json',
         data: JSON.stringify(currUser)
@@ -59,59 +59,65 @@ const SignUp = (props) => {
         console.log('failed sign up');
       }); 
     }
-  }
+  };
 
   return (
     <div className="rxContainer">
-      <h1> Sign Up </h1>
+      <img className="img-thumbnail float-xs-right" width="700" src="images/great-outdoors/hdr-nightfall.jpg" />
+      <h1 className="pb-1">Sign Up</h1>
         <div>
-          <p>First Name*</p>
+          <p>First Name<br />
           <input 
             data-type="firstName" 
             type="text" 
-            placeholder="First Name"
+            placeholder=""
             onChange={handleChange}
           />
+          </p>
         </div>  
         <div> 
-          <p>Last Name*</p>        
+          <p>Last Name<br />        
           <input 
             data-type="lastName" 
             type="text" 
-            placeholder="Last Name"
+            placeholder=""
             onChange={handleChange}
           />
+          </p>
         </div>  
         <div>
-          <p>Email*</p>        
+          <p>Email<br />        
           <input 
             data-type='email'
             type="text" 
-            placeholder="Email Address"
+            placeholder=""
             onChange= {handleChange}
           />
+          </p>
         </div>
         <div>
-          <p>Password*</p>        
+          <p>Password<br />        
           <input 
             data-type="password" 
             type="password"
-            placeholder="Password"
+            placeholder=""
             onChange={handleChange}
           />
+          </p>
         </div>
         <div>
-          <p>Phone Number*</p>
+          <p>Phone Number<br />
           <input 
             data-type='phoneNumber'
             type="text" 
-            placeholder="Phone Number"
+            placeholder=""
             onChange= {handleChange}
           />
+          </p>
         </div>
         <button id="submit" onClick={signUp}>Submit</button>
       </div>
   );
-}
+};
 
-export default SignUp
+export default SignUp;
