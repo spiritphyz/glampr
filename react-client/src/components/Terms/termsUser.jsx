@@ -13,6 +13,7 @@ class TermsUser extends React.Component {
 
   handleSubmit(e) {
     var currState = this.state;
+    console.log(this, currState);
     if ( e.target.id = 'user-acceptance') {
       currState.acceptance = true;
     } else {
