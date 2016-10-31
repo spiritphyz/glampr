@@ -28,7 +28,7 @@ class TermsMaker extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(submission)
     }).done(function(){
-      window.location = window.location.pathname + '#/GearViewMaker';
+      window.location = window.location.pathname + '#/GearMaker';
       console.log('successful post from terms');
     }).fail(function(err){
       console.log(err);
