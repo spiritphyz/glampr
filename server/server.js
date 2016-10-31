@@ -41,6 +41,7 @@ app.post('/SignIn', function(req, res) {
   var password = req.body.password;
 
   userController.findOne({where: {email: email}}, function(user) {
+    console.log('*******Recieve signin ', user)
     user.getTrips().then(function(trips) {
       var tripId = false;
       if(trips[0] !== undefined) {
@@ -51,7 +52,6 @@ app.post('/SignIn', function(req, res) {
       response.status = tripId;
       console.log('response: ', response);
       if (!user) {
-        // res.redirect('/SignIn');
         response.auth = false;
         res.send(response)
       } else {
@@ -64,7 +64,6 @@ app.post('/SignIn', function(req, res) {
             response.auth = true;
             util.createSession(req, res, user, response);
           } else {
-            // res.redirect('/SignIn');
             response.auth = false;
             res.send(response)
           }
@@ -75,7 +74,15 @@ app.post('/SignIn', function(req, res) {
 });
 
 app.get('/SignIn', util.checkAuth, function(req, res) {
-  res.send(true)//*****
+  userController.findOne({where: {email: req.session.email}}, function(user) {
+    user.getTrips().then(function(trips) {
+      var tripId = false;
+      if (trips[0] !== undefined) {
+        tripId = trips[0].get('id');
+      }
+      res.send({status: tripId, auth: true})
+    })
+  })
 });
 
 app.get('/SignUp', util.checkAuth, function(req, res) {

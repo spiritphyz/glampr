@@ -1,21 +1,28 @@
 import React from 'react';
 import $ from 'jquery';
 const SignIn = (props) => {
+
   $.ajax({
    type: "GET",
    url: '/SignIn',
-  }).done(function(res) {
-    if (!res) {
-      window.location = window.location.pathname + '#/SignIn';
+  }).done(function(res){
+    console.log('*******signin response', res);
+    if(res.auth) {
+      if (!!res.status) {
+        props.loginStatus('user')
+        window.location = window.location.pathname + '#/TripDetailsUser';
+      } else {
+        props.loginStatus('maker')
+        window.location = window.location.pathname + '#/StartTrip';
+      }
     } else {
-      
+       window.location = window.location.pathname + '#/Main';      
     }
-     console.log('successful post from signin/session');
   }).fail(function (){
-     window.location = window.location.pathname + '#/SignIn';
-     console.log('failed to post from signin');
+    window.location = window.location.pathname + '#/Main';
+    console.log('failed to get from signin');
   });
-
+  
   let username = ''
   let password = ''
   let currUser = {};
@@ -38,8 +45,8 @@ const SignIn = (props) => {
       url: '/SignIn',
       contentType: 'application/json',
       data: JSON.stringify(currUser)
-    }).done(function(res) {
-      console.log(res);
+    }).done(function(res){
+      console.log('*******signin response', res);
       if(res.auth) {
         if (!!res.status) {
           props.loginStatus('user')
