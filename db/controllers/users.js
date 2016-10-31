@@ -57,10 +57,10 @@ var inviteMembers = function(users, trip, callback) {
       callback();
       return;
     }
-    User.find({where: {email: users[userIndex]}}).then(function(user) {
+    User.find({where: {phone_number: users[userIndex]}}).then(function(user) {
       if (!user) {
         //send invite to user via their email e.g: sendInvite(users[userIndex])
-        User.create({email: users[userIndex]}).then(function(user) {
+        User.create({phone_number: users[userIndex]}).then(function(user) {
           user.addTrip(trip, {invite_status: 'invited', role: 'member'}).then(function() {
             inviteOne(userIndex + 1);
           });

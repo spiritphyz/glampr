@@ -8,7 +8,7 @@ var client = require('twilio')(
   process.env.TWILIO_AUTH_TOKEN
 );
 
-exports.modules = {
+module.exports = {
     smsProtocol: function(phoneNumber, message) {
         process.env.CELL_PHONE_NUMBER = phoneNumber || '+16077650585'
         client.messages.create({
