@@ -3,7 +3,7 @@ import { Link, Router, Navigation } from 'react-router';
 import SignIn from './Auth/signIn.jsx';
 import SideBar from './sideBar/sideBar.jsx';
 import $ from 'jquery';
-import Main from './Auth/Main.jsx';
+import Main from './auth/main.jsx';
 
 class App extends React.Component {
   constructor(props) {
