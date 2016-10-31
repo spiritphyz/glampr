@@ -4,9 +4,24 @@ var User = require('../models/index.js').User;
 var GearUsers = require('../models/index.js').GearUsers;
 // update directly inside of join table (GearUsers)
 
-var findAll = function(tripId, callback) {
-  Gear.findAll({where: {trip_id: tripId}}).then(function(gear) {
-    callback(gear);
+var findAll = function(tripId, userEmail, callback) {
+  User.find({where: {email: userEmail}}).then(function(user) {
+    GearUsers.findAll({where: {user_id: user.get('id'), status: 'i will buy it'}}).then(function(gearUsers) {
+      var gears = [];
+      var findGear = function(gearIndex) {
+        if(gearIndex === gearUsers.length) {
+          console.log(gears)
+          callback(gears);
+          return;
+        }
+        Gear.find({where: {id: gearUsers[gearIndex].get('gear_id'), trip_id: tripId}}).then(function(gear) {
+          console.log(gear.get('name'))
+          gears.push(gear);
+          findGear(gearIndex + 1);
+        })
+      }
+      findGear(0)
+    })
   })
 }
 
