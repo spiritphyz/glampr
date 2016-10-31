@@ -19,10 +19,12 @@ const SignIn = (props) => {
        window.location = window.location.pathname + '#/Main';      
     }
   }).fail(function (){
+    console.log('*******signin response fail', res);
+
     window.location = window.location.pathname + '#/Main';
     console.log('failed to get from signin');
   });
-  
+
   let username = ''
   let password = ''
   let currUser = {};
@@ -57,7 +59,7 @@ const SignIn = (props) => {
         }
       }
       console.log('successful post from signin');
-    }).fail(function (){
+    }).fail(function () {
       window.location = window.location.pathname + '#/SignIn';
 
       console.log('failed to post from signin');
