@@ -72,8 +72,8 @@ class TermsMaker extends React.Component {
   render() {
     return (
       <div className="rxContainer">
-        <h1> Conditions </h1>
-         <p> Let your team know what to expect. </p>
+        <h1>Trip Terms</h1>
+         <p class="card-text"> Let your team know the minimum conditions (like schedule, fitness level, and cost) before they can attend the trip.</p>
         <Categories 
           categoryCount = {this.state.categoryCount} 
           categoryContentCount={this.state.categoryContentCount}
@@ -94,8 +94,12 @@ class TermsMaker extends React.Component {
 let Buttons = ({handleSubmit, addCategory}) => {
   return (
     <div>
-      <button id="submit" onClick={handleSubmit}> Submit </button>
-      <button id="addCategory" onClick={addCategory}> Add category </button>
+    <div>
+      <button className="btn btn-warning btn-sm" id="addCategory" onClick={addCategory}> Add Category Group</button>
+    </div>
+    <div>
+      <button className="mt-1 btn btn-warning btn-lg" id="submit" onClick={handleSubmit}>Set Terms</button>
+    </div>
     </div>
   )
 }
@@ -151,7 +155,7 @@ let Category = ({handleContentChange,categoryName, categoryContentCount, handleC
         />
 
         {children}
-        <button id="addContent" onClick = {function () {addContent(categoryName)}}> Add content </button> 
+        <button className="btn btn-warning btn-sm" id="addContent" onClick = {function () {addContent(categoryName)}}> Add Content </button> 
 
       </div>
     )
