@@ -124,7 +124,7 @@ class ShoppingList extends React.Component {
           handleCheckbox={this.handleCheckbox}
           />
         )})}
-        <button id="" onClick={this.handleSubmit}> Update your list </button>
+        <button onClick={this.handleSubmit}> Update your list </button>
       </div>
     );
   }
@@ -155,7 +155,7 @@ let Item = (props) => {
             type="checkbox" 
             onChange={props.handleCheckbox}
           />
-          <div> <h3> {props.attributes.name} </h3></div>
+          <div> <b> {props.attributes.name} </b></div>
         </div>
         <div> {props.attributes.description} </div>
         <div> {props.attributes.sizing} </div>

@@ -60,17 +60,19 @@ const SignIn = (props) => {
 
 
   return (
-    <div className ="container center">
+    <div className ="rxContainer">
       <h1> Sign In </h1>
       <div>
+        <p> Username* </p>
         <input 
           data-type="username"
           type="text" 
-          placeholder="Username(email)"
+          placeholder="email address"
           onChange= {handleChange}
         />
       </div>
       <div>
+       <p> Password* </p>
         <input 
           data-type="password" 
           type="text" 

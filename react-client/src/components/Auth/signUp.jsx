@@ -58,10 +58,10 @@ const SignUp = (props) => {
   }
 
   return (
-    <div id="signUp" className="container center">
+    <div className="rxContainer">
       <h1> Sign Up </h1>
         <div>
-          <div>First Name*</div>
+          <p>First Name*</p>
           <input 
             data-type="firstName" 
             type="text" 
@@ -70,7 +70,7 @@ const SignUp = (props) => {
           />
         </div>  
         <div> 
-          <div>Last Name*</div>        
+          <p>Last Name*</p>        
           <input 
             data-type="lastName" 
             type="text" 
@@ -79,7 +79,7 @@ const SignUp = (props) => {
           />
         </div>  
         <div>
-          <div>Email*</div>        
+          <p>Email*</p>        
           <input 
             data-type='email'
             type="text" 
@@ -88,7 +88,7 @@ const SignUp = (props) => {
           />
         </div>
         <div>
-          <div>Password*</div>        
+          <p>Password*</p>        
           <input 
             data-type="password" 
             type="password"
@@ -97,7 +97,7 @@ const SignUp = (props) => {
           />
         </div>
         <div>
-          <div>Phone Number</div>
+          <p>Phone Number*</p>
           <input 
             data-type='phoneNumber'
             type="text" 

@@ -8,12 +8,6 @@ class TermsMaker extends React.Component {
       categoryCount: 1,
       categoryContentCount: {},
       inputs: {
-        /*category0 : { 
-          title: abcde
-          content0: val
-          content1: val
-          }
-        */
       }
     };
 
@@ -77,8 +71,9 @@ class TermsMaker extends React.Component {
 
   render() {
     return (
-      <div className="container center">
-        <h1> Maker T&CS </h1>
+      <div className="rxContainer">
+        <h1> Conditions </h1>
+         <p> Let your team know what to expect. </p>
         <Categories 
           categoryCount = {this.state.categoryCount} 
           categoryContentCount={this.state.categoryContentCount}
@@ -99,7 +94,6 @@ class TermsMaker extends React.Component {
 let Buttons = ({handleSubmit, addCategory}) => {
   return (
     <div>
-      <h3> buttons </h3>
       <button id="submit" onClick={handleSubmit}> Submit </button>
       <button id="addCategory" onClick={addCategory}> Add category </button>
     </div>
@@ -125,8 +119,7 @@ let Categories = ({categoryCount, categoryContentCount, addContent, handleConten
   }
 
     return (
-      <div>
-      <h3> categories </h3>
+      <div className="segment">
       {children}
       </div>
     )

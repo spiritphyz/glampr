@@ -8,7 +8,6 @@ class TermsUser extends React.Component {
       acceptance: false,
       terms: {}
     }
-
   };
 
 
@@ -58,15 +57,15 @@ class TermsUser extends React.Component {
   render() {
 
     return (
-      <div className="container center">
-        <h1> User T&Cs </h1>
+      <div className="rxContainer">
+        <h1> Conditions for your trip </h1>
           <div>
             {Object.keys(this.state.terms).map((key, i) => {
              return <Category key={i} category={key} terms={this.state.terms[key]}/>
             })}
           </div>
-        <h2> Stoked? Click on the button below to join the trip </h2>
-        <div className="user-acceptance">
+        <h3> Stoked? Click on the button below to join the trip </h3>
+        <div>
           <button id="user-acceptance" onClick={this.handleSubmit}> Count me in! </button>
           <button id="user-decline" onClick={this.handleSubmit}> Count me out! </button>
         </div>

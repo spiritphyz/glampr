@@ -3,6 +3,7 @@ import { Link, Router, Navigation } from 'react-router'
 import SignIn from './Auth/signIn.jsx';
 import SideBar from './sideBar/sideBar.jsx'
 import $ from 'jquery'
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -30,12 +31,14 @@ class App extends React.Component {
     this.setState({loginStatus: status})
   }
   render() {
-    console.log(window.location.pathname + '#')
+    console.log(window.location.pathname + '#');
+
     const childrenWithProps = React.Children.map(this.props.children,
      (child) => React.cloneElement(child, {
        loginStatus: this.loginStatus
      }))
-    if (!childrenWithProps) {
+  
+  if (!childrenWithProps) {
    return (
      <div>
        <button onClick={this.signOut}>Sign Out</button>
@@ -60,6 +63,7 @@ class App extends React.Component {
        </div>
      </div>
    )}
+
     return (
       <div>
         <button onClick={this.signOut}>Sign Out</button>
@@ -76,7 +80,7 @@ class App extends React.Component {
           <li><Link to="/SignUp">Sign Up</Link></li>
           <li><Link to="/StartTrip">Start Trip</Link></li>
           <li><Link to="/TripDetailsMaker">Trip Details Maker</Link></li>
-          <li><Link to="/GearViewMaker">Gear View Maker</Link></li>
+          <li><Link to="/GearMaker">Gear Maker View</Link></li>
           <li><Link to="/TermsMaker">Terms Maker</Link></li>
           <li><Link to="/TermsUser">Terms User</Link></li>
           <li><Link to="/TripDetailsUser">Trip Details User</Link></li>
@@ -88,14 +92,3 @@ class App extends React.Component {
 }
 
 export default App; 
-    // <div className="navBar">    
-    //       <div>Hello World!</div>
-    //       <li><Link to="/SignIn">Sign In</Link></li>
-    //       <li><Link to="/SignUp">Sign Up</Link></li>
-    //       <li><Link to="/TripDetailsMaker">Trip Details Maker</Link></li>
-    //       <li><Link to="/GearViewMaker">Gear View Maker</Link></li>
-    //       <li><Link to="/TermsMaker">Terms Maker</Link></li>
-    //       <li><Link to="/TermsUser">Terms User</Link></li>
-    //       <li><Link to="/TripDetailsUser">Trip Details User</Link></li>
-    //       <li><Link to="/ShoppingList">Shopping List</Link></li>
-    //     </div>

@@ -2,8 +2,8 @@ import React from 'react';
 let DescriptionWhen = (props) => {
 
   return (
-    <div className="container">
-      <h4>When Would You Like To Go?</h4>
+    <div>
+      <h3>When Would You Like To Go?</h3>
       <div>
         <input
           className = "tripDeparture"
