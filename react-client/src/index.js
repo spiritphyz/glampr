@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { Router, Route, hashHistory } from 'react-router'
-import Main from './components/Auth/Main.jsx';
+import Main from './components/Auth/main.jsx';
 
 import App from './components/App.jsx';
 
@@ -16,7 +16,7 @@ import TermsMaker from './components/terms/termsMaker.jsx'
 import TermsUser from './components/terms/termsUser.jsx'
 
 import TripDetailsUser from './components/tripDetailsUser/tripDetailsUser.jsx';
-import ShoppingList from './components/ShoppingList/ShoppingList.jsx';
+import ShoppingList from './components/ShoppingList/shoppingList.jsx';
 import $ from 'jquery';
 
 ReactDOM.render((

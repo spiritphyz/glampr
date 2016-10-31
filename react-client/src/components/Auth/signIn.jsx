@@ -1,21 +1,18 @@
 import React from 'react';
 import $ from 'jquery';
-
-
 const SignIn = (props) => {
-  // $.ajax({
-  //  type: "GET",
-  //  url: '/SignIn',
-  // }).done(function(res) {
-  //      if (res) {
-  //        window.location = window.location.pathname + '#/TripDetailsUser';
-  //      }
-  //    console.log('successful post from signin');
-  // }).fail(function (){
-  //    // window.location = window.location.pathname + '#/TripDetailsUser';
-
-  //    console.log('failed to post from signin');
-  // });
+  $.ajax({
+   type: "GET",
+   url: '/SignIn',
+  }).done(function(res) {
+    if (res) {
+      window.location = window.location.pathname + '#/TripDetailsUser';
+    }
+     console.log('successful post from signin/session');
+  }).fail(function (){
+     window.location = window.location.pathname + '#/SignIn';
+     console.log('failed to post from signin');
+  });
 
   let username = ''
   let password = ''
@@ -34,7 +31,6 @@ const SignIn = (props) => {
     }
   }
   const signIn = ()  => {
-
     $.ajax({
       type: "POST",
       url: '/SignIn',
