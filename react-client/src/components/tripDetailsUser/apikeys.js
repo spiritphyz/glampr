@@ -1,3 +1,3 @@
-var key = '1bd5a4ef6f16fc47c3340ee682ee5567';
+var key = '';
 
 export default key

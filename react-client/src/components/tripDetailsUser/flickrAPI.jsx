@@ -19,9 +19,9 @@ let flickrAPI = {
     }).done(function(data){
       var photos = data.photos.photo
       callback(context.getPhotoAttributes(photos));
-      console.log('successful get from terms');
+      console.log('successful get from flickrAPI');
     }).fail(function(){
-      console.log('failed to get from terms');
+      console.log('failed to get photos from flickrAPI');
     });
 
   },
