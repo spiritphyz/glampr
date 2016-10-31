@@ -23,7 +23,8 @@ class App extends React.Component {
       url: '/SignOut',
     }).done(function() {
       console.log('successful sign out');
-      window.location = window.location.pathname + '#/Main';
+      this.loginStatus('')
+      window.location = window.location.pathname + '#/SignIn';
     }).fail(function() {
       console.log('failed sign out');
     });      

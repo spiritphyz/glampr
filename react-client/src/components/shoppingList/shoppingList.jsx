@@ -141,10 +141,10 @@ let Category = (props) => {
       <div>
       <h2>{props.title}</h2>
       {Object.keys(props.items).map((item, i) => {
-       return (
-         <Item key={i} attributes={props.items[item]} handleCheckbox={props.handleCheckbox}/>
-       )
-     })}
+        return (
+          <Item key={i} attributes={props.items[item]} handleCheckbox={props.handleCheckbox}/>
+        )
+      })}
       </div>
     )
 }
