@@ -5,10 +5,13 @@ const SignIn = (props) => {
    type: "GET",
    url: '/SignIn',
   }).done(function(res) {
-    if (res) {
-      window.location = window.location.pathname + '#/TripDetailsUser';
+    if (!res) {
+      window.location = window.location.pathname + '#/SignIn';
+    } else {
+      
     }
      console.log('successful post from signin/session');
+    }
   }).fail(function (){
      window.location = window.location.pathname + '#/SignIn';
      console.log('failed to post from signin');
@@ -36,7 +39,7 @@ const SignIn = (props) => {
       url: '/SignIn',
       contentType: 'application/json',
       data: JSON.stringify(currUser)
-    }).done(function(res){
+    }).done(function(res) {
       console.log(res);
       if(res.auth) {
         if (!!res.status) {
