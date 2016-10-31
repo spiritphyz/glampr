@@ -14,7 +14,6 @@ class ShoppingList extends React.Component {
   }
 
   handleSubmit() {
-    console.log(checkList, 'checkList from submit');
     $.ajax({
       type: "POST",
       url: '/shoppingList',
@@ -137,15 +136,15 @@ class ShoppingList extends React.Component {
 // submit all content at the end
 
 let Category = (props) => {
-  let items  = props[items][category]
+  let items  = props.items.category
     return (
       <div>
       <h2>{props.title}</h2>
-      {props.items.map((item, i) => {
-        return (
-          <Item key={i} attributes={item} handleCheckbox={props.handleCheckbox}/>
-        )
-      })}
+      {Object.keys(props.items).map((item, i) => {
+       return (
+         <Item key={i} attributes={props.items[item]} handleCheckbox={props.handleCheckbox}/>
+       )
+     })}
       </div>
     )
 }
