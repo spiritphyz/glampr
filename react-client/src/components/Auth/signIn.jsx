@@ -11,7 +11,6 @@ const SignIn = (props) => {
       
     }
      console.log('successful post from signin/session');
-    }
   }).fail(function (){
      window.location = window.location.pathname + '#/SignIn';
      console.log('failed to post from signin');
