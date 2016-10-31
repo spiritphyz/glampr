@@ -35,7 +35,7 @@ class GearMaker extends React.Component {
       data: JSON.stringify(submission)
     }).done(function(){
       window.location = window.location.pathname + '#/TripDetailsUser';
-      console.log('successful post from terms');
+      console.log('successful post from gears');
     }).fail(function(err){
       console.log(err);
     });

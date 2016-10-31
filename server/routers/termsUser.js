@@ -13,10 +13,10 @@ router.route('/')
       })
     })
   .post(function(req, res) {
-      termsController.acceptTerms(req.body, req.session.userId, req.session.tripId, function() {
+      termsController.acceptTerms(req.body, req.session.email, req.session.tripId, function() {
         res.send({redirect: '/shoppingList'})
       })
     })
 
 
-module.exports = router;  
+module.exports = router;

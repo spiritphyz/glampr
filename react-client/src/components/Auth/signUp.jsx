@@ -48,9 +48,12 @@ const SignUp = (props) => {
         contentType: 'application/json',
         data: JSON.stringify(currUser)
       }).done(function(data){
-        window.location = window.location.pathname + '#/SignIn';
-
-        console.log('successful sign up');
+        if(data) {
+          window.location = window.location.pathname + '#/SignIn'; 
+          console.log('successful sign up');
+        } else {
+          console.log('User already exists')
+        }
       }).fail(function(){
         console.log('failed sign up');
       }); 
