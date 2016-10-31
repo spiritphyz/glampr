@@ -8,7 +8,7 @@ var isLoggedIn = function(req) {
 
 exports.checkAuth = function(req, res, next) {
   if (!isLoggedIn(req)) {
-    res.redirect('/SignIn');
+    res.send(false);
   } else {
     next();
   }
