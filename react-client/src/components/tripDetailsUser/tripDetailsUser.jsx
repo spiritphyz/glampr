@@ -84,6 +84,11 @@ class TripDetailsUser extends React.Component {
 }
 
 let TripDetails = (props) => {
+  const startDateRaw = props.info.start_date;
+  const startDate = moment().format(startDateRaw); // October 31st 2016, 2:37:13 pm
+  const endDateRaw = props.info.end_date;
+  const endDate = moment().format(endDateRaw); // October 31st 2016, 2:37:13 pm
+  const inDays = startDate.fromNow()
   return (
     <div className="mt-1">
       <h4> Your trip: {props.info.title} </h4>
