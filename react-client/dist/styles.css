@@ -1,3 +1,76 @@
+body {
+  background-color: rgb(146, 119, 77);  
+  font-family: 'Bitter', serif; 
+}
+a:link {
+  color: #dfd76e;
+  text-decoration: none;
+}
+a:visited {
+  color: #dfd76e;
+  text-decoration: none;
+}
+a:hover {
+  color: #92774d;
+  text-decoration: none;
+}
+.headline {
+  font-family: 'Lobster Two', cursive;
+  font-weight: 700; 
+  font-style: italic;
+  font-size: 3em;
+}
+.fancy-text {
+  font-family: 'Lobster Two', cursive; 
+}
+.body-text {
+  font-family: 'Bitter', serif; 
+}
+.off-white {
+  color: #f0f0f0;
+}
+.brown {
+  background-color: #92774d;
+}
+.dark-green {
+  color: #495224;
+}
+.light-green {
+  color: #8dd27f;
+}
+.yellow {
+  color: #dfd76e;
+}
+.caramel {
+  color: #b89c2e;
+}
+
+/* override default color for outline warning button */
+.btn-outline-warning {
+    color: #dfd76e;
+    border-color: #dfd76e;
+}
+.btn-outline-warning:hover,
+.btn-outline-warning:focus,
+.btn-outline-warning:active    {
+    background-color: #dfd76e;
+    color: #92774d;
+    border-color: #dfd76e;
+}
+.btn-warning {
+    color: #92774d;
+    border-color: #dfd76e;
+    background-color: #dfd76e;
+}
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active    {
+    color: #8dd27f;
+    background-color: #495224;
+    border-color: #495224;
+}
+
+/* ben's custom classes */
 .tripDescription {
     width: 30em;
     height: 10em;
@@ -8,7 +81,6 @@
 }
 .container {
 }
-
 .navBar {
-	border: solid;
+	/*border: solid;*/
 }
