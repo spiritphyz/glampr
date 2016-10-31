@@ -40,9 +40,6 @@ class App extends React.Component {
      (child) => React.cloneElement(child, {
        loginStatus: this.loginStatus
      }));
-  
-
-
   if (!childrenWithProps) {
     return (
      <div>
@@ -76,7 +73,6 @@ class App extends React.Component {
    ); }
 
 
-    console.log('childrenwithProps', childrenWithProps);
     var pathName = childrenWithProps[0].props.location.pathname;
 
     // for signup view, set column to be full-width
