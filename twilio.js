@@ -14,11 +14,11 @@ exports.modules = {
         client.messages.create({
           from: process.env.TWILIO_PHONE_NUMBER,
           to: process.env.CELL_PHONE_NUMBER,
-          body: message || "You just sent an SMS from Node.js using Twilio!"
+          body: message || "Welcome Campr!!"
         }, function(err, message) {
           if(err) {
             console.error(err.message);
           }
         });
-    } 
+    }
 }

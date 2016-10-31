@@ -59,52 +59,21 @@ const SignIn = (props) => {
     });
   }
 
-const SignIn = () => {
-  $.ajax({
-    type: "GET",
-    url: '/SignIn',
-  }).done(function(res) {
-      if (res) {
-        window.location = window.location.pathname + '#/TripDetailsUser';
-      }
-    }
-    console.log('successful post from signin');
-  }).fail(function (){
-    console.log('failed to post from signin');
-  });
-  let username = ''
-  let password = ''
-  let currUser = {};
-  currUser.username = username;
-  currUser.password = password;
-  
-  const handleChange = (e) => {
-    let inputType = e.target.getAttribute('data-type');
-    let input = e.target.value;
-    if (inputType === 'username') {
-      currUser.username = input;
-    }
-    if (inputType === 'password') {
-      currUser.password = input;
-    }
-  }
   return (
-    <div className ="rxContainer">
+    <div className ="container center">
       <h1> Sign In </h1>
       <div>
-        <p> Username* </p>
         <input 
           data-type="username"
           type="text" 
-          placeholder="email address"
+          placeholder="Username(email)"
           onChange= {handleChange}
         />
       </div>
       <div>
-       <p> Password* </p>
         <input 
           data-type="password" 
-          type="text" 
+          type="password" 
           placeholder="password"
           onChange={handleChange}
         />

@@ -6,7 +6,7 @@ class ShoppingList extends React.Component {
     super(props);
     this.state = {
       items: {},
-      checkList: []
+      checkList: {}
     }
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -89,7 +89,10 @@ class ShoppingList extends React.Component {
     let item = e.target.id;
     let currList = this.state.checkList;
     console.log(currList);
-    currList.push(item);
+    if (currList[e.target.id]) {
+      currList[e.target.id] = false;
+    }
+    currList[e.target.id] = !currList[e.target.id];
     this.setState({checkList: currList})
   }
 
@@ -139,11 +142,12 @@ let Category = (props) => {
       <div>
       <h2>{props.title}</h2>
       {props.items.map((item, i) => {
-        return (<Item key={i} attributes={item} handleCheckbox={props.handleCheckbox}/>)
+        return (
+          <Item key={i} attributes={item} handleCheckbox={props.handleCheckbox}/>
+        )
       })}
       </div>
     )
-    
 }
 
 let Item = (props) => {
@@ -164,7 +168,6 @@ let Item = (props) => {
         <div> {props.attributes.required} </div>
       </div>
     )
-    
 }
 
-export default ShoppingList
+export default ShoppingList;

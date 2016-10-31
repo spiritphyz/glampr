@@ -33,7 +33,8 @@ const SignUp = (props) => {
     if (currUser.first_name === '' ||
         currUser.last_name === '' ||
         currUser.email === '' ||
-        currUser.password === '') {
+        currUser.password === '' ||
+        currUser.phone_number === '') {
 
       var errorMsg = '<div class=\"error\">Please enter all the required fields</div>';
 

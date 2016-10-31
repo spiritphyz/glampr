@@ -15,7 +15,7 @@ let InviteOthers = (props) => {
             key = {invite}
             className = "invitationText"
             type="text"
-            placeholder="Email Address"
+            placeholder="Phone"
             onChange={props.handleChange}
           />
         </div>
