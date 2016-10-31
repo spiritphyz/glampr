@@ -78,6 +78,7 @@ class ShoppingList extends React.Component {
       data: JSON.stringify(checkList),
       contentType: 'application/json'
     }).done(function(data){
+      window.location = window.location.pathname + '#/TripDetailsUser';
       console.log('submit checklist')
     }).fail(function(){
       console.log('failed to post checklist');
@@ -120,7 +121,7 @@ class ShoppingList extends React.Component {
           <Category 
           key={i}
           title={category}
-          items={this.state.items[category]}
+          items={this.state.items}
           handleCheckbox={this.handleCheckbox}
           />
         )})}
@@ -133,7 +134,7 @@ class ShoppingList extends React.Component {
 // submit all content at the end
 
 let Category = (props) => {
-
+  let items  = props[items][category]
     return (
       <div>
       <h2>{props.title}</h2>

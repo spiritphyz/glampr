@@ -34,6 +34,7 @@ const SignIn = (props) => {
     }
   }
   const signIn = ()  => {
+
     $.ajax({
       type: "POST",
       url: '/SignIn',
@@ -58,7 +59,35 @@ const SignIn = (props) => {
     });
   }
 
-
+const SignIn = () => {
+  $.ajax({
+    type: "GET",
+    url: '/SignIn',
+  }).done(function(res) {
+      if (res) {
+        window.location = window.location.pathname + '#/TripDetailsUser';
+      }
+    }
+    console.log('successful post from signin');
+  }).fail(function (){
+    console.log('failed to post from signin');
+  });
+  let username = ''
+  let password = ''
+  let currUser = {};
+  currUser.username = username;
+  currUser.password = password;
+  
+  const handleChange = (e) => {
+    let inputType = e.target.getAttribute('data-type');
+    let input = e.target.value;
+    if (inputType === 'username') {
+      currUser.username = input;
+    }
+    if (inputType === 'password') {
+      currUser.password = input;
+    }
+  }
   return (
     <div className ="rxContainer">
       <h1> Sign In </h1>
