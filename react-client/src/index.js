@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { Router, Route, hashHistory } from 'react-router'
+import Main from './components/Auth/Main.jsx';
 
 import App from './components/App.jsx';
 
@@ -23,6 +24,7 @@ ReactDOM.render((
     <Router history={hashHistory}>
       <Route path="/" component={App}>
         <Route path="SignIn" component={SignIn}/>
+        <Route path="Main" component={Main}/>
         <Route path="SignUp" component={SignUp}/>
         <Route path="StartTrip" component={StartTrip}/>
         <Route path="TripDetailsMaker" component={TripDetailsMaker}/>
